@@ -1,0 +1,86 @@
+{
+  "version": "0.1",
+  "description": "NEXIS LCD UI inspection rules for initial representative samples",
+  "image_size": {
+    "width": 1280,
+    "height": 480
+  },
+  "rules": {
+    "14-33": {
+      "screen_id": "14-33",
+      "sample_name": "14-33.png",
+      "expected_final_result": "FAIL",
+      "description": "텍스트 오류와 No data UI 요소 오류를 검출하기 위한 대표 샘플",
+      "rois": [
+        {
+          "roi_id": "left_course_text_area",
+          "label": "왼쪽 코스명 및 시간 영역",
+          "check_type": "ssim",
+          "bbox": [130, 160, 250, 100],
+          "ssim_pass": 0.90,
+          "ssim_review": 0.75,
+          "importance": "critical",
+          "expected_issue": "기준 이미지와 비교 이미지의 코스명 또는 시간 텍스트가 다를 수 있음"
+        },
+        {
+          "roi_id": "middle_card_area",
+          "label": "가운데 AI智慧偵測 카드 전체 영역",
+          "check_type": "ssim",
+          "bbox": [500, 80, 370, 370],
+          "ssim_pass": 0.90,
+          "ssim_review": 0.75,
+          "importance": "critical",
+          "expected_issue": "가운데 카드의 아이콘, 텍스트, 배치가 기준과 다를 수 있음"
+        },
+        {
+          "roi_id": "no_data_area",
+          "label": "No data 박스 발생 영역",
+          "check_type": "ssim",
+          "bbox": [520, 300, 120, 100],
+          "ssim_pass": 0.90,
+          "ssim_review": 0.75,
+          "importance": "critical",
+          "expected_issue": "비교 이미지에 기준 이미지에는 없는 No data 박스가 표시됨"
+        }
+      ]
+    },
+    "15-65": {
+      "screen_id": "15-65",
+      "sample_name": "15-65.png",
+      "expected_final_result": "FAIL",
+      "description": "안내 이미지 또는 아이콘 구성 오류를 검출하기 위한 대표 샘플",
+      "rois": [
+        {
+          "roi_id": "guide_image_area",
+          "label": "왼쪽 안내 그림 영역",
+          "check_type": "ssim",
+          "bbox": [70, 90, 260, 280],
+          "ssim_pass": 0.90,
+          "ssim_review": 0.75,
+          "importance": "critical",
+          "expected_issue": "기준 이미지의 아래 방향 화살표 그림과 비교 이미지의 액체 붓는 그림이 서로 다름"
+        },
+        {
+          "roi_id": "instruction_text_area",
+          "label": "본문 안내 문구 영역",
+          "check_type": "ssim",
+          "bbox": [360, 160, 600, 170],
+          "ssim_pass": 0.90,
+          "ssim_review": 0.75,
+          "importance": "warning",
+          "expected_issue": "본문 안내 문구가 기준과 크게 달라지는지 확인"
+        },
+        {
+          "roi_id": "bottom_start_text_area",
+          "label": "하단 시작 안내 문구 영역",
+          "check_type": "ssim",
+          "bbox": [860, 400, 380, 60],
+          "ssim_pass": 0.90,
+          "ssim_review": 0.75,
+          "importance": "warning",
+          "expected_issue": "하단 시작 안내 문구가 기준과 크게 달라지는지 확인"
+        }
+      ]
+    }
+  }
+}
