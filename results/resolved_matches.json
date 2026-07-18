@@ -1,0 +1,19 @@
+{
+  "matched_count": 2,
+  "unmatched_reference": [],
+  "unmatched_capture": [],
+  "matches": {
+    "14-33.png": {
+      "screen_id": "14-33",
+      "reference_image": "data/reference/14-33.png",
+      "capture_image": "data/capture/14-33.png",
+      "match_status": "filename_matched"
+    },
+    "15-65.png": {
+      "screen_id": "15-65",
+      "reference_image": "data/reference/15-65.png",
+      "capture_image": "data/capture/15-65.png",
+      "match_status": "filename_matched"
+    }
+  }
+}
