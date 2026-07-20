@@ -1,0 +1,124 @@
+{
+  "profiles": {
+    "general_diff_profile": {
+      "description": "일반적인 이미지 차이 검출용 프로파일",
+      "use_diff": true,
+      "use_ocr": false,
+      "use_ssim": true,
+      "use_numeric_check": false,
+      "diff_threshold": 35,
+      "min_diff_area": 300,
+      "merge_distance": 15,
+      "ssim_pass": 0.92,
+      "ssim_review": 0.80,
+      "max_allowed_diff_rois": 2,
+      "fail_area_ratio": 0.08
+    },
+
+    "text_list_profile": {
+      "description": "목록, 설정 항목, 여러 줄 텍스트 중심 화면용 프로파일",
+      "use_diff": true,
+      "use_ocr": true,
+      "use_ssim": false,
+      "use_numeric_check": false,
+      "diff_threshold": 28,
+      "min_diff_area": 120,
+      "merge_distance": 12,
+      "ocr_confidence_review": 0.70,
+      "max_allowed_diff_rois": 3,
+      "fail_area_ratio": 0.06
+    },
+
+    "status_time_profile": {
+      "description": "시간, 숫자, 진행 상태, 단위 검사용 프로파일",
+      "use_diff": true,
+      "use_ocr": true,
+      "use_ssim": true,
+      "use_numeric_check": true,
+      "diff_threshold": 28,
+      "min_diff_area": 100,
+      "merge_distance": 12,
+      "ocr_confidence_review": 0.70,
+      "strict_number_unit": true,
+      "ssim_pass": 0.92,
+      "ssim_review": 0.80,
+      "max_allowed_diff_rois": 3,
+      "fail_area_ratio": 0.06
+    },
+
+    "guide_image_profile": {
+      "description": "안내 그림, 설명 이미지, 도식 포함 화면용 프로파일",
+      "use_diff": true,
+      "use_ocr": true,
+      "use_ssim": true,
+      "use_numeric_check": false,
+      "diff_threshold": 30,
+      "min_diff_area": 180,
+      "merge_distance": 15,
+      "ocr_confidence_review": 0.70,
+      "ssim_pass": 0.90,
+      "ssim_review": 0.75,
+      "max_allowed_diff_rois": 3,
+      "fail_area_ratio": 0.08
+    },
+
+    "popup_profile": {
+      "description": "중앙 팝업, 확인/취소, 로딩 팝업 화면용 프로파일",
+      "use_diff": true,
+      "use_ocr": true,
+      "use_ssim": true,
+      "use_numeric_check": false,
+      "focus_center_area": true,
+      "diff_threshold": 30,
+      "min_diff_area": 150,
+      "merge_distance": 15,
+      "ocr_confidence_review": 0.70,
+      "ssim_pass": 0.90,
+      "ssim_review": 0.75,
+      "max_allowed_diff_rois": 3,
+      "fail_area_ratio": 0.08
+    },
+
+    "card_ui_profile": {
+      "description": "코스 카드, 대시보드, 타일형 UI 화면용 프로파일",
+      "use_diff": true,
+      "use_ocr": true,
+      "use_ssim": true,
+      "use_numeric_check": false,
+      "diff_threshold": 30,
+      "min_diff_area": 180,
+      "merge_distance": 15,
+      "ocr_confidence_review": 0.70,
+      "ssim_pass": 0.90,
+      "ssim_review": 0.75,
+      "max_allowed_diff_rois": 4,
+      "fail_area_ratio": 0.08
+    },
+
+    "setting_control_profile": {
+      "description": "슬라이더, 토글, 옵션 버튼, 설정값 조절 화면용 프로파일",
+      "use_diff": true,
+      "use_ocr": true,
+      "use_ssim": true,
+      "use_numeric_check": true,
+      "diff_threshold": 28,
+      "min_diff_area": 120,
+      "merge_distance": 12,
+      "ocr_confidence_review": 0.70,
+      "strict_number_unit": true,
+      "ssim_pass": 0.90,
+      "ssim_review": 0.75,
+      "max_allowed_diff_rois": 4,
+      "fail_area_ratio": 0.07
+    }
+  },
+
+  "decision_policy": {
+    "pass_when_no_diff": true,
+    "review_when_ocr_confidence_low": true,
+    "review_when_many_small_diffs": true,
+    "fail_when_large_diff_area": true,
+    "fail_when_text_mismatch": true,
+    "fail_when_number_or_unit_mismatch": true
+  }
+}
