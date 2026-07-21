@@ -3,9 +3,9 @@
     "total_items": 73,
     "processed_count": 73,
     "error_count": 0,
-    "pass_count": 10,
-    "review_count": 36,
-    "fail_count": 27,
+    "pass_count": 14,
+    "review_count": 47,
+    "fail_count": 12,
     "errors": []
   },
   "results": {
@@ -21,7 +21,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 6개 존재"
+        "REVIEW ROI 6개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 6,
@@ -43,6 +44,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.120839,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00041
         },
         {
@@ -54,6 +56,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.040688,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000422
         },
         {
@@ -65,6 +68,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.28081,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000399
         },
         {
@@ -76,6 +80,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.386269,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006243
         },
         {
@@ -87,6 +92,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.045892,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000342
         },
         {
@@ -98,6 +104,7 @@
           "ssim_status": "FAIL",
           "ssim_score": -0.083883,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000314
         }
       ],
@@ -117,7 +124,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 2개 존재"
+        "REVIEW ROI 2개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 2,
@@ -139,6 +147,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.221591,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001102
         },
         {
@@ -150,6 +159,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.377911,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3993,
           "area_ratio": 0.023255
         }
       ],
@@ -198,7 +208,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 3개 존재"
+        "REVIEW ROI 3개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 3,
@@ -220,6 +231,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.722428,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.016338
         },
         {
@@ -231,6 +243,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.695341,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.36,
           "area_ratio": 0.000744
         },
         {
@@ -242,6 +255,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.646764,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001004
         }
       ],
@@ -261,7 +275,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 3개 존재"
+        "REVIEW ROI 3개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 3,
@@ -283,6 +298,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.198343,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002964
         },
         {
@@ -294,6 +310,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.297187,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.008309
         },
         {
@@ -305,6 +322,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.206342,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002214
         }
       ],
@@ -322,9 +340,10 @@
       "expected_result": "UNKNOWN",
       "memo": "설정값/옵션 선택 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 1개 존재"
+        "REVIEW ROI 8개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 8,
@@ -333,8 +352,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 7,
-        "fail_count": 1
+        "review_count": 8,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -346,17 +365,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.715235,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.415,
           "area_ratio": 0.014715
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.624402,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.22,
           "area_ratio": 0.020911
         },
         {
@@ -368,6 +389,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.716978,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.012918
         },
         {
@@ -379,6 +401,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.149019,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001055
         },
         {
@@ -390,6 +413,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.212763,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.56,
           "area_ratio": 0.003149
         },
         {
@@ -401,6 +425,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.288879,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003138
         },
         {
@@ -412,6 +437,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.276968,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002145
         },
         {
@@ -423,6 +449,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.472926,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000843
         }
       ],
@@ -440,9 +467,10 @@
       "expected_result": "UNKNOWN",
       "memo": "설정값/옵션 선택 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 1개 존재"
+        "REVIEW ROI 8개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 8,
@@ -451,8 +479,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 7,
-        "fail_count": 1
+        "review_count": 8,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -464,17 +492,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.715235,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.415,
           "area_ratio": 0.014715
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.624402,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.22,
           "area_ratio": 0.020911
         },
         {
@@ -486,6 +516,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.716978,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.012918
         },
         {
@@ -497,6 +528,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.149019,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001055
         },
         {
@@ -508,6 +540,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.212763,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.56,
           "area_ratio": 0.003149
         },
         {
@@ -519,6 +552,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.288879,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003138
         },
         {
@@ -530,6 +564,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.276968,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002145
         },
         {
@@ -541,6 +576,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.472926,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000843
         }
       ],
@@ -587,9 +623,10 @@
       "expected_result": "UNKNOWN",
       "memo": "진행 시간/상태바 중심 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 7개 존재"
+        "REVIEW ROI 15개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 15,
@@ -598,8 +635,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 8,
-        "fail_count": 7
+        "review_count": 15,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -611,6 +648,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.415516,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.95,
           "area_ratio": 0.002132
         },
         {
@@ -622,6 +660,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.406469,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002142
         },
         {
@@ -633,17 +672,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.00042
         },
         {
           "roi_id": "diff_004",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.252136,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.41,
           "area_ratio": 0.002799
         },
         {
@@ -655,6 +696,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.184233,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8867,
           "area_ratio": 0.007433
         },
         {
@@ -666,17 +708,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.320021,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00056
         },
         {
           "roi_id": "diff_007",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.240654,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.4983,
           "area_ratio": 0.020361
         },
         {
@@ -688,39 +732,43 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.477717,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.73,
           "area_ratio": 0.0011
         },
         {
           "roi_id": "diff_009",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.428518,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000257
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.634913,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3,
           "area_ratio": 0.0027
         },
         {
           "roi_id": "diff_011",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.369149,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.645,
           "area_ratio": 0.006776
         },
         {
@@ -732,17 +780,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.008295,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.734,
           "area_ratio": 0.010783
         },
         {
           "roi_id": "diff_013",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.231353,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.64,
           "area_ratio": 0.000347
         },
         {
@@ -754,17 +804,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.552136,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001722
         },
         {
           "roi_id": "diff_015",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.319442,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000259
         }
       ],
@@ -793,8 +845,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 7,
-        "fail_count": 6
+        "review_count": 13,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -806,6 +858,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.415073,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.955,
           "area_ratio": 0.002132
         },
         {
@@ -817,6 +870,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.406469,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002142
         },
         {
@@ -828,6 +882,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.331097,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00042
         },
         {
@@ -839,6 +894,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.516776,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.036307
         },
         {
@@ -850,17 +906,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.180092,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00743
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.403363,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.525,
           "area_ratio": 0.010011
         },
         {
@@ -872,61 +930,67 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.26957,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006157
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.236908,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.00269
         },
         {
           "roi_id": "diff_009",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.319703,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.51,
           "area_ratio": 0.008175
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.325805,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.04,
           "area_ratio": 0.000941
         },
         {
           "roi_id": "diff_011",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.008249,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003849
         },
         {
           "roi_id": "diff_012",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.231353,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.64,
           "area_ratio": 0.000347
         },
         {
@@ -938,6 +1002,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.361422,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001063
         }
       ],
@@ -955,9 +1020,10 @@
       "expected_result": "UNKNOWN",
       "memo": "진행 상태/텍스트 중심 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 2개 존재"
+        "REVIEW ROI 6개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 6,
@@ -966,19 +1032,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 4,
-        "fail_count": 2
+        "review_count": 6,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.59077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.001279
         },
         {
@@ -990,6 +1057,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.451873,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.93,
           "area_ratio": 0.002131
         },
         {
@@ -1001,6 +1069,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.369904,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8933,
           "area_ratio": 0.002144
         },
         {
@@ -1012,17 +1081,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.00042
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.368322,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2525,
           "area_ratio": 0.029578
         },
         {
@@ -1034,6 +1105,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.063926,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.016263
         }
       ],
@@ -1051,9 +1123,10 @@
       "expected_result": "UNKNOWN",
       "memo": "진행 상태/텍스트 중심 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 6개 존재"
+        "REVIEW ROI 9개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 10,
@@ -1062,19 +1135,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 1,
-        "review_count": 3,
-        "fail_count": 6
+        "review_count": 9,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.59077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.001279
         },
         {
@@ -1086,6 +1160,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.451873,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.93,
           "area_ratio": 0.002131
         },
         {
@@ -1097,6 +1172,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.369904,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8933,
           "area_ratio": 0.002144
         },
         {
@@ -1108,6 +1184,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.00042
         },
         {
@@ -1119,61 +1196,67 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.825886,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.5,
           "area_ratio": 0.000583
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "SSIM 점수가 애매한 범위"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.81018,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.54,
           "area_ratio": 0.001032
         },
         {
           "roi_id": "diff_007",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.825843,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3633,
           "area_ratio": 0.000934
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.739568,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000666
         },
         {
           "roi_id": "diff_009",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.84534,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.26,
           "area_ratio": 0.000174
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.712375,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00019
         }
       ],
@@ -1202,19 +1285,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 5,
-        "fail_count": 2
+        "review_count": 7,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.59077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.001279
         },
         {
@@ -1226,6 +1310,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.451873,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.93,
           "area_ratio": 0.002131
         },
         {
@@ -1237,6 +1322,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.369904,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8933,
           "area_ratio": 0.002144
         },
         {
@@ -1248,6 +1334,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.00042
         },
         {
@@ -1259,17 +1346,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.19305,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.74,
           "area_ratio": 0.003768
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.414073,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.607,
           "area_ratio": 0.028547
         },
         {
@@ -1281,6 +1370,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.193956,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.025697
         }
       ],
@@ -1309,19 +1399,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 1,
-        "review_count": 7,
-        "fail_count": 9
+        "review_count": 16,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.59077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.001279
         },
         {
@@ -1333,6 +1424,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.451873,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.93,
           "area_ratio": 0.002131
         },
         {
@@ -1344,6 +1436,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.369904,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8933,
           "area_ratio": 0.002144
         },
         {
@@ -1355,17 +1448,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.00042
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.713419,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.4867,
           "area_ratio": 0.014746
         },
         {
@@ -1377,6 +1472,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.500407,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.92,
           "area_ratio": 0.019067
         },
         {
@@ -1388,17 +1484,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.114819,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001958
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.058106,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.1,
           "area_ratio": 0.000353
         },
         {
@@ -1410,6 +1508,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.308818,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.009852
         },
         {
@@ -1421,50 +1520,55 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.825886,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.5,
           "area_ratio": 0.000583
         },
         {
           "roi_id": "diff_011",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "SSIM 점수가 애매한 범위"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.81018,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.54,
           "area_ratio": 0.001032
         },
         {
           "roi_id": "diff_012",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.825843,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3633,
           "area_ratio": 0.000934
         },
         {
           "roi_id": "diff_013",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.739568,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000666
         },
         {
           "roi_id": "diff_014",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.84534,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.26,
           "area_ratio": 0.000174
         },
         {
@@ -1476,28 +1580,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.216848,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002048
         },
         {
           "roi_id": "diff_016",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.712375,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00019
         },
         {
           "roi_id": "diff_017",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.299027,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.28,
           "area_ratio": 0.00617
         }
       ],
@@ -1517,7 +1624,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 19개 존재"
+        "REVIEW ROI 19개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 19,
@@ -1539,6 +1647,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.583839,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2,
           "area_ratio": 0.001302
         },
         {
@@ -1550,6 +1659,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.446407,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002109
         },
         {
@@ -1561,6 +1671,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.367101,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8867,
           "area_ratio": 0.002134
         },
         {
@@ -1572,6 +1683,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.301114,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.415,
           "area_ratio": 0.000488
         },
         {
@@ -1583,6 +1695,7 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.791582,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006662
         },
         {
@@ -1594,6 +1707,7 @@
           "ssim_status": "PASS",
           "ssim_score": 0.916499,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004816
         },
         {
@@ -1605,6 +1719,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.399801,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.08,
           "area_ratio": 0.001214
         },
         {
@@ -1616,6 +1731,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.299958,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000684
         },
         {
@@ -1627,17 +1743,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.353365,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006274
         },
         {
           "roi_id": "diff_010",
           "roi_final_status": "REVIEW",
           "roi_reason": [
-            "OCR 텍스트 차이 후보 감지"
+            "SSIM 기준 차이는 크지만 OCR 확인이 불충분함"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.392562,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8075,
           "area_ratio": 0.005099
         },
         {
@@ -1649,6 +1767,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.420052,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.007905
         },
         {
@@ -1660,6 +1779,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.339351,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.36,
           "area_ratio": 0.004113
         },
         {
@@ -1671,6 +1791,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.316533,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001991
         },
         {
@@ -1682,6 +1803,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.160575,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.48,
           "area_ratio": 0.000443
         },
         {
@@ -1693,6 +1815,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.313708,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006423
         },
         {
@@ -1704,6 +1827,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.409079,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006423
         },
         {
@@ -1715,6 +1839,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.295635,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004473
         },
         {
@@ -1726,6 +1851,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.329981,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.68,
           "area_ratio": 0.001999
         },
         {
@@ -1737,6 +1863,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.345121,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004588
         }
       ],
@@ -1756,7 +1883,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 21개 존재"
+        "REVIEW ROI 21개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 21,
@@ -1778,6 +1906,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.583839,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2,
           "area_ratio": 0.001302
         },
         {
@@ -1789,6 +1918,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.446407,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002109
         },
         {
@@ -1800,6 +1930,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.367101,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8867,
           "area_ratio": 0.002134
         },
         {
@@ -1811,6 +1942,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.301114,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.415,
           "area_ratio": 0.000488
         },
         {
@@ -1822,6 +1954,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.69917,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.06,
           "area_ratio": 0.009876
         },
         {
@@ -1833,6 +1966,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.399751,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.25,
           "area_ratio": 0.001406
         },
         {
@@ -1844,6 +1978,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.342118,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000807
         },
         {
@@ -1855,6 +1990,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.092329,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.49,
           "area_ratio": 0.000329
         },
         {
@@ -1866,6 +2002,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.200342,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2933,
           "area_ratio": 0.007769
         },
         {
@@ -1877,6 +2014,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.197477,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.82,
           "area_ratio": 0.004422
         },
         {
@@ -1888,6 +2026,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.468371,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3,
           "area_ratio": 0.002176
         },
         {
@@ -1899,17 +2038,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.378554,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000615
         },
         {
           "roi_id": "diff_013",
           "roi_final_status": "REVIEW",
           "roi_reason": [
-            "OCR 텍스트 차이 후보 감지"
+            "SSIM 기준 차이는 크지만 OCR 확인이 불충분함"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.13131,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001299
         },
         {
@@ -1921,6 +2062,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.160575,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.48,
           "area_ratio": 0.000443
         },
         {
@@ -1932,6 +2074,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.192685,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.53,
           "area_ratio": 0.000449
         },
         {
@@ -1943,6 +2086,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.400332,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.28,
           "area_ratio": 0.004442
         },
         {
@@ -1954,6 +2098,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.439466,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001188
         },
         {
@@ -1965,6 +2110,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.221263,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.007848
         },
         {
@@ -1976,6 +2122,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.738417,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000313
         },
         {
@@ -1987,6 +2134,7 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.750716,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.51,
           "area_ratio": 0.000555
         },
         {
@@ -1998,6 +2146,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.255186,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.57,
           "area_ratio": 0.004406
         }
       ],
@@ -2026,30 +2175,32 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 3,
-        "fail_count": 5
+        "review_count": 6,
+        "fail_count": 2
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.180352,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.31,
           "area_ratio": 0.00374
         },
         {
           "roi_id": "diff_002",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "OCR 신뢰도 높은 숫자/단위 불일치"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.45562,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.72,
           "area_ratio": 0.029019
         },
         {
@@ -2061,17 +2212,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.468505,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.64,
           "area_ratio": 0.001092
         },
         {
           "roi_id": "diff_004",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.609016,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3,
           "area_ratio": 0.003019
         },
         {
@@ -2083,17 +2236,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.198313,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.004886
         },
         {
           "roi_id": "diff_006",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "OCR 신뢰도 높은 숫자/단위 불일치"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.45562,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.72,
           "area_ratio": 0.029019
         },
         {
@@ -2105,17 +2260,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.468505,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.64,
           "area_ratio": 0.001092
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.609016,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3,
           "area_ratio": 0.003019
         }
       ],
@@ -2144,19 +2301,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 9,
-        "fail_count": 7
+        "review_count": 16,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.59077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.001279
         },
         {
@@ -2168,6 +2326,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.415516,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.95,
           "area_ratio": 0.002132
         },
         {
@@ -2179,6 +2338,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.406469,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002142
         },
         {
@@ -2190,17 +2350,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.00042
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.713671,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.476,
           "area_ratio": 0.01474
         },
         {
@@ -2212,6 +2374,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.500407,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.92,
           "area_ratio": 0.019067
         },
         {
@@ -2223,17 +2386,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.114819,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001958
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.058106,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.1,
           "area_ratio": 0.000353
         },
         {
@@ -2245,39 +2410,43 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.262993,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.009673
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.83048,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.35,
           "area_ratio": 0.001751
         },
         {
           "roi_id": "diff_011",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "SSIM 점수가 애매한 범위"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.81018,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.54,
           "area_ratio": 0.001032
         },
         {
           "roi_id": "diff_012",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.739568,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000666
         },
         {
@@ -2289,6 +2458,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.216848,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002048
         },
         {
@@ -2300,6 +2470,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.076109,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001001
         },
         {
@@ -2311,17 +2482,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.712375,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00019
         },
         {
           "roi_id": "diff_016",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.314243,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.43,
           "area_ratio": 0.005957
         }
       ],
@@ -2363,6 +2536,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.583839,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2,
           "area_ratio": 0.001302
         },
         {
@@ -2374,6 +2548,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.409914,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.002109
         },
         {
@@ -2385,6 +2560,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.403404,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8233,
           "area_ratio": 0.002134
         },
         {
@@ -2396,6 +2572,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.301114,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.415,
           "area_ratio": 0.000488
         },
         {
@@ -2407,6 +2584,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.651261,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.105,
           "area_ratio": 0.11494
         },
         {
@@ -2418,6 +2596,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.602912,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3233,
           "area_ratio": 0.02278
         },
         {
@@ -2429,6 +2608,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.258447,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001797
         },
         {
@@ -2440,6 +2620,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.053577,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001224
         },
         {
@@ -2451,6 +2632,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.299958,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000684
         },
         {
@@ -2462,6 +2644,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.384614,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.007669
         },
         {
@@ -2473,6 +2656,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.160575,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.48,
           "area_ratio": 0.000443
         },
         {
@@ -2484,6 +2668,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.331842,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.28,
           "area_ratio": 0.016629
         },
         {
@@ -2495,6 +2680,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.255783,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002098
         },
         {
@@ -2506,6 +2692,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.352381,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004382
         }
       ],
@@ -2547,6 +2734,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.583839,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2,
           "area_ratio": 0.001302
         },
         {
@@ -2558,6 +2746,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.409914,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.002109
         },
         {
@@ -2569,6 +2758,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.403404,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8233,
           "area_ratio": 0.002134
         },
         {
@@ -2580,6 +2770,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.301114,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.415,
           "area_ratio": 0.000488
         },
         {
@@ -2591,6 +2782,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.562633,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.06201
         },
         {
@@ -2602,6 +2794,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.522237,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004118
         },
         {
@@ -2613,6 +2806,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.399751,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.25,
           "area_ratio": 0.001406
         },
         {
@@ -2624,6 +2818,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.342118,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000807
         },
         {
@@ -2635,6 +2830,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.092329,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.49,
           "area_ratio": 0.000329
         },
         {
@@ -2646,6 +2842,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.40307,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.45,
           "area_ratio": 0.009401
         },
         {
@@ -2657,6 +2854,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.468371,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3,
           "area_ratio": 0.002176
         },
         {
@@ -2668,17 +2866,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.378554,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000615
         },
         {
           "roi_id": "diff_013",
           "roi_final_status": "REVIEW",
           "roi_reason": [
-            "OCR 텍스트 차이 후보 감지"
+            "SSIM 기준 차이는 크지만 OCR 확인이 불충분함"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.13131,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001299
         },
         {
@@ -2690,6 +2890,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.160575,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.48,
           "area_ratio": 0.000443
         },
         {
@@ -2701,6 +2902,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.192685,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.53,
           "area_ratio": 0.000449
         },
         {
@@ -2712,6 +2914,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.400332,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.28,
           "area_ratio": 0.004442
         },
         {
@@ -2723,6 +2926,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.439466,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001188
         },
         {
@@ -2734,6 +2938,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.453994,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005101
         },
         {
@@ -2745,6 +2950,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.738417,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000313
         },
         {
@@ -2756,6 +2962,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.24379,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.42,
           "area_ratio": 0.001154
         },
         {
@@ -2767,6 +2974,7 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.750716,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.51,
           "area_ratio": 0.000555
         },
         {
@@ -2778,6 +2986,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.350201,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002507
         }
       ],
@@ -2806,19 +3015,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 9,
-        "fail_count": 1
+        "review_count": 10,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.214916,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.265,
           "area_ratio": 0.027821
         },
         {
@@ -2830,6 +3040,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.464749,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001947
         },
         {
@@ -2841,6 +3052,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.472417,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001966
         },
         {
@@ -2852,6 +3064,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.474499,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002266
         },
         {
@@ -2863,6 +3076,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.176237,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.95,
           "area_ratio": 0.00286
         },
         {
@@ -2874,6 +3088,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.428404,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9,
           "area_ratio": 0.028841
         },
         {
@@ -2885,6 +3100,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.464749,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001947
         },
         {
@@ -2896,6 +3112,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.472417,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001966
         },
         {
@@ -2907,6 +3124,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.250116,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.43,
           "area_ratio": 0.003381
         },
         {
@@ -2918,6 +3136,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.176237,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.95,
           "area_ratio": 0.00286
         }
       ],
@@ -2937,7 +3156,7 @@
       "is_loading_like": false,
       "final_status": "FAIL",
       "final_reasons": [
-        "FAIL ROI 3개 존재"
+        "FAIL ROI 1개 존재"
       ],
       "diff_summary": {
         "diff_roi_count": 8,
@@ -2946,19 +3165,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 1,
-        "review_count": 4,
-        "fail_count": 3
+        "review_count": 6,
+        "fail_count": 1
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.257618,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0267,
           "area_ratio": 0.028083
         },
         {
@@ -2970,6 +3190,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.583349,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9,
           "area_ratio": 0.001838
         },
         {
@@ -2981,6 +3202,7 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.751236,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.34,
           "area_ratio": 0.00117
         },
         {
@@ -2992,28 +3214,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.749965,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000299
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.738392,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2933,
           "area_ratio": 0.00158
         },
         {
           "roi_id": "diff_006",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.299912,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.77,
           "area_ratio": 0.01853
         },
         {
@@ -3025,6 +3250,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.583349,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9,
           "area_ratio": 0.001838
         },
         {
@@ -3036,6 +3262,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.749965,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000299
         }
       ],
@@ -3053,9 +3280,10 @@
       "expected_result": "UNKNOWN",
       "memo": "설정값 요약/목록 화면",
       "is_loading_like": true,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 6개 존재"
+        "REVIEW ROI 9개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 13,
@@ -3064,118 +3292,128 @@
       },
       "roi_decision_summary": {
         "pass_count": 4,
-        "review_count": 3,
-        "fail_count": 6
+        "review_count": 9,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.796295,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.39,
           "area_ratio": 0.000241
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.460139,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.47,
           "area_ratio": 0.002414
         },
         {
           "roi_id": "diff_003",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.208544,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9,
           "area_ratio": 0.001247
         },
         {
           "roi_id": "diff_004",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.318956,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.005148
         },
         {
           "roi_id": "diff_005",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.099371,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.915,
           "area_ratio": 0.002329
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.202812,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000264
         },
         {
           "roi_id": "diff_007",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.076663,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.22,
           "area_ratio": 0.000299
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": -0.007221,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.6533,
           "area_ratio": 0.000187
         },
         {
           "roi_id": "diff_009",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.464199,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.835,
           "area_ratio": 0.003506
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.171207,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.27,
           "area_ratio": 0.002821
         },
         {
@@ -3187,6 +3425,7 @@
           "ssim_status": "FAIL",
           "ssim_score": -0.01391,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003185
         },
         {
@@ -3198,6 +3437,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.327862,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004419
         },
         {
@@ -3209,6 +3449,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.356603,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004395
         }
       ],
@@ -3228,7 +3469,7 @@
       "is_loading_like": false,
       "final_status": "FAIL",
       "final_reasons": [
-        "FAIL ROI 4개 존재"
+        "FAIL ROI 1개 존재"
       ],
       "diff_summary": {
         "diff_roi_count": 11,
@@ -3237,19 +3478,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 7,
-        "fail_count": 4
+        "review_count": 10,
+        "fail_count": 1
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.566077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.77,
           "area_ratio": 0.000895
         },
         {
@@ -3261,17 +3503,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.651357,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.86,
           "area_ratio": 0.002051
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.095887,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.185,
           "area_ratio": 0.003796
         },
         {
@@ -3283,6 +3527,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.004757,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000282
         },
         {
@@ -3294,6 +3539,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.002811,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000288
         },
         {
@@ -3305,6 +3551,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.127045,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002336
         },
         {
@@ -3316,17 +3563,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.149869,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000303
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.209814,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003787
         },
         {
@@ -3338,6 +3587,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.060991,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9214,
           "area_ratio": 0.012581
         },
         {
@@ -3349,17 +3599,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.079609,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9187,
           "area_ratio": 0.013416
         },
         {
           "roi_id": "diff_011",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.257264,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003771
         }
       ],
@@ -3379,7 +3631,7 @@
       "is_loading_like": false,
       "final_status": "FAIL",
       "final_reasons": [
-        "FAIL ROI 2개 존재"
+        "FAIL ROI 1개 존재"
       ],
       "diff_summary": {
         "diff_roi_count": 10,
@@ -3388,19 +3640,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 8,
-        "fail_count": 2
+        "review_count": 9,
+        "fail_count": 1
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.566077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.77,
           "area_ratio": 0.000895
         },
         {
@@ -3412,6 +3665,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.651357,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.86,
           "area_ratio": 0.002051
         },
         {
@@ -3423,6 +3677,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.303331,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.91,
           "area_ratio": 0.005731
         },
         {
@@ -3434,6 +3689,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.100466,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000482
         },
         {
@@ -3445,17 +3701,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.100466,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000482
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "SSIM 기준 차이는 크지만 OCR 확인이 불충분함"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.603235,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003947
         },
         {
@@ -3467,6 +3725,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.149869,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000303
         },
         {
@@ -3478,6 +3737,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.23195,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.011525
         },
         {
@@ -3489,6 +3749,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.074995,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8986,
           "area_ratio": 0.018338
         },
         {
@@ -3500,6 +3761,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.076117,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9125,
           "area_ratio": 0.018418
         }
       ],
@@ -3536,11 +3798,12 @@
           "roi_id": "diff_001",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.566077,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.77,
           "area_ratio": 0.000895
         },
         {
@@ -3552,6 +3815,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.651357,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.86,
           "area_ratio": 0.002051
         },
         {
@@ -3563,6 +3827,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.315201,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.95,
           "area_ratio": 0.005498
         },
         {
@@ -3574,6 +3839,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.100466,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000482
         },
         {
@@ -3585,6 +3851,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.100466,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000482
         },
         {
@@ -3596,6 +3863,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.687219,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005695
         },
         {
@@ -3607,6 +3875,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.149869,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000303
         },
         {
@@ -3618,6 +3887,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.23195,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.011525
         },
         {
@@ -3629,6 +3899,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.074995,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8986,
           "area_ratio": 0.018338
         },
         {
@@ -3640,6 +3911,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.076117,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9125,
           "area_ratio": 0.018418
         }
       ],
@@ -3681,6 +3953,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.232551,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003281
         },
         {
@@ -3692,28 +3965,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.067113,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.007575
         },
         {
           "roi_id": "diff_003",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.286522,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.71,
           "area_ratio": 0.002015
         },
         {
           "roi_id": "diff_004",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.183638,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.775,
           "area_ratio": 0.006291
         },
         {
@@ -3725,28 +4001,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.250261,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003211
         },
         {
           "roi_id": "diff_006",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.204087,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.78,
           "area_ratio": 0.006429
         },
         {
           "roi_id": "diff_007",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.168826,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.842,
           "area_ratio": 0.007114
         },
         {
@@ -3758,17 +4037,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.201581,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005693
         },
         {
           "roi_id": "diff_009",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.261502,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8433,
           "area_ratio": 0.003145
         }
       ],
@@ -3797,8 +4078,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 5,
-        "fail_count": 5
+        "review_count": 7,
+        "fail_count": 3
       },
       "roi_decisions": [
         {
@@ -3810,6 +4091,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.232551,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003281
         },
         {
@@ -3821,17 +4103,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.235546,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9087,
           "area_ratio": 0.023638
         },
         {
           "roi_id": "diff_003",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.201769,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.775,
           "area_ratio": 0.006118
         },
         {
@@ -3843,28 +4127,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.281991,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003039
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.202638,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.51,
           "area_ratio": 0.002414
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.208575,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.57,
           "area_ratio": 0.006182
         },
         {
@@ -3876,17 +4163,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.238317,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.92,
           "area_ratio": 0.000382
         },
         {
           "roi_id": "diff_008",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.18804,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.842,
           "area_ratio": 0.006929
         },
         {
@@ -3898,17 +4187,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.225039,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005508
         },
         {
           "roi_id": "diff_010",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.296873,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.855,
           "area_ratio": 0.002959
         }
       ],
@@ -3928,7 +4219,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 3개 존재"
+        "REVIEW ROI 3개 존재",
+        "자동 PASS 조건에 해당하지 않음"
       ],
       "diff_summary": {
         "diff_roi_count": 3,
@@ -3950,6 +4242,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.529021,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.00124
         },
         {
@@ -3961,6 +4254,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.733453,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000343
         },
         {
@@ -3972,6 +4266,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.745085,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.31,
           "area_ratio": 0.00089
         }
       ],
@@ -3989,9 +4284,10 @@
       "expected_result": "UNKNOWN",
       "memo": "목록형 설정 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 2개 존재"
+        "REVIEW ROI 5개 존재",
+        "자동 PASS 조건에 해당하지 않음"
       ],
       "diff_summary": {
         "diff_roi_count": 5,
@@ -4000,19 +4296,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 3,
-        "fail_count": 2
+        "review_count": 5,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.302876,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.115,
           "area_ratio": 0.003903
         },
         {
@@ -4024,6 +4321,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.187853,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000231
         },
         {
@@ -4035,6 +4333,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.140632,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000233
         },
         {
@@ -4046,17 +4345,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.660374,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001323
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.697429,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.29,
           "area_ratio": 0.000381
         }
       ],
@@ -4074,9 +4375,10 @@
       "expected_result": "UNKNOWN",
       "memo": "목록형 설정 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 5개 존재"
+        "REVIEW ROI 8개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 8,
@@ -4085,19 +4387,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 3,
-        "fail_count": 5
+        "review_count": 8,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.302876,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.115,
           "area_ratio": 0.003903
         },
         {
@@ -4109,28 +4412,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.12325,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000798
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.711556,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.485,
           "area_ratio": 0.000449
         },
         {
           "roi_id": "diff_004",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.668129,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.09,
           "area_ratio": 0.000511
         },
         {
@@ -4142,17 +4448,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.108264,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000799
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.743569,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.27,
           "area_ratio": 0.000926
         },
         {
@@ -4164,17 +4472,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.604368,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.86,
           "area_ratio": 0.000202
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.474055,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.15,
           "area_ratio": 0.00043
         }
       ],
@@ -4192,9 +4502,10 @@
       "expected_result": "UNKNOWN",
       "memo": "상세 설정/정보 목록 화면",
       "is_loading_like": true,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 2개 존재"
+        "REVIEW ROI 7개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 14,
@@ -4203,74 +4514,80 @@
       },
       "roi_decision_summary": {
         "pass_count": 7,
-        "review_count": 5,
-        "fail_count": 2
+        "review_count": 7,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "REVIEW",
           "ssim_score": 0.796295,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.39,
           "area_ratio": 0.000241
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.460139,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.47,
           "area_ratio": 0.002414
         },
         {
           "roi_id": "diff_003",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.208544,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9,
           "area_ratio": 0.001247
         },
         {
           "roi_id": "diff_004",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.118182,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.95,
           "area_ratio": 0.002923
         },
         {
           "roi_id": "diff_005",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.18744,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9425,
           "area_ratio": 0.005173
         },
         {
           "roi_id": "diff_006",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.253336,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9186,
           "area_ratio": 0.004621
         },
         {
@@ -4282,6 +4599,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.166929,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000309
         },
         {
@@ -4293,6 +4611,7 @@
           "ssim_status": "FAIL",
           "ssim_score": -0.01391,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003185
         },
         {
@@ -4304,28 +4623,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.634038,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004316
         },
         {
           "roi_id": "diff_010",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.153588,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9067,
           "area_ratio": 0.002166
         },
         {
           "roi_id": "diff_011",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.247573,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.846,
           "area_ratio": 0.003748
         },
         {
@@ -4337,17 +4659,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.127113,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000311
         },
         {
           "roi_id": "diff_013",
           "roi_final_status": "PASS",
           "roi_reason": [
-            "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+            "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.27919,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.875,
           "area_ratio": 0.009139
         },
         {
@@ -4359,6 +4683,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.182781,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.004976
         }
       ],
@@ -4376,9 +4701,10 @@
       "expected_result": "UNKNOWN",
       "memo": "아이콘 포함 목록형 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 4개 존재"
+        "REVIEW ROI 7개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 9,
@@ -4387,19 +4713,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 2,
-        "review_count": 3,
-        "fail_count": 4
+        "review_count": 7,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.302876,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.115,
           "area_ratio": 0.003903
         },
         {
@@ -4411,17 +4738,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.120222,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000885
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.542581,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.61,
           "area_ratio": 0.000723
         },
         {
@@ -4433,6 +4762,7 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.750802,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.96,
           "area_ratio": 0.000304
         },
         {
@@ -4444,6 +4774,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.680872,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.51,
           "area_ratio": 0.000378
         },
         {
@@ -4455,17 +4786,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.10697,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000879
         },
         {
           "roi_id": "diff_007",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.675992,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2,
           "area_ratio": 0.001248
         },
         {
@@ -4477,17 +4810,19 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.750802,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.96,
           "area_ratio": 0.000304
         },
         {
           "roi_id": "diff_009",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.585249,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.4933,
           "area_ratio": 0.000625
         }
       ],
@@ -4505,9 +4840,10 @@
       "expected_result": "UNKNOWN",
       "memo": "아이콘 포함 목록형 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 4개 존재"
+        "REVIEW ROI 6개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 7,
@@ -4516,19 +4852,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 1,
-        "review_count": 2,
-        "fail_count": 4
+        "review_count": 6,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.302876,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.115,
           "area_ratio": 0.003903
         },
         {
@@ -4540,17 +4877,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.097597,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002238
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.675992,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.2,
           "area_ratio": 0.001248
         },
         {
@@ -4562,28 +4901,31 @@
           "ssim_status": "REVIEW",
           "ssim_score": 0.750802,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.96,
           "area_ratio": 0.000304
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.585249,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.4933,
           "area_ratio": 0.000625
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.741446,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.42,
           "area_ratio": 0.000534
         },
         {
@@ -4595,6 +4937,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.573353,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000415
         }
       ],
@@ -4612,9 +4955,10 @@
       "expected_result": "UNKNOWN",
       "memo": "텍스트 중심 설명/설정 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 1개 존재"
+        "REVIEW ROI 6개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 6,
@@ -4623,8 +4967,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 5,
-        "fail_count": 1
+        "review_count": 6,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -4636,17 +4980,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.281535,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8762,
           "area_ratio": 0.009577
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.21674,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.65,
           "area_ratio": 0.002541
         },
         {
@@ -4658,6 +5004,7 @@
           "ssim_status": "FAIL",
           "ssim_score": -0.224961,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005854
         },
         {
@@ -4669,6 +5016,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.184364,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.92,
           "area_ratio": 0.003464
         },
         {
@@ -4680,6 +5028,7 @@
           "ssim_status": "FAIL",
           "ssim_score": -0.224961,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005854
         },
         {
@@ -4691,6 +5040,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.219254,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.7986,
           "area_ratio": 0.006187
         }
       ],
@@ -4732,6 +5082,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.268402,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8762,
           "area_ratio": 0.009451
         },
         {
@@ -4743,6 +5094,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.32308,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.027516
         },
         {
@@ -4754,6 +5106,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.404431,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8725,
           "area_ratio": 0.039199
         },
         {
@@ -4765,6 +5118,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.069091,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001678
         },
         {
@@ -4776,6 +5130,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.190416,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000337
         },
         {
@@ -4787,6 +5142,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.115171,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8063,
           "area_ratio": 0.012793
         }
       ],
@@ -4828,6 +5184,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.268402,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8762,
           "area_ratio": 0.009451
         },
         {
@@ -4839,6 +5196,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.321253,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.028229
         },
         {
@@ -4850,6 +5208,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.229994,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8275,
           "area_ratio": 0.040436
         },
         {
@@ -4861,6 +5220,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.069091,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001678
         },
         {
@@ -4872,6 +5232,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.190416,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000337
         },
         {
@@ -4883,6 +5244,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.115171,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8063,
           "area_ratio": 0.012793
         }
       ],
@@ -4924,6 +5286,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.268402,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8762,
           "area_ratio": 0.009451
         },
         {
@@ -4935,6 +5298,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.270708,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8116,
           "area_ratio": 0.049395
         },
         {
@@ -4946,6 +5310,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.317558,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.017913
         },
         {
@@ -4957,6 +5322,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.069091,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001678
         },
         {
@@ -4968,6 +5334,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.190416,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000337
         },
         {
@@ -4979,6 +5346,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.115171,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8063,
           "area_ratio": 0.012793
         }
       ],
@@ -5020,6 +5388,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.323727,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.38,
           "area_ratio": 0.003273
         },
         {
@@ -5031,6 +5400,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.340469,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.029639
         },
         {
@@ -5042,6 +5412,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.257863,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.8388,
           "area_ratio": 0.042284
         },
         {
@@ -5053,6 +5424,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.069091,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001678
         },
         {
@@ -5064,6 +5436,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.190416,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000337
         },
         {
@@ -5075,6 +5448,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.117732,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.7937,
           "area_ratio": 0.012769
         }
       ],
@@ -5094,7 +5468,7 @@
       "is_loading_like": false,
       "final_status": "FAIL",
       "final_reasons": [
-        "FAIL ROI 11개 존재"
+        "FAIL ROI 1개 존재"
       ],
       "diff_summary": {
         "diff_roi_count": 19,
@@ -5103,8 +5477,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 8,
-        "fail_count": 11
+        "review_count": 18,
+        "fail_count": 1
       },
       "roi_decisions": [
         {
@@ -5116,6 +5490,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.354002,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.37,
           "area_ratio": 0.001735
         },
         {
@@ -5127,50 +5502,55 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.474676,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8671,
           "area_ratio": 0.005671
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.348586,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002282
         },
         {
           "roi_id": "diff_004",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": -0.066976,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.58,
           "area_ratio": 0.000301
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.449304,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.56,
           "area_ratio": 0.001117
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.441044,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.44,
           "area_ratio": 0.000846
         },
         {
@@ -5182,6 +5562,7 @@
           "ssim_status": "FAIL",
           "ssim_score": -0.224961,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005854
         },
         {
@@ -5193,6 +5574,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.513492,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9067,
           "area_ratio": 0.004175
         },
         {
@@ -5204,28 +5586,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.244226,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.895,
           "area_ratio": 0.000937
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.362541,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.42,
           "area_ratio": 0.000874
         },
         {
           "roi_id": "diff_011",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.173818,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.786,
           "area_ratio": 0.004567
         },
         {
@@ -5237,17 +5622,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.19799,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.83,
           "area_ratio": 0.002791
         },
         {
           "roi_id": "diff_013",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.228905,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.505,
           "area_ratio": 0.002321
         },
         {
@@ -5259,28 +5646,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.212325,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.955,
           "area_ratio": 0.003768
         },
         {
           "roi_id": "diff_015",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.183813,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.505,
           "area_ratio": 0.002508
         },
         {
           "roi_id": "diff_016",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.222974,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.31,
           "area_ratio": 0.002131
         },
         {
@@ -5292,28 +5682,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.399994,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000664
         },
         {
           "roi_id": "diff_018",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.570035,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.4,
           "area_ratio": 0.000451
         },
         {
           "roi_id": "diff_019",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.109823,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.34,
           "area_ratio": 0.000537
         }
       ],
@@ -5333,7 +5726,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 11개 존재"
+        "REVIEW ROI 11개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 11,
@@ -5355,6 +5749,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.409914,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.002109
         },
         {
@@ -5366,6 +5761,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.367101,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8867,
           "area_ratio": 0.002134
         },
         {
@@ -5377,6 +5773,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.325492,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.355,
           "area_ratio": 0.000488
         },
         {
@@ -5388,6 +5785,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.099538,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005226
         },
         {
@@ -5399,6 +5797,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.090759,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003696
         },
         {
@@ -5410,6 +5809,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.111379,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003691
         },
         {
@@ -5421,6 +5821,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.228664,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001164
         },
         {
@@ -5432,6 +5833,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.2236,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.32,
           "area_ratio": 0.003091
         },
         {
@@ -5443,6 +5845,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.432415,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000817
         },
         {
@@ -5454,6 +5857,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.418258,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002007
         },
         {
@@ -5465,6 +5869,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.084684,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.255,
           "area_ratio": 0.005231
         }
       ],
@@ -5484,7 +5889,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 11개 존재"
+        "REVIEW ROI 11개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 11,
@@ -5506,6 +5912,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.409914,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.002109
         },
         {
@@ -5517,6 +5924,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.367101,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8867,
           "area_ratio": 0.002134
         },
         {
@@ -5528,6 +5936,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.325492,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.355,
           "area_ratio": 0.000488
         },
         {
@@ -5539,6 +5948,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.099538,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005226
         },
         {
@@ -5550,6 +5960,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.090759,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003696
         },
         {
@@ -5561,6 +5972,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.111379,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003691
         },
         {
@@ -5572,6 +5984,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.228664,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001164
         },
         {
@@ -5583,6 +5996,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.187623,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.6233,
           "area_ratio": 0.003218
         },
         {
@@ -5594,6 +6008,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.432415,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000817
         },
         {
@@ -5605,6 +6020,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.418258,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002007
         },
         {
@@ -5616,6 +6032,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.084684,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.255,
           "area_ratio": 0.005231
         }
       ],
@@ -5635,7 +6052,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 10개 존재"
+        "REVIEW ROI 10개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 10,
@@ -5657,6 +6075,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.409914,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.94,
           "area_ratio": 0.002109
         },
         {
@@ -5668,6 +6087,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.367101,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.8867,
           "area_ratio": 0.002134
         },
         {
@@ -5679,6 +6099,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.325492,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.355,
           "area_ratio": 0.000488
         },
         {
@@ -5690,6 +6111,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.099538,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.005226
         },
         {
@@ -5701,6 +6123,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.090759,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003696
         },
         {
@@ -5712,6 +6135,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.111379,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003691
         },
         {
@@ -5723,6 +6147,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.228664,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001164
         },
         {
@@ -5734,6 +6159,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.223402,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.47,
           "area_ratio": 0.003091
         },
         {
@@ -5745,6 +6171,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.2236,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.32,
           "area_ratio": 0.003091
         },
         {
@@ -5756,6 +6183,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.084684,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.255,
           "area_ratio": 0.005231
         }
       ],
@@ -5797,6 +6225,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.610803,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.865,
           "area_ratio": 0.181094
         }
       ],
@@ -5838,6 +6267,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.609012,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.6467,
           "area_ratio": 0.181294
         }
       ],
@@ -5879,6 +6309,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.649766,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.325,
           "area_ratio": 0.167472
         }
       ],
@@ -5954,9 +6385,9 @@
       "expected_result": "UNKNOWN",
       "memo": "로딩/처리 중 팝업 화면",
       "is_loading_like": true,
-      "final_status": "REVIEW",
+      "final_status": "PASS",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "로딩/처리 중 화면의 매우 작은 위치/spinner 차이로 판단하여 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -5978,6 +6409,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.142321,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002655
         }
       ],
@@ -6026,7 +6458,8 @@
       "is_loading_like": true,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -6048,6 +6481,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.498444,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.016035
         }
       ],
@@ -6067,7 +6501,8 @@
       "is_loading_like": true,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -6089,6 +6524,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.500092,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.015964
         }
       ],
@@ -6137,7 +6573,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 6개 존재"
+        "REVIEW ROI 6개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 6,
@@ -6159,6 +6596,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.478326,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.25,
           "area_ratio": 0.001951
         },
         {
@@ -6170,6 +6608,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.654401,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.05,
           "area_ratio": 0.004129
         },
         {
@@ -6181,6 +6620,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.608334,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.365,
           "area_ratio": 0.00986
         },
         {
@@ -6192,6 +6632,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.636218,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001175
         },
         {
@@ -6203,6 +6644,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.188701,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.1707,
           "area_ratio": 0.003857
         },
         {
@@ -6214,6 +6656,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.304049,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.1617,
           "area_ratio": 0.024302
         }
       ],
@@ -6233,7 +6676,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -6255,6 +6699,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.356591,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3405,
           "area_ratio": 0.023844
         }
       ],
@@ -6274,7 +6719,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -6296,6 +6742,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.411217,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.388,
           "area_ratio": 0.049233
         }
       ],
@@ -6313,9 +6760,9 @@
       "expected_result": "UNKNOWN",
       "memo": "코스 카드 선택 화면",
       "is_loading_like": false,
-      "final_status": "REVIEW",
+      "final_status": "PASS",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "카드 UI의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -6337,6 +6784,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.732802,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.23,
           "area_ratio": 0.00238
         }
       ],
@@ -6356,7 +6804,7 @@
       "is_loading_like": false,
       "final_status": "FAIL",
       "final_reasons": [
-        "FAIL ROI 15개 존재"
+        "FAIL ROI 2개 존재"
       ],
       "diff_summary": {
         "diff_roi_count": 24,
@@ -6365,8 +6813,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 9,
-        "fail_count": 15
+        "review_count": 22,
+        "fail_count": 2
       },
       "roi_decisions": [
         {
@@ -6378,6 +6826,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.32379,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.88,
           "area_ratio": 0.00145
         },
         {
@@ -6389,17 +6838,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.576816,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000864
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.480448,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001107
         },
         {
@@ -6411,28 +6862,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.624977,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000379
         },
         {
           "roi_id": "diff_005",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.62725,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.35,
           "area_ratio": 0.000304
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.599141,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.44,
           "area_ratio": 0.000347
         },
         {
@@ -6444,39 +6898,43 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.489853,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000872
         },
         {
           "roi_id": "diff_008",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.697167,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.7033,
           "area_ratio": 0.001309
         },
         {
           "roi_id": "diff_009",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.659944,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.03,
           "area_ratio": 0.001312
         },
         {
           "roi_id": "diff_010",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.717892,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.41,
           "area_ratio": 0.000352
         },
         {
@@ -6488,28 +6946,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.460148,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.52,
           "area_ratio": 0.000361
         },
         {
           "roi_id": "diff_012",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.610878,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.11,
           "area_ratio": 0.000342
         },
         {
           "roi_id": "diff_013",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.4391,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.24,
           "area_ratio": 0.000298
         },
         {
@@ -6521,28 +6982,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.615072,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000355
         },
         {
           "roi_id": "diff_015",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.558466,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.29,
           "area_ratio": 0.000273
         },
         {
           "roi_id": "diff_016",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.652531,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.145,
           "area_ratio": 0.000641
         },
         {
@@ -6554,6 +7018,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.60326,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.96,
           "area_ratio": 0.001294
         },
         {
@@ -6565,50 +7030,55 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.582592,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.9167,
           "area_ratio": 0.002067
         },
         {
           "roi_id": "diff_019",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.60523,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3733,
           "area_ratio": 0.000482
         },
         {
           "roi_id": "diff_020",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.640476,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.275,
           "area_ratio": 0.001073
         },
         {
           "roi_id": "diff_021",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.622718,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000313
         },
         {
           "roi_id": "diff_022",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.623806,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.74,
           "area_ratio": 0.00085
         },
         {
@@ -6620,17 +7090,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.591806,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000337
         },
         {
           "roi_id": "diff_024",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.452698,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.25,
           "area_ratio": 0.000457
         }
       ],
@@ -6677,9 +7149,10 @@
       "expected_result": "UNKNOWN",
       "memo": "옵션 선택/설정값 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "자동 PASS 조건에 해당하지 않음"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -6688,19 +7161,20 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 0,
-        "fail_count": 1
+        "review_count": 1,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.711542,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001003
         }
       ],
@@ -6718,9 +7192,10 @@
       "expected_result": "UNKNOWN",
       "memo": "옵션 버튼/설정 조절 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 4개 존재"
+        "REVIEW ROI 10개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 10,
@@ -6729,8 +7204,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 6,
-        "fail_count": 4
+        "review_count": 10,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -6742,28 +7217,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.64868,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.68,
           "area_ratio": 0.011455
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.602087,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.605,
           "area_ratio": 0.014995
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.627912,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.6433,
           "area_ratio": 0.0163
         },
         {
@@ -6775,6 +7253,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.152828,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002539
         },
         {
@@ -6786,17 +7265,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.190624,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003003
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.273769,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.34,
           "area_ratio": 0.000299
         },
         {
@@ -6808,17 +7289,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.288879,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003138
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.273769,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.34,
           "area_ratio": 0.000299
         },
         {
@@ -6830,6 +7313,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.270301,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.55,
           "area_ratio": 0.001243
         },
         {
@@ -6841,6 +7325,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.207511,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.71,
           "area_ratio": 0.001326
         }
       ],
@@ -6887,9 +7372,10 @@
       "expected_result": "UNKNOWN",
       "memo": "설정값/옵션 선택 화면",
       "is_loading_like": false,
-      "final_status": "FAIL",
+      "final_status": "REVIEW",
       "final_reasons": [
-        "FAIL ROI 4개 존재"
+        "REVIEW ROI 10개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 10,
@@ -6898,8 +7384,8 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 6,
-        "fail_count": 4
+        "review_count": 10,
+        "fail_count": 0
       },
       "roi_decisions": [
         {
@@ -6911,28 +7397,31 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.64868,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.68,
           "area_ratio": 0.011455
         },
         {
           "roi_id": "diff_002",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.602087,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.605,
           "area_ratio": 0.014995
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.627912,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.6433,
           "area_ratio": 0.0163
         },
         {
@@ -6944,6 +7433,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.152828,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.002539
         },
         {
@@ -6955,17 +7445,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.190624,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003003
         },
         {
           "roi_id": "diff_006",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.273769,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.34,
           "area_ratio": 0.000299
         },
         {
@@ -6977,17 +7469,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.288879,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003138
         },
         {
           "roi_id": "diff_008",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.273769,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.34,
           "area_ratio": 0.000299
         },
         {
@@ -6999,6 +7493,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.270301,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.55,
           "area_ratio": 0.001243
         },
         {
@@ -7010,6 +7505,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.207511,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.71,
           "area_ratio": 0.001326
         }
       ],
@@ -7029,7 +7525,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "자동 PASS 조건에 해당하지 않음"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -7051,6 +7548,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.089631,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003582
         }
       ],
@@ -7070,7 +7568,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "자동 PASS 조건에 해당하지 않음"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -7092,6 +7591,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.089631,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.003582
         }
       ],
@@ -7109,9 +7609,9 @@
       "expected_result": "UNKNOWN",
       "memo": "중앙 확인/안내 팝업 화면",
       "is_loading_like": false,
-      "final_status": "REVIEW",
+      "final_status": "PASS",
       "final_reasons": [
-        "REVIEW ROI 2개 존재"
+        "팝업 화면의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 2,
@@ -7133,6 +7633,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.407439,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.53,
           "area_ratio": 0.001615
         },
         {
@@ -7144,6 +7645,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.141483,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006138
         }
       ],
@@ -7161,9 +7663,9 @@
       "expected_result": "UNKNOWN",
       "memo": "중앙 안내 팝업 화면",
       "is_loading_like": false,
-      "final_status": "REVIEW",
+      "final_status": "PASS",
       "final_reasons": [
-        "REVIEW ROI 2개 존재"
+        "팝업 화면의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 2,
@@ -7185,6 +7687,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.407439,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.53,
           "area_ratio": 0.001615
         },
         {
@@ -7196,6 +7699,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.141483,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.006138
         }
       ],
@@ -7215,7 +7719,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 1개 존재"
+        "REVIEW ROI 1개 존재",
+        "전체 차이 면적이 자동 PASS 기준보다 큼"
       ],
       "diff_summary": {
         "diff_roi_count": 1,
@@ -7237,6 +7742,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.386041,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3597,
           "area_ratio": 0.023215
         }
       ],
@@ -7256,7 +7762,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 6개 존재"
+        "REVIEW ROI 6개 존재",
+        "차이 ROI가 많아 자동 PASS 불가"
       ],
       "diff_summary": {
         "diff_roi_count": 6,
@@ -7278,6 +7785,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.478326,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.25,
           "area_ratio": 0.001951
         },
         {
@@ -7289,6 +7797,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.654401,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.05,
           "area_ratio": 0.004129
         },
         {
@@ -7300,6 +7809,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.627347,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.009727
         },
         {
@@ -7311,6 +7821,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.636218,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001175
         },
         {
@@ -7322,6 +7833,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.245126,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.11,
           "area_ratio": 0.003794
         },
         {
@@ -7333,6 +7845,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.304049,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.1617,
           "area_ratio": 0.024302
         }
       ],
@@ -7352,7 +7865,8 @@
       "is_loading_like": false,
       "final_status": "REVIEW",
       "final_reasons": [
-        "REVIEW ROI 2개 존재"
+        "REVIEW ROI 2개 존재",
+        "자동 PASS 조건에 해당하지 않음"
       ],
       "diff_summary": {
         "diff_roi_count": 2,
@@ -7374,6 +7888,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.421744,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001917
         },
         {
@@ -7385,6 +7900,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.214317,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.905,
           "area_ratio": 0.004759
         }
       ],
@@ -7404,7 +7920,7 @@
       "is_loading_like": false,
       "final_status": "FAIL",
       "final_reasons": [
-        "FAIL ROI 4개 존재"
+        "FAIL ROI 1개 존재"
       ],
       "diff_summary": {
         "diff_roi_count": 8,
@@ -7413,41 +7929,44 @@
       },
       "roi_decision_summary": {
         "pass_count": 0,
-        "review_count": 4,
-        "fail_count": 4
+        "review_count": 7,
+        "fail_count": 1
       },
       "roi_decisions": [
         {
           "roi_id": "diff_001",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "숫자/단위 OCR 결과가 다름"
+            "숫자/단위 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.381912,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.3767,
           "area_ratio": 0.032388
         },
         {
           "roi_id": "diff_002",
           "roi_final_status": "FAIL",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "OCR 신뢰도 높은 텍스트 차이 감지"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.481034,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.81,
           "area_ratio": 0.001011
         },
         {
           "roi_id": "diff_003",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.345397,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.09,
           "area_ratio": 0.003481
         },
         {
@@ -7459,6 +7978,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.310645,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000591
         },
         {
@@ -7470,6 +7990,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.421744,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.001917
         },
         {
@@ -7481,17 +8002,19 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.214317,
           "ocr_status": "PASS",
+          "ocr_min_confidence": 0.905,
           "area_ratio": 0.004759
         },
         {
           "roi_id": "diff_007",
-          "roi_final_status": "FAIL",
+          "roi_final_status": "REVIEW",
           "roi_reason": [
-            "텍스트 중심 화면에서 OCR 텍스트 차이 감지"
+            "텍스트 차이 후보이나 OCR 신뢰도 낮음"
           ],
           "ssim_status": "FAIL",
           "ssim_score": 0.177331,
           "ocr_status": "REVIEW",
+          "ocr_min_confidence": 0.21,
           "area_ratio": 0.000291
         },
         {
@@ -7503,6 +8026,7 @@
           "ssim_status": "FAIL",
           "ssim_score": 0.17895,
           "ocr_status": "NO_TEXT",
+          "ocr_min_confidence": 0.0,
           "area_ratio": 0.000228
         }
       ],

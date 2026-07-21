@@ -141,11 +141,47 @@ def has_number_mismatch(ocr_compare: dict) -> bool:
     return False
 
 
+def normalize_text_for_judgement(text: str) -> str:
+    """
+    사람이 봤을 때 의미 차이가 거의 없는 요소를 제거한다.
+    띄어쓰기, 줄바꿈, 일부 구두점 차이는 FAIL 근거로 쓰지 않는다.
+    """
+    if not text:
+        return ""
+
+    remove_chars = [
+        " ",
+        "\t",
+        "\n",
+        "\r",
+        "　",
+        ".",
+        ",",
+        "，",
+        "。",
+        "、",
+        ":",
+        "：",
+        ";",
+        "；",
+        "-",
+        "–",
+        "—",
+        "_",
+    ]
+
+    normalized = str(text)
+
+    for ch in remove_chars:
+        normalized = normalized.replace(ch, "")
+
+    return normalized.strip()
+
+
 def has_text_confirmed_different(ocr_compare: dict) -> bool:
     """
-    OCR이 어느 정도 텍스트를 읽었고,
-    공백 제거 후에도 reference/capture 내용이 다르면 텍스트 차이 후보로 본다.
-    다만 OCR 자체가 불안정할 수 있으므로 최종에서는 REVIEW 또는 일부 조건에서 FAIL로 사용한다.
+    OCR이 읽은 텍스트가 의미상 다른지 판단한다.
+    단순 띄어쓰기/구두점 차이는 FAIL 근거로 보지 않는다.
     """
 
     ref_text = ocr_compare.get("reference_text_compact", "")
@@ -154,7 +190,38 @@ def has_text_confirmed_different(ocr_compare: dict) -> bool:
     if not ref_text or not cap_text:
         return False
 
-    return ref_text != cap_text
+    ref_norm = normalize_text_for_judgement(ref_text)
+    cap_norm = normalize_text_for_judgement(cap_text)
+
+    if not ref_norm or not cap_norm:
+        return False
+
+    return ref_norm != cap_norm
+
+
+def get_ocr_min_confidence(ocr_roi: dict) -> float:
+    """
+    reference/capture OCR 중 더 낮은 confidence를 반환한다.
+    둘 중 하나라도 낮으면 OCR 비교를 확정 판정에 쓰기 어렵다.
+    """
+    if not ocr_roi:
+        return 0.0
+
+    reference_conf = float(
+        ocr_roi.get("reference_ocr", {}).get("mean_confidence", 0.0) or 0.0
+    )
+    capture_conf = float(
+        ocr_roi.get("capture_ocr", {}).get("mean_confidence", 0.0) or 0.0
+    )
+
+    return min(reference_conf, capture_conf)
+
+
+def is_ocr_confident(ocr_roi: dict, threshold: float = 0.70) -> bool:
+    """
+    OCR 결과를 최종 FAIL 근거로 써도 될 만큼 신뢰도가 높은지 판단한다.
+    """
+    return get_ocr_min_confidence(ocr_roi) >= threshold
 
 
 # ============================================================
@@ -174,7 +241,11 @@ def decide_one_roi(
 ):
     """
     ROI 하나에 대한 판정.
-    이 단계에서는 SSIM만으로 바로 FAIL을 내리지 않도록 설계한다.
+    핵심 원칙:
+    - SSIM만으로 바로 FAIL을 남발하지 않는다.
+    - OCR 신뢰도가 낮으면 FAIL이 아니라 REVIEW로 보낸다.
+    - 숫자/단위 불일치가 OCR 신뢰도 높게 확인되면 FAIL.
+    - guide_image/card_ui의 큰 시각 차이는 FAIL 후보.
     """
 
     roi_id = diff_roi.get("roi_id", "")
@@ -192,31 +263,48 @@ def decide_one_roi(
 
     number_mismatch = has_number_mismatch(ocr_compare)
     text_different = has_text_confirmed_different(ocr_compare)
+    ocr_confident = is_ocr_confident(ocr_roi, threshold=0.70)
+    ocr_min_confidence = get_ocr_min_confidence(ocr_roi)
 
     fail_area_ratio = float(profile_info.get("fail_area_ratio", 0.03))
     roi_large_threshold = max(0.003, fail_area_ratio / 4)
 
     reasons = []
 
-    # 1. 숫자/단위가 중요한 화면에서 숫자가 다르면 강한 FAIL
+    # 1. 숫자/단위가 중요한 화면에서 숫자가 다르면 FAIL.
+    # 단, OCR confidence가 낮으면 REVIEW로 보낸다.
     if profile_info.get("use_numeric_check", False) and number_mismatch:
-        reasons.append("숫자/단위 OCR 결과가 다름")
-        return {
-            "roi_id": roi_id,
-            "roi_final_status": "FAIL",
-            "roi_reason": reasons,
-            "ssim_status": ssim_status,
-            "ssim_score": ssim_score,
-            "ocr_status": ocr_status,
-            "area_ratio": area_ratio,
-        }
+        if ocr_confident:
+            reasons.append("OCR 신뢰도 높은 숫자/단위 불일치")
+            return {
+                "roi_id": roi_id,
+                "roi_final_status": "FAIL",
+                "roi_reason": reasons,
+                "ssim_status": ssim_status,
+                "ssim_score": ssim_score,
+                "ocr_status": ocr_status,
+                "ocr_min_confidence": ocr_min_confidence,
+                "area_ratio": area_ratio,
+            }
+        else:
+            reasons.append("숫자/단위 차이 후보이나 OCR 신뢰도 낮음")
+            return {
+                "roi_id": roi_id,
+                "roi_final_status": "REVIEW",
+                "roi_reason": reasons,
+                "ssim_status": ssim_status,
+                "ssim_score": ssim_score,
+                "ocr_status": ocr_status,
+                "ocr_min_confidence": ocr_min_confidence,
+                "area_ratio": area_ratio,
+            }
 
     # 2. OCR이 명확히 PASS면 SSIM이 낮아도 바로 FAIL 금지
     if ocr_status == "PASS":
         if ssim_status == "FAIL":
             if is_loading_like:
                 reasons.append(
-                    "OCR 문구는 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
+                    "OCR 문구 일치, 로딩/처리 중 화면의 위치 또는 spinner 차이로 판단"
                 )
                 return {
                     "roi_id": roi_id,
@@ -225,6 +313,7 @@ def decide_one_roi(
                     "ssim_status": ssim_status,
                     "ssim_score": ssim_score,
                     "ocr_status": ocr_status,
+                    "ocr_min_confidence": ocr_min_confidence,
                     "area_ratio": area_ratio,
                 }
             else:
@@ -236,6 +325,7 @@ def decide_one_roi(
                     "ssim_status": ssim_status,
                     "ssim_score": ssim_score,
                     "ocr_status": ocr_status,
+                    "ocr_min_confidence": ocr_min_confidence,
                     "area_ratio": area_ratio,
                 }
 
@@ -247,22 +337,38 @@ def decide_one_roi(
             "ssim_status": ssim_status,
             "ssim_score": ssim_score,
             "ocr_status": ocr_status,
+            "ocr_min_confidence": ocr_min_confidence,
             "area_ratio": area_ratio,
         }
 
-    # 3. OCR이 텍스트 차이를 의심하고, 텍스트 중심 화면이면 REVIEW 또는 FAIL
+    # 3. OCR 텍스트가 다르게 읽힌 경우
+    # OCR confidence가 충분히 높을 때만 FAIL 근거로 사용한다.
     if text_different:
         if category in {"text_list", "status_time", "setting_control"}:
-            reasons.append("텍스트 중심 화면에서 OCR 텍스트 차이 감지")
-            return {
-                "roi_id": roi_id,
-                "roi_final_status": "FAIL",
-                "roi_reason": reasons,
-                "ssim_status": ssim_status,
-                "ssim_score": ssim_score,
-                "ocr_status": ocr_status,
-                "area_ratio": area_ratio,
-            }
+            if ocr_confident:
+                reasons.append("OCR 신뢰도 높은 텍스트 차이 감지")
+                return {
+                    "roi_id": roi_id,
+                    "roi_final_status": "FAIL",
+                    "roi_reason": reasons,
+                    "ssim_status": ssim_status,
+                    "ssim_score": ssim_score,
+                    "ocr_status": ocr_status,
+                    "ocr_min_confidence": ocr_min_confidence,
+                    "area_ratio": area_ratio,
+                }
+            else:
+                reasons.append("텍스트 차이 후보이나 OCR 신뢰도 낮음")
+                return {
+                    "roi_id": roi_id,
+                    "roi_final_status": "REVIEW",
+                    "roi_reason": reasons,
+                    "ssim_status": ssim_status,
+                    "ssim_score": ssim_score,
+                    "ocr_status": ocr_status,
+                    "ocr_min_confidence": ocr_min_confidence,
+                    "area_ratio": area_ratio,
+                }
         else:
             reasons.append("OCR 텍스트 차이 후보 감지")
             return {
@@ -272,6 +378,7 @@ def decide_one_roi(
                 "ssim_status": ssim_status,
                 "ssim_score": ssim_score,
                 "ocr_status": ocr_status,
+                "ocr_min_confidence": ocr_min_confidence,
                 "area_ratio": area_ratio,
             }
 
@@ -286,6 +393,7 @@ def decide_one_roi(
                 "ssim_status": ssim_status,
                 "ssim_score": ssim_score,
                 "ocr_status": ocr_status,
+                "ocr_min_confidence": ocr_min_confidence,
                 "area_ratio": area_ratio,
             }
 
@@ -298,6 +406,7 @@ def decide_one_roi(
                 "ssim_status": ssim_status,
                 "ssim_score": ssim_score,
                 "ocr_status": ocr_status,
+                "ocr_min_confidence": ocr_min_confidence,
                 "area_ratio": area_ratio,
             }
 
@@ -309,6 +418,7 @@ def decide_one_roi(
             "ssim_status": ssim_status,
             "ssim_score": ssim_score,
             "ocr_status": ocr_status,
+            "ocr_min_confidence": ocr_min_confidence,
             "area_ratio": area_ratio,
         }
 
@@ -322,6 +432,7 @@ def decide_one_roi(
             "ssim_status": ssim_status,
             "ssim_score": ssim_score,
             "ocr_status": ocr_status,
+            "ocr_min_confidence": ocr_min_confidence,
             "area_ratio": area_ratio,
         }
 
@@ -335,6 +446,7 @@ def decide_one_roi(
             "ssim_status": ssim_status,
             "ssim_score": ssim_score,
             "ocr_status": ocr_status,
+            "ocr_min_confidence": ocr_min_confidence,
             "area_ratio": area_ratio,
         }
 
@@ -347,8 +459,67 @@ def decide_one_roi(
         "ssim_status": ssim_status,
         "ssim_score": ssim_score,
         "ocr_status": ocr_status,
+        "ocr_min_confidence": ocr_min_confidence,
         "area_ratio": area_ratio,
     }
+
+
+def can_auto_pass_review_item(
+    category: str,
+    total_diff_area_ratio: float,
+    diff_roi_count: int,
+    fail_count: int,
+    review_count: int,
+    loading_like: bool,
+):
+    """
+    REVIEW 항목 중 매우 안전한 경우만 PASS로 내린다.
+
+    핵심 원칙:
+    - 오류를 PASS로 보내는 것이 가장 위험하므로 자동 PASS 조건은 보수적으로 둔다.
+    - card_ui라도 차이 ROI가 많으면 자동 PASS 금지.
+    - text_list / setting_control / guide_image는 자동 PASS를 거의 허용하지 않는다.
+    """
+
+    if fail_count > 0:
+        return False, "FAIL ROI가 있어 자동 PASS 불가"
+
+    if review_count == 0:
+        return False, "REVIEW ROI가 없어 자동 PASS 대상 아님"
+
+    # 차이 영역이 너무 많으면 작은 차이가 여러 군데 퍼진 것이므로 자동 PASS 금지
+    if diff_roi_count >= 6:
+        return False, "차이 ROI가 많아 자동 PASS 불가"
+
+    # 전체 차이 면적이 1%를 넘으면 사람이 한 번 보는 것이 안전
+    if total_diff_area_ratio > 0.01:
+        return False, "전체 차이 면적이 자동 PASS 기준보다 큼"
+
+    # 로딩/처리 중 화면은 spinner나 위치 차이가 매우 작을 때만 PASS
+    if loading_like and total_diff_area_ratio <= 0.01 and diff_roi_count <= 3:
+        return (
+            True,
+            "로딩/처리 중 화면의 매우 작은 위치/spinner 차이로 판단하여 자동 PASS",
+        )
+
+    # popup은 아주 작은 위치/렌더링 차이만 PASS
+    if category == "popup" and total_diff_area_ratio <= 0.008 and diff_roi_count <= 2:
+        return True, "팝업 화면의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
+
+    # card_ui도 이전보다 훨씬 보수적으로 제한
+    if category == "card_ui" and total_diff_area_ratio <= 0.006 and diff_roi_count <= 2:
+        return True, "카드 UI의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
+
+    # status_time은 숫자 오류 위험이 있으므로 극히 작은 차이만 PASS
+    if (
+        category == "status_time"
+        and total_diff_area_ratio <= 0.005
+        and diff_roi_count <= 1
+    ):
+        return True, "상태/시간 화면의 매우 작은 렌더링 차이로 판단하여 자동 PASS"
+
+    # text_list, setting_control, guide_image는 자동 PASS 금지
+    return False, "자동 PASS 조건에 해당하지 않음"
 
 
 # ============================================================
@@ -415,6 +586,14 @@ def decide_one_item(
         final_status = "PASS"
         final_reasons.append("차이 ROI가 검출되지 않음")
 
+    elif category == "guide_image" and total_diff_area_ratio >= max(
+        0.10, fail_area_ratio * 2.0
+    ):
+        final_status = "FAIL"
+        final_reasons.append(
+            f"안내 이미지 화면에서 매우 큰 시각적 차이 감지: {total_diff_area_ratio} >= {max(0.10, fail_area_ratio * 2.0)}"
+        )
+
     elif total_diff_area_ratio >= fail_area_ratio and not loading_like:
         severe_area_ratio = max(0.12, fail_area_ratio * 1.8)
 
@@ -434,8 +613,22 @@ def decide_one_item(
         final_reasons.append(f"FAIL ROI {fail_count}개 존재")
 
     elif review_count > 0:
-        final_status = "REVIEW"
-        final_reasons.append(f"REVIEW ROI {review_count}개 존재")
+        auto_pass, auto_pass_reason = can_auto_pass_review_item(
+            category=category,
+            total_diff_area_ratio=total_diff_area_ratio,
+            diff_roi_count=diff_roi_count,
+            fail_count=fail_count,
+            review_count=review_count,
+            loading_like=loading_like,
+        )
+
+        if auto_pass:
+            final_status = "PASS"
+            final_reasons.append(auto_pass_reason)
+        else:
+            final_status = "REVIEW"
+            final_reasons.append(f"REVIEW ROI {review_count}개 존재")
+            final_reasons.append(auto_pass_reason)
 
     else:
         final_status = "PASS"

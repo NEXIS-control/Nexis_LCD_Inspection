@@ -1,64 +1,60 @@
 ﻿file_name,category,profile,expected_result,final_status,diff_roi_count,review_roi_count,fail_roi_count,total_diff_area_ratio,is_loading_like,final_reasons,memo
-11-10.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,6,6,0,0.00813,False,REVIEW ROI 6개 존재,코스 카드/대시보드형 화면
-11-35.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,2,2,0,0.024357,False,REVIEW ROI 2개 존재,코스 카드/대시보드형 화면
-11-8.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,3,3,0,0.018086,False,REVIEW ROI 3개 존재,코스 카드/대시보드형 화면
-12-27.png,status_time,status_time_profile,UNKNOWN,REVIEW,3,3,0,0.013486,False,REVIEW ROI 3개 존재,시간/상태 정보 중심 화면
-12-29.png,setting_control,setting_control_profile,UNKNOWN,FAIL,8,7,1,0.058875,False,FAIL ROI 1개 존재,설정값/옵션 선택 화면
-12-38.png,setting_control,setting_control_profile,UNKNOWN,FAIL,8,7,1,0.058875,False,FAIL ROI 1개 존재,설정값/옵션 선택 화면
-13-12.png,status_time,status_time_profile,UNKNOWN,FAIL,15,8,7,0.059792,False,FAIL ROI 7개 존재,진행 시간/상태바 중심 화면
-13-2.png,status_time,status_time_profile,UNKNOWN,REVIEW,13,7,6,0.081665,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.081665 >= 0.06,진행 상태/텍스트 중심 화면
-14-10.png,status_time,status_time_profile,UNKNOWN,FAIL,6,4,2,0.051815,False,FAIL ROI 2개 존재,진행 상태/텍스트 중심 화면
-14-11.png,status_time,status_time_profile,UNKNOWN,FAIL,10,3,6,0.009552,False,FAIL ROI 6개 존재,진행 상태/텍스트 중심 화면
-14-21.png,status_time,status_time_profile,UNKNOWN,REVIEW,7,5,2,0.063984,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.063984 >= 0.06,시간/상태 + 일부 카드 UI 화면
-14-23.png,status_time,status_time_profile,UNKNOWN,REVIEW,17,7,9,0.063747,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.063747 >= 0.06,시간/상태 + 숫자 정보 화면
-14-24.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,19,19,0,0.069139,False,REVIEW ROI 19개 존재,카드형 대시보드 화면
-14-25.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,21,21,0,0.054377,False,REVIEW ROI 21개 존재,카드형 대시보드 화면
-14-3.png,status_time,status_time_profile,UNKNOWN,REVIEW,8,3,5,0.074886,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.074886 >= 0.06,진행 시간/상태바 중심 화면
-14-32.png,status_time,status_time_profile,UNKNOWN,REVIEW,16,9,7,0.064409,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.064409 >= 0.06,시간/상태 + 카드 UI 화면
+11-10.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,6,6,0,0.00813,False,REVIEW ROI 6개 존재 | 차이 ROI가 많아 자동 PASS 불가,코스 카드/대시보드형 화면
+11-35.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,2,2,0,0.024357,False,REVIEW ROI 2개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,코스 카드/대시보드형 화면
+11-8.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,3,3,0,0.018086,False,REVIEW ROI 3개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,코스 카드/대시보드형 화면
+12-27.png,status_time,status_time_profile,UNKNOWN,REVIEW,3,3,0,0.013486,False,REVIEW ROI 3개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,시간/상태 정보 중심 화면
+12-29.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,8,8,0,0.058875,False,REVIEW ROI 8개 존재 | 차이 ROI가 많아 자동 PASS 불가,설정값/옵션 선택 화면
+12-38.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,8,8,0,0.058875,False,REVIEW ROI 8개 존재 | 차이 ROI가 많아 자동 PASS 불가,설정값/옵션 선택 화면
+13-12.png,status_time,status_time_profile,UNKNOWN,REVIEW,15,15,0,0.059792,False,REVIEW ROI 15개 존재 | 차이 ROI가 많아 자동 PASS 불가,진행 시간/상태바 중심 화면
+13-2.png,status_time,status_time_profile,UNKNOWN,REVIEW,13,13,0,0.081665,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.081665 >= 0.06,진행 상태/텍스트 중심 화면
+14-10.png,status_time,status_time_profile,UNKNOWN,REVIEW,6,6,0,0.051815,False,REVIEW ROI 6개 존재 | 차이 ROI가 많아 자동 PASS 불가,진행 상태/텍스트 중심 화면
+14-11.png,status_time,status_time_profile,UNKNOWN,REVIEW,10,9,0,0.009552,False,REVIEW ROI 9개 존재 | 차이 ROI가 많아 자동 PASS 불가,진행 상태/텍스트 중심 화면
+14-21.png,status_time,status_time_profile,UNKNOWN,REVIEW,7,7,0,0.063984,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.063984 >= 0.06,시간/상태 + 일부 카드 UI 화면
+14-23.png,status_time,status_time_profile,UNKNOWN,REVIEW,17,16,0,0.063747,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.063747 >= 0.06,시간/상태 + 숫자 정보 화면
+14-24.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,19,19,0,0.069139,False,REVIEW ROI 19개 존재 | 차이 ROI가 많아 자동 PASS 불가,카드형 대시보드 화면
+14-25.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,21,21,0,0.054377,False,REVIEW ROI 21개 존재 | 차이 ROI가 많아 자동 PASS 불가,카드형 대시보드 화면
+14-3.png,status_time,status_time_profile,UNKNOWN,REVIEW,8,6,2,0.074886,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.074886 >= 0.06,진행 시간/상태바 중심 화면
+14-32.png,status_time,status_time_profile,UNKNOWN,REVIEW,16,16,0,0.064409,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.064409 >= 0.06,시간/상태 + 카드 UI 화면
 14-33.png,card_ui,card_ui_profile,UNKNOWN,FAIL,14,14,0,0.178678,False,전체 차이 면적 비율이 매우 큼: 0.178678 >= 0.14400000000000002,카드형 대시보드 화면
 14-34.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,22,21,1,0.104346,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.104346 >= 0.08,카드형 대시보드 화면
-14-8.png,text_list,text_list_profile,UNKNOWN,REVIEW,10,9,1,0.075853,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.075853 >= 0.06,문구/항목 선택형 화면
-14-9.png,text_list,text_list_profile,UNKNOWN,FAIL,8,4,3,0.053638,False,FAIL ROI 3개 존재,경고/알림 문구 목록 화면
-15-1.png,text_list,text_list_profile,UNKNOWN,FAIL,13,3,6,0.030454,True,FAIL ROI 6개 존재,설정값 요약/목록 화면
-15-12.png,setting_control,setting_control_profile,UNKNOWN,FAIL,11,7,4,0.043506,False,FAIL ROI 4개 존재,슬라이더 조절 화면
-15-13.png,setting_control,setting_control_profile,UNKNOWN,FAIL,10,8,2,0.062171,False,FAIL ROI 2개 존재,슬라이더 조절 화면
+14-8.png,text_list,text_list_profile,UNKNOWN,REVIEW,10,10,0,0.075853,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.075853 >= 0.06,문구/항목 선택형 화면
+14-9.png,text_list,text_list_profile,UNKNOWN,FAIL,8,6,1,0.053638,False,FAIL ROI 1개 존재,경고/알림 문구 목록 화면
+15-1.png,text_list,text_list_profile,UNKNOWN,REVIEW,13,9,0,0.030454,True,REVIEW ROI 9개 존재 | 차이 ROI가 많아 자동 PASS 불가,설정값 요약/목록 화면
+15-12.png,setting_control,setting_control_profile,UNKNOWN,FAIL,11,10,1,0.043506,False,FAIL ROI 1개 존재,슬라이더 조절 화면
+15-13.png,setting_control,setting_control_profile,UNKNOWN,FAIL,10,9,1,0.062171,False,FAIL ROI 1개 존재,슬라이더 조절 화면
 15-14.png,setting_control,setting_control_profile,UNKNOWN,FAIL,10,9,1,0.063687,False,FAIL ROI 1개 존재,슬라이더 조절 화면
 15-147.png,text_list,text_list_profile,UNKNOWN,FAIL,9,4,5,0.044754,False,FAIL ROI 5개 존재,설정값/텍스트 정보 화면
-15-149.png,text_list,text_list_profile,UNKNOWN,REVIEW,10,5,5,0.060449,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.060449 >= 0.06,설정값/텍스트 정보 화면
-15-150.png,popup,popup_profile,UNKNOWN,REVIEW,3,3,0,0.002474,False,REVIEW ROI 3개 존재,중앙 팝업/확인 화면
-15-22.png,text_list,text_list_profile,UNKNOWN,FAIL,5,3,2,0.006071,False,FAIL ROI 2개 존재,목록형 설정 화면
-15-27.png,text_list,text_list_profile,UNKNOWN,FAIL,8,3,5,0.008018,False,FAIL ROI 5개 존재,목록형 설정 화면
-15-4.png,text_list,text_list_profile,UNKNOWN,FAIL,14,5,2,0.044769,True,FAIL ROI 2개 존재,상세 설정/정보 목록 화면
-15-49.png,text_list,text_list_profile,UNKNOWN,FAIL,9,3,4,0.00925,False,FAIL ROI 4개 존재,아이콘 포함 목록형 화면
-15-51.png,text_list,text_list_profile,UNKNOWN,FAIL,7,2,4,0.009268,False,FAIL ROI 4개 존재,아이콘 포함 목록형 화면
-15-62.png,text_list,text_list_profile,UNKNOWN,FAIL,6,5,1,0.033477,False,FAIL ROI 1개 존재,텍스트 중심 설명/설정 화면
+15-149.png,text_list,text_list_profile,UNKNOWN,REVIEW,10,7,3,0.060449,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.060449 >= 0.06,설정값/텍스트 정보 화면
+15-150.png,popup,popup_profile,UNKNOWN,REVIEW,3,3,0,0.002474,False,REVIEW ROI 3개 존재 | 자동 PASS 조건에 해당하지 않음,중앙 팝업/확인 화면
+15-22.png,text_list,text_list_profile,UNKNOWN,REVIEW,5,5,0,0.006071,False,REVIEW ROI 5개 존재 | 자동 PASS 조건에 해당하지 않음,목록형 설정 화면
+15-27.png,text_list,text_list_profile,UNKNOWN,REVIEW,8,8,0,0.008018,False,REVIEW ROI 8개 존재 | 차이 ROI가 많아 자동 PASS 불가,목록형 설정 화면
+15-4.png,text_list,text_list_profile,UNKNOWN,REVIEW,14,7,0,0.044769,True,REVIEW ROI 7개 존재 | 차이 ROI가 많아 자동 PASS 불가,상세 설정/정보 목록 화면
+15-49.png,text_list,text_list_profile,UNKNOWN,REVIEW,9,7,0,0.00925,False,REVIEW ROI 7개 존재 | 차이 ROI가 많아 자동 PASS 불가,아이콘 포함 목록형 화면
+15-51.png,text_list,text_list_profile,UNKNOWN,REVIEW,7,6,0,0.009268,False,REVIEW ROI 6개 존재 | 차이 ROI가 많아 자동 PASS 불가,아이콘 포함 목록형 화면
+15-62.png,text_list,text_list_profile,UNKNOWN,REVIEW,6,6,0,0.033477,False,REVIEW ROI 6개 존재 | 차이 ROI가 많아 자동 PASS 불가,텍스트 중심 설명/설정 화면
 15-63.png,guide_image,guide_image_profile,UNKNOWN,REVIEW,6,5,1,0.090975,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.090975 >= 0.08,안내 이미지 또는 설명 그림 포함 화면
 15-64.png,guide_image,guide_image_profile,UNKNOWN,REVIEW,6,5,1,0.092925,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.092925 >= 0.08,안내 이미지 또는 설명 그림 포함 화면
 15-65.png,guide_image,guide_image_profile,UNKNOWN,REVIEW,6,6,0,0.091567,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.091567 >= 0.08,안내 이미지 또는 그래프 포함 화면
 15-66.png,guide_image,guide_image_profile,UNKNOWN,REVIEW,6,5,1,0.089979,False,전체 차이 면적 비율이 기준을 초과했지만 OS/UI 위치 차이 가능성으로 REVIEW 처리: 0.089979 >= 0.08,안내 문구/설명 이미지 화면
-15-67.png,text_list,text_list_profile,UNKNOWN,FAIL,19,8,11,0.04353,False,FAIL ROI 11개 존재,설정값/정보 목록 화면
-16-17.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,11,11,0,0.029655,False,REVIEW ROI 11개 존재,카드형 대시보드 + 숫자 정보 화면
-16-19.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,11,11,0,0.029782,False,REVIEW ROI 11개 존재,카드형 대시보드 + 숫자 정보 화면
-16-4.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,10,10,0,0.029922,False,REVIEW ROI 10개 존재,카드형 대시보드 화면
+15-67.png,text_list,text_list_profile,UNKNOWN,FAIL,19,18,1,0.04353,False,FAIL ROI 1개 존재,설정값/정보 목록 화면
+16-17.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,11,11,0,0.029655,False,REVIEW ROI 11개 존재 | 차이 ROI가 많아 자동 PASS 불가,카드형 대시보드 + 숫자 정보 화면
+16-19.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,11,11,0,0.029782,False,REVIEW ROI 11개 존재 | 차이 ROI가 많아 자동 PASS 불가,카드형 대시보드 + 숫자 정보 화면
+16-4.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,10,10,0,0.029922,False,REVIEW ROI 10개 존재 | 차이 ROI가 많아 자동 PASS 불가,카드형 대시보드 화면
 18-3.png,popup,popup_profile,UNKNOWN,FAIL,1,1,0,0.181094,False,전체 차이 면적 비율이 매우 큼: 0.181094 >= 0.14400000000000002,보라색 중앙 팝업 화면
 18-4.png,popup,popup_profile,UNKNOWN,FAIL,1,1,0,0.181294,False,전체 차이 면적 비율이 매우 큼: 0.181294 >= 0.14400000000000002,보라색 중앙 팝업 화면
 18-5.png,popup,popup_profile,UNKNOWN,FAIL,1,1,0,0.167472,False,전체 차이 면적 비율이 매우 큼: 0.167472 >= 0.14400000000000002,보라색 중앙 팝업 화면
-2-21.png,popup,popup_profile,UNKNOWN,REVIEW,1,1,0,0.002655,True,REVIEW ROI 1개 존재,로딩/처리 중 팝업 화면
-2-39.png,popup,popup_profile,UNKNOWN,REVIEW,1,1,0,0.016035,True,REVIEW ROI 1개 존재,로딩/처리 중 팝업 화면
-2-40.png,popup,popup_profile,UNKNOWN,REVIEW,1,1,0,0.015964,True,REVIEW ROI 1개 존재,로딩/처리 중 팝업 화면
-3-1.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,6,6,0,0.045275,False,REVIEW ROI 6개 존재,코스 카드 선택 화면
-3-2.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.023844,False,REVIEW ROI 1개 존재,코스 카드 선택 화면
-3-23.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.049233,False,REVIEW ROI 1개 존재,코스 카드 선택 화면
-3-25.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.00238,False,REVIEW ROI 1개 존재,코스 카드 선택 화면
-3-26.png,text_list,text_list_profile,UNKNOWN,FAIL,24,9,15,0.017438,False,FAIL ROI 15개 존재,상세 정보/설정 목록 화면
-4-1.png,setting_control,setting_control_profile,UNKNOWN,FAIL,1,0,1,0.001003,False,FAIL ROI 1개 존재,옵션 선택/설정값 화면
-4-20.png,setting_control,setting_control_profile,UNKNOWN,FAIL,10,6,4,0.0546,False,FAIL ROI 4개 존재,옵션 버튼/설정 조절 화면
-4-43.png,setting_control,setting_control_profile,UNKNOWN,FAIL,10,6,4,0.0546,False,FAIL ROI 4개 존재,설정값/옵션 선택 화면
-4-8.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,1,1,0,0.003582,False,REVIEW ROI 1개 존재,옵션 버튼 그리드 화면
-4-9.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,1,1,0,0.003582,False,REVIEW ROI 1개 존재,옵션 버튼 그리드 화면
-5-22.png,popup,popup_profile,UNKNOWN,REVIEW,2,2,0,0.007752,False,REVIEW ROI 2개 존재,중앙 확인/안내 팝업 화면
-5-24.png,popup,popup_profile,UNKNOWN,REVIEW,2,2,0,0.007752,False,REVIEW ROI 2개 존재,중앙 안내 팝업 화면
-7-12.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.023215,False,REVIEW ROI 1개 존재,코스 카드 선택 화면
-7-5.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,6,6,0,0.045078,False,REVIEW ROI 6개 존재,코스 카드 선택 화면
-8-1.png,status_time,status_time_profile,UNKNOWN,REVIEW,2,2,0,0.006676,False,REVIEW ROI 2개 존재,진행 상태/시간 문구 중심 화면
-8-10.png,status_time,status_time_profile,UNKNOWN,FAIL,8,4,4,0.044666,False,FAIL ROI 4개 존재,진행 시간/상태바 중심 화면
+2-39.png,popup,popup_profile,UNKNOWN,REVIEW,1,1,0,0.016035,True,REVIEW ROI 1개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,로딩/처리 중 팝업 화면
+2-40.png,popup,popup_profile,UNKNOWN,REVIEW,1,1,0,0.015964,True,REVIEW ROI 1개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,로딩/처리 중 팝업 화면
+3-1.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,6,6,0,0.045275,False,REVIEW ROI 6개 존재 | 차이 ROI가 많아 자동 PASS 불가,코스 카드 선택 화면
+3-2.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.023844,False,REVIEW ROI 1개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,코스 카드 선택 화면
+3-23.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.049233,False,REVIEW ROI 1개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,코스 카드 선택 화면
+3-26.png,text_list,text_list_profile,UNKNOWN,FAIL,24,22,2,0.017438,False,FAIL ROI 2개 존재,상세 정보/설정 목록 화면
+4-1.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,1,1,0,0.001003,False,REVIEW ROI 1개 존재 | 자동 PASS 조건에 해당하지 않음,옵션 선택/설정값 화면
+4-20.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,10,10,0,0.0546,False,REVIEW ROI 10개 존재 | 차이 ROI가 많아 자동 PASS 불가,옵션 버튼/설정 조절 화면
+4-43.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,10,10,0,0.0546,False,REVIEW ROI 10개 존재 | 차이 ROI가 많아 자동 PASS 불가,설정값/옵션 선택 화면
+4-8.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,1,1,0,0.003582,False,REVIEW ROI 1개 존재 | 자동 PASS 조건에 해당하지 않음,옵션 버튼 그리드 화면
+4-9.png,setting_control,setting_control_profile,UNKNOWN,REVIEW,1,1,0,0.003582,False,REVIEW ROI 1개 존재 | 자동 PASS 조건에 해당하지 않음,옵션 버튼 그리드 화면
+7-12.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,1,1,0,0.023215,False,REVIEW ROI 1개 존재 | 전체 차이 면적이 자동 PASS 기준보다 큼,코스 카드 선택 화면
+7-5.png,card_ui,card_ui_profile,UNKNOWN,REVIEW,6,6,0,0.045078,False,REVIEW ROI 6개 존재 | 차이 ROI가 많아 자동 PASS 불가,코스 카드 선택 화면
+8-1.png,status_time,status_time_profile,UNKNOWN,REVIEW,2,2,0,0.006676,False,REVIEW ROI 2개 존재 | 자동 PASS 조건에 해당하지 않음,진행 상태/시간 문구 중심 화면
+8-10.png,status_time,status_time_profile,UNKNOWN,FAIL,8,7,1,0.044666,False,FAIL ROI 1개 존재,진행 시간/상태바 중심 화면

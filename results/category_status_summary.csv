@@ -1,7 +1,7 @@
 ﻿category,PASS,REVIEW,FAIL,TOTAL
-card_ui,0,15,1,16
-text_list,2,2,11,15
-status_time,2,7,4,13
-setting_control,2,2,8,12
-popup,4,6,3,13
+card_ui,1,14,1,16
+text_list,2,9,4,15
+status_time,2,10,1,13
+setting_control,2,7,3,12
+popup,7,3,3,13
 guide_image,0,4,0,4
