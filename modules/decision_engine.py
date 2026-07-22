@@ -199,6 +199,41 @@ def has_text_confirmed_different(ocr_compare: dict) -> bool:
     return ref_norm != cap_norm
 
 
+def has_missing_text_candidate(ocr_roi: dict) -> bool:
+    """
+    기준 이미지에서는 OCR 텍스트가 어느 정도 읽히는데,
+    비교 이미지에서는 텍스트가 거의 없거나 크게 줄어든 경우를 찾는다.
+
+    파일명 기준이 아니라 '텍스트 누락 현상' 기준이다.
+    """
+    if not ocr_roi:
+        return False
+
+    ocr_compare = get_ocr_compare(ocr_roi)
+
+    ref_text = normalize_text_for_judgement(
+        ocr_compare.get("reference_text_compact", "")
+    )
+    cap_text = normalize_text_for_judgement(ocr_compare.get("capture_text_compact", ""))
+
+    if not ref_text:
+        return False
+
+    # 너무 짧은 텍스트는 OCR 오탐 위험이 크므로 제외
+    if len(ref_text) < 4:
+        return False
+
+    # 기준에는 텍스트가 있는데 비교 이미지에서 거의 사라진 경우
+    if not cap_text:
+        return True
+
+    # 비교 텍스트 길이가 기준 대비 매우 짧아진 경우
+    if len(cap_text) / max(len(ref_text), 1) <= 0.35:
+        return True
+
+    return False
+
+
 def get_ocr_min_confidence(ocr_roi: dict) -> float:
     """
     reference/capture OCR 중 더 낮은 confidence를 반환한다.
@@ -473,12 +508,14 @@ def can_auto_pass_review_item(
     loading_like: bool,
 ):
     """
-    REVIEW 항목 중 매우 안전한 경우만 PASS로 내린다.
+    REVIEW 항목 중 사람 기준 PASS에 가까운 항목만 자동 PASS로 내린다.
 
-    핵심 원칙:
-    - 오류를 PASS로 보내는 것이 가장 위험하므로 자동 PASS 조건은 보수적으로 둔다.
-    - card_ui라도 차이 ROI가 많으면 자동 PASS 금지.
-    - text_list / setting_control / guide_image는 자동 PASS를 거의 허용하지 않는다.
+    원칙:
+    - FAIL ROI가 있으면 자동 PASS 금지
+    - guide_image는 자동 PASS 금지
+    - status_time은 글자/숫자 누락 위험이 있어 매우 보수적으로 처리
+    - card_ui, popup, 일부 text_list, 일부 setting_control은
+    OS/UI 위치 차이와 렌더링 차이가 많이 생기므로 조건부 PASS 허용
     """
 
     if fail_count > 0:
@@ -487,38 +524,53 @@ def can_auto_pass_review_item(
     if review_count == 0:
         return False, "REVIEW ROI가 없어 자동 PASS 대상 아님"
 
-    # 차이 영역이 너무 많으면 작은 차이가 여러 군데 퍼진 것이므로 자동 PASS 금지
-    if diff_roi_count >= 6:
-        return False, "차이 ROI가 많아 자동 PASS 불가"
+    # 안내 그림 화면은 그림 자체 오류 위험이 크므로 자동 PASS 금지
+    if category == "guide_image":
+        return False, "안내 이미지 화면은 자동 PASS 금지"
 
-    # 전체 차이 면적이 1%를 넘으면 사람이 한 번 보는 것이 안전
-    if total_diff_area_ratio > 0.01:
-        return False, "전체 차이 면적이 자동 PASS 기준보다 큼"
+    # popup은 사람이 봤을 때 통과 가능한 위치/렌더링 차이가 많음
+    if category == "popup":
+        if total_diff_area_ratio <= 0.02 and diff_roi_count <= 3:
+            return True, "팝업 화면의 허용 가능한 위치/렌더링 차이로 자동 PASS"
+        return False, "팝업 화면의 차이가 자동 PASS 기준보다 큼"
 
-    # 로딩/처리 중 화면은 spinner나 위치 차이가 매우 작을 때만 PASS
-    if loading_like and total_diff_area_ratio <= 0.01 and diff_roi_count <= 3:
-        return (
-            True,
-            "로딩/처리 중 화면의 매우 작은 위치/spinner 차이로 판단하여 자동 PASS",
-        )
+        # card_ui는 카드/버튼/아이콘 위치 차이가 많지만,
+    # ROI 개수가 적은데 면적이 큰 경우는 글씨/사진 위치 차이일 수 있으므로 REVIEW로 남긴다.
+    if category == "card_ui":
+        # 작은 차이 1~2개만 있는 경우: 진짜 아주 작은 면적만 PASS
+        if diff_roi_count <= 2:
+            if total_diff_area_ratio <= 0.015:
+                return True, "카드 UI의 매우 작은 단일 위치/렌더링 차이로 자동 PASS"
+            return (
+                False,
+                "카드 UI에서 적은 ROI지만 면적이 커 글씨/사진 차이 가능성으로 REVIEW 유지",
+            )
 
-    # popup은 아주 작은 위치/렌더링 차이만 PASS
-    if category == "popup" and total_diff_area_ratio <= 0.008 and diff_roi_count <= 2:
-        return True, "팝업 화면의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
+        # 여러 카드/버튼에 분산된 작은 렌더링 차이는 PASS 허용
+        if diff_roi_count >= 6 and total_diff_area_ratio <= 0.05:
+            return True, "카드 UI의 분산형 위치/렌더링 차이로 자동 PASS"
 
-    # card_ui도 이전보다 훨씬 보수적으로 제한
-    if category == "card_ui" and total_diff_area_ratio <= 0.006 and diff_roi_count <= 2:
-        return True, "카드 UI의 매우 작은 위치/렌더링 차이로 판단하여 자동 PASS"
+        # 중간 영역은 애매하므로 REVIEW
+        return False, "카드 UI 차이가 자동 PASS 기준보다 큼"
 
-    # status_time은 숫자 오류 위험이 있으므로 극히 작은 차이만 PASS
-    if (
-        category == "status_time"
-        and total_diff_area_ratio <= 0.005
-        and diff_roi_count <= 1
-    ):
-        return True, "상태/시간 화면의 매우 작은 렌더링 차이로 판단하여 자동 PASS"
+    # text_list는 글자 내용 오류 위험이 있어 아주 작은 차이만 PASS
+    if category == "text_list":
+        if total_diff_area_ratio <= 0.012 and diff_roi_count <= 9:
+            return True, "텍스트 목록 화면의 작은 렌더링/위치 차이로 자동 PASS"
+        return False, "텍스트 목록 화면은 자동 PASS 기준보다 차이가 큼"
 
-    # text_list, setting_control, guide_image는 자동 PASS 금지
+    # setting_control은 설정값 오류 위험이 있으므로 FAIL ROI 없는 분산형 UI 차이만 PASS
+    if category == "setting_control":
+        if total_diff_area_ratio <= 0.06 and diff_roi_count >= 8:
+            return True, "설정 화면의 분산형 위치/렌더링 차이로 자동 PASS"
+        return False, "설정 화면은 자동 PASS 기준에 해당하지 않음"
+
+    # status_time은 숫자/상태 누락 위험이 있어 낮은 면적만 PASS
+    if category == "status_time":
+        if total_diff_area_ratio <= 0.015 and diff_roi_count <= 3:
+            return True, "상태/시간 화면의 매우 작은 위치/렌더링 차이로 자동 PASS"
+        return False, "상태/시간 화면은 숫자/상태 정보 오류 위험으로 자동 PASS 제한"
+
     return False, "자동 PASS 조건에 해당하지 않음"
 
 
@@ -580,28 +632,85 @@ def decide_one_item(
     review_count = sum(1 for r in roi_decisions if r["roi_final_status"] == "REVIEW")
     pass_count = sum(1 for r in roi_decisions if r["roi_final_status"] == "PASS")
 
+    missing_text_count = sum(
+        1 for roi in ocr_rois.values() if has_missing_text_candidate(roi)
+    )
+
     final_reasons = []
 
     if diff_roi_count == 0:
         final_status = "PASS"
         final_reasons.append("차이 ROI가 검출되지 않음")
 
-    elif category == "guide_image" and total_diff_area_ratio >= max(
-        0.10, fail_area_ratio * 2.0
+    # 1. 안내 이미지 화면: 좌측/중앙 그림이 크게 다르면 FAIL
+    elif (
+        category == "guide_image"
+        and total_diff_area_ratio >= 0.085
+        and diff_roi_count >= 4
     ):
         final_status = "FAIL"
         final_reasons.append(
-            f"안내 이미지 화면에서 매우 큰 시각적 차이 감지: {total_diff_area_ratio} >= {max(0.10, fail_area_ratio * 2.0)}"
+            f"안내 이미지 화면에서 큰 그림 구성 차이 감지: area={total_diff_area_ratio}, roi_count={diff_roi_count}"
+        )
+
+    # 2. 카드 UI 화면: 중앙 그림/카드 구성이 크게 다르면 FAIL
+    elif (
+        category == "card_ui" and total_diff_area_ratio >= 0.10 and diff_roi_count >= 8
+    ):
+        final_status = "FAIL"
+        final_reasons.append(
+            f"카드 UI 화면에서 큰 구조 차이 감지: area={total_diff_area_ratio}, roi_count={diff_roi_count}"
+        )
+
+    # 3. 텍스트 목록 화면: 넓은 영역 차이 또는 여러 FAIL ROI는 명확한 구성 차이로 판단
+    elif category == "text_list" and (
+        (total_diff_area_ratio >= 0.07 and diff_roi_count >= 8) or fail_count >= 3
+    ):
+        final_status = "FAIL"
+        final_reasons.append(
+            f"텍스트 목록 화면에서 큰 누락/구성 차이 감지: area={total_diff_area_ratio}, roi_count={diff_roi_count}, fail_roi={fail_count}"
+        )
+
+    # 4. 상태/시간 화면:
+    # status_time은 숫자, 게이지, 위치 차이 때문에 OCR 누락 오탐이 자주 발생한다.
+    # 따라서 missing_text_count만으로는 FAIL 확정하지 않고 REVIEW로 보낸다.
+    elif (
+        category == "status_time"
+        and missing_text_count >= 1
+        and total_diff_area_ratio >= 0.045
+        and diff_roi_count >= 5
+    ):
+        final_status = "REVIEW"
+        final_reasons.append(
+            f"상태/시간 화면에서 텍스트 누락 후보가 있으나 OCR/게이지/위치 차이 가능성으로 REVIEW 처리: missing_text_count={missing_text_count}, area={total_diff_area_ratio}, roi_count={diff_roi_count}"
+        )
+
+    # 5. 설정 화면: 작은 영역이라도 기준 텍스트가 사라진 경우는 FAIL
+    elif (
+        category == "setting_control"
+        and missing_text_count >= 1
+        and total_diff_area_ratio <= 0.012
+        and diff_roi_count <= 3
+    ):
+        final_status = "FAIL"
+        final_reasons.append(
+            f"설정 화면에서 기준 텍스트 누락 가능성 감지: missing_text_count={missing_text_count}, area={total_diff_area_ratio}"
         )
 
     elif total_diff_area_ratio >= fail_area_ratio and not loading_like:
         severe_area_ratio = max(0.12, fail_area_ratio * 1.8)
 
         if total_diff_area_ratio >= severe_area_ratio:
-            final_status = "FAIL"
-            final_reasons.append(
-                f"전체 차이 면적 비율이 매우 큼: {total_diff_area_ratio} >= {severe_area_ratio}"
-            )
+            if category == "popup":
+                final_status = "REVIEW"
+                final_reasons.append(
+                    f"팝업 화면에서 전체 차이 면적은 크지만 화면 색/게이지/위치 차이 가능성이 있어 REVIEW 처리: {total_diff_area_ratio} >= {severe_area_ratio}"
+                )
+            else:
+                final_status = "FAIL"
+                final_reasons.append(
+                    f"전체 차이 면적 비율이 매우 큼: {total_diff_area_ratio} >= {severe_area_ratio}"
+                )
         else:
             final_status = "REVIEW"
             final_reasons.append(
@@ -609,8 +718,22 @@ def decide_one_item(
             )
 
     elif fail_count > 0:
-        final_status = "FAIL"
-        final_reasons.append(f"FAIL ROI {fail_count}개 존재")
+        # text_list / status_time / setting_control은 OCR 또는 SSIM 오탐으로
+        # 여러 개의 작은 ROI가 생길 수 있다.
+        # 따라서 큰 구조 변화가 아니라면 바로 FAIL로 확정하지 않고 REVIEW로 보낸다.
+        if category in {"text_list", "status_time", "setting_control"}:
+            if fail_count <= 2 and total_diff_area_ratio <= 0.07:
+                final_status = "REVIEW"
+                final_reasons.append(
+                    f"FAIL ROI {fail_count}개가 있으나 텍스트/설정/상태 화면의 OCR·SSIM 오탐 가능성으로 REVIEW 처리"
+                )
+            else:
+                final_status = "FAIL"
+                final_reasons.append(f"FAIL ROI {fail_count}개 존재")
+
+        else:
+            final_status = "FAIL"
+            final_reasons.append(f"FAIL ROI {fail_count}개 존재")
 
     elif review_count > 0:
         auto_pass, auto_pass_reason = can_auto_pass_review_item(

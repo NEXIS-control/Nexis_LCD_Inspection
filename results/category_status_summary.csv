@@ -1,7 +1,7 @@
-﻿category,PASS,REVIEW,FAIL,TOTAL
-card_ui,1,14,1,16
-text_list,2,9,4,15
-status_time,2,10,1,13
-setting_control,2,7,3,12
-popup,7,3,3,13
-guide_image,0,4,0,4
+﻿category,total,engine_PASS,engine_REVIEW,engine_FAIL,expected_PASS,expected_REVIEW,expected_FAIL,MATCH,DANGEROUS_FALSE_PASS,FALSE_FAIL,OVER_REVIEW,OVER_CONFIDENT,MISMATCH,UNLABELLED
+card_ui,16,7,7,2,10,4,2,13,0,0,3,0,0,0
+guide_image,4,0,0,4,0,0,4,4,0,0,0,0,0,0
+popup,13,10,3,0,10,3,0,13,0,0,0,0,0,0
+setting_control,12,6,4,2,9,1,2,9,0,0,3,0,0,0
+status_time,13,4,9,0,11,1,1,5,0,0,8,0,0,0
+text_list,15,6,6,3,10,2,3,11,0,0,4,0,0,0
