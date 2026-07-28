@@ -234,6 +234,42 @@ def has_missing_text_candidate(ocr_roi: dict) -> bool:
     return False
 
 
+def has_missing_text_confirmed(ocr_roi: dict, ssim_roi: dict) -> bool:
+    """
+    기준 화면의 텍스트가 검사 화면에서 명확히 누락된 경우만 찾는다.
+    OCR 신뢰도, SSIM, ROI 면적을 함께 확인하여
+    증기, 게이지, 작은 렌더링 차이를 누락으로 오인하지 않도록 한다.
+    """
+    if not ocr_roi or not ssim_roi:
+        return False
+
+    ocr_compare = get_ocr_compare(ocr_roi)
+
+    reference_text = normalize_text_for_judgement(
+        ocr_compare.get("reference_text_compact", "")
+    )
+
+    reference_confidence = float(
+        ocr_roi.get("reference_ocr", {}).get("mean_confidence", 0.0) or 0.0
+    )
+
+    capture_confidence = float(
+        ocr_roi.get("capture_ocr", {}).get("mean_confidence", 0.0) or 0.0
+    )
+
+    ssim_status = ssim_roi.get("ssim_status", "MISSING")
+
+    area_ratio = float(ocr_roi.get("area_ratio", 0.0) or 0.0)
+
+    return (
+        len(reference_text) >= 4
+        and reference_confidence >= 0.80
+        and capture_confidence <= 0.40
+        and ssim_status == "FAIL"
+        and area_ratio >= 0.01
+    )
+
+
 def get_ocr_min_confidence(ocr_roi: dict) -> float:
     """
     reference/capture OCR 중 더 낮은 confidence를 반환한다.
@@ -298,7 +334,12 @@ def decide_one_roi(
 
     number_mismatch = has_number_mismatch(ocr_compare)
     text_different = has_text_confirmed_different(ocr_compare)
-    ocr_confident = is_ocr_confident(ocr_roi, threshold=0.70)
+    ocr_confidence_threshold = float(profile_info.get("ocr_confidence_review", 0.70))
+
+    ocr_confident = is_ocr_confident(
+        ocr_roi,
+        threshold=ocr_confidence_threshold,
+    )
     ocr_min_confidence = get_ocr_min_confidence(ocr_roi)
 
     fail_area_ratio = float(profile_info.get("fail_area_ratio", 0.03))
@@ -565,13 +606,20 @@ def can_auto_pass_review_item(
             return True, "설정 화면의 분산형 위치/렌더링 차이로 자동 PASS"
         return False, "설정 화면은 자동 PASS 기준에 해당하지 않음"
 
-    # status_time은 숫자/상태 누락 위험이 있어 낮은 면적만 PASS
+    # status_time은 숫자/상태 누락 위험이 있으므로
+    # 전체 차이 면적이 매우 작고 FAIL ROI가 없는 경우만 자동 PASS
     if category == "status_time":
-        if total_diff_area_ratio <= 0.015 and diff_roi_count <= 3:
-            return True, "상태/시간 화면의 매우 작은 위치/렌더링 차이로 자동 PASS"
-        return False, "상태/시간 화면은 숫자/상태 정보 오류 위험으로 자동 PASS 제한"
+        if total_diff_area_ratio <= 0.015 and diff_roi_count <= 12:
+            return (
+                True,
+                "상태/시간 화면의 전체 차이 면적이 매우 작아 "
+                "글자 위치/렌더링 차이로 자동 PASS",
+            )
 
-    return False, "자동 PASS 조건에 해당하지 않음"
+        return (
+            False,
+            "상태/시간 화면은 숫자/상태 정보 오류 위험으로 " "자동 PASS 제한",
+        )
 
 
 # ============================================================
@@ -635,6 +683,14 @@ def decide_one_item(
     missing_text_count = sum(
         1 for roi in ocr_rois.values() if has_missing_text_candidate(roi)
     )
+    confirmed_missing_text_count = sum(
+        1
+        for roi_id, ocr_roi in ocr_rois.items()
+        if has_missing_text_confirmed(
+            ocr_roi,
+            ssim_rois.get(roi_id, {}),
+        )
+    )
 
     final_reasons = []
 
@@ -674,6 +730,12 @@ def decide_one_item(
     # 4. 상태/시간 화면:
     # status_time은 숫자, 게이지, 위치 차이 때문에 OCR 누락 오탐이 자주 발생한다.
     # 따라서 missing_text_count만으로는 FAIL 확정하지 않고 REVIEW로 보낸다.
+    # 상태/시간 화면에서 중요한 텍스트가 명확히 누락된 경우
+    elif category == "status_time" and confirmed_missing_text_count >= 1:
+        final_status = "FAIL"
+        final_reasons.append(
+            "기준 화면의 고신뢰도 텍스트가 " "검사 화면에서 명확하게 누락됨"
+        )
     elif (
         category == "status_time"
         and missing_text_count >= 1
@@ -778,6 +840,7 @@ def decide_one_item(
             "pass_count": pass_count,
             "review_count": review_count,
             "fail_count": fail_count,
+            "confirmed_missing_text_count": confirmed_missing_text_count,
         },
         "roi_decisions": roi_decisions,
         "debug_images": {
@@ -875,6 +938,7 @@ def save_summary_csv(results: dict):
         "pass_roi_count",
         "review_roi_count",
         "fail_roi_count",
+        "confirmed_missing_text_count",
         "total_diff_area_ratio",
         "is_loading_like",
         "memo",
@@ -898,6 +962,9 @@ def save_summary_csv(results: dict):
                     "pass_roi_count": item["roi_decision_summary"]["pass_count"],
                     "review_roi_count": item["roi_decision_summary"]["review_count"],
                     "fail_roi_count": item["roi_decision_summary"]["fail_count"],
+                    "confirmed_missing_text_count": item["roi_decision_summary"][
+                        "confirmed_missing_text_count"
+                    ],
                     "total_diff_area_ratio": item["diff_summary"][
                         "total_diff_area_ratio"
                     ],

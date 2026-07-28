@@ -3,9 +3,9 @@
     "total_items": 73,
     "processed_count": 73,
     "error_count": 0,
-    "pass_count": 33,
-    "review_count": 29,
-    "fail_count": 11,
+    "pass_count": 34,
+    "review_count": 27,
+    "fail_count": 12,
     "errors": []
   },
   "results": {
@@ -31,7 +31,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -134,7 +135,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 2,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -188,7 +190,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -218,7 +221,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 3,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -274,7 +278,7 @@
       "is_loading_like": false,
       "final_status": "PASS",
       "final_reasons": [
-        "상태/시간 화면의 매우 작은 위치/렌더링 차이로 자동 PASS"
+        "상태/시간 화면의 전체 차이 면적이 매우 작아 글자 위치/렌더링 차이로 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 3,
@@ -284,7 +288,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 3,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -350,7 +355,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 8,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -476,7 +482,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 8,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -602,7 +609,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -631,7 +639,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 15,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -841,7 +850,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 13,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -1015,10 +1025,9 @@
       "expected_result": "FAIL",
       "memo": "글씨 아예 없음",
       "is_loading_like": false,
-      "final_status": "REVIEW",
+      "final_status": "FAIL",
       "final_reasons": [
-        "REVIEW ROI 6개 존재",
-        "상태/시간 화면은 숫자/상태 정보 오류 위험으로 자동 PASS 제한"
+        "기준 화면의 고신뢰도 텍스트가 검사 화면에서 명확하게 누락됨"
       ],
       "diff_summary": {
         "diff_roi_count": 6,
@@ -1028,7 +1037,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 1
       },
       "roi_decisions": [
         {
@@ -1118,10 +1128,9 @@
       "expected_result": "PASS",
       "memo": "사람 기준 통과 가능",
       "is_loading_like": false,
-      "final_status": "REVIEW",
+      "final_status": "PASS",
       "final_reasons": [
-        "REVIEW ROI 9개 존재",
-        "상태/시간 화면은 숫자/상태 정보 오류 위험으로 자동 PASS 제한"
+        "상태/시간 화면의 전체 차이 면적이 매우 작아 글자 위치/렌더링 차이로 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 10,
@@ -1131,7 +1140,8 @@
       "roi_decision_summary": {
         "pass_count": 1,
         "review_count": 9,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -1281,7 +1291,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 7,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -1395,7 +1406,8 @@
       "roi_decision_summary": {
         "pass_count": 1,
         "review_count": 16,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -1630,7 +1642,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 19,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -1889,7 +1902,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 21,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -2171,7 +2185,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 2
+        "fail_count": 2,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -2297,7 +2312,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 16,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -2519,7 +2535,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 14,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -2717,7 +2734,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 21,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3011,7 +3029,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 10,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3161,7 +3180,8 @@
       "roi_decision_summary": {
         "pass_count": 1,
         "review_count": 6,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3288,7 +3308,8 @@
       "roi_decision_summary": {
         "pass_count": 4,
         "review_count": 9,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3474,7 +3495,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 10,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3636,7 +3658,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 9,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3786,7 +3809,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 9,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -3936,7 +3960,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 4,
-        "fail_count": 5
+        "fail_count": 5,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4074,7 +4099,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 7,
-        "fail_count": 3
+        "fail_count": 3,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4224,7 +4250,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 3,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4290,7 +4317,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 5,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4380,7 +4408,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 8,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4507,7 +4536,8 @@
       "roi_decision_summary": {
         "pass_count": 7,
         "review_count": 7,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4705,7 +4735,8 @@
       "roi_decision_summary": {
         "pass_count": 2,
         "review_count": 7,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4843,7 +4874,8 @@
       "roi_decision_summary": {
         "pass_count": 1,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -4958,7 +4990,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5060,7 +5093,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 5,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5162,7 +5196,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 5,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5264,7 +5299,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5366,7 +5402,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 5,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5468,7 +5505,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 18,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5726,7 +5764,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 11,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -5888,7 +5927,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 11,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6050,7 +6090,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 10,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6200,7 +6241,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6242,7 +6284,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6284,7 +6327,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6326,7 +6370,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -6355,7 +6400,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -6384,7 +6430,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6426,7 +6473,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -6455,7 +6503,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6497,7 +6546,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6539,7 +6589,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -6568,7 +6619,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6671,7 +6723,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6714,7 +6767,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6756,7 +6810,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -6798,7 +6853,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 22,
-        "fail_count": 2
+        "fail_count": 2,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7116,7 +7172,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -7146,7 +7203,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7188,7 +7246,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 10,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7338,7 +7397,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -7367,7 +7427,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 10,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7517,7 +7578,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7559,7 +7621,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7601,7 +7664,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 2,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7655,7 +7719,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 2,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7710,7 +7775,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 1,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7752,7 +7818,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 6,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7844,7 +7911,7 @@
       "is_loading_like": false,
       "final_status": "PASS",
       "final_reasons": [
-        "상태/시간 화면의 매우 작은 위치/렌더링 차이로 자동 PASS"
+        "상태/시간 화면의 전체 차이 면적이 매우 작아 글자 위치/렌더링 차이로 자동 PASS"
       ],
       "diff_summary": {
         "diff_roi_count": 2,
@@ -7854,7 +7921,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 2,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -7908,7 +7976,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 7,
-        "fail_count": 1
+        "fail_count": 1,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [
         {
@@ -8034,7 +8103,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {
@@ -8063,7 +8133,8 @@
       "roi_decision_summary": {
         "pass_count": 0,
         "review_count": 0,
-        "fail_count": 0
+        "fail_count": 0,
+        "confirmed_missing_text_count": 0
       },
       "roi_decisions": [],
       "debug_images": {

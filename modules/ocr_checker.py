@@ -1,6 +1,7 @@
 import json
 import re
 import shutil
+import unicodedata
 from pathlib import Path
 
 import cv2
@@ -133,6 +134,32 @@ def crop_bbox(image, bbox, padding: int = 8):
     return crop, [int(x1), int(y1), int(x2 - x1), int(y2 - y1)]
 
 
+def normalize_lcd_symbols(text: str) -> str:
+    """
+    의미는 같지만 표현 형식만 다른 LCD/OCR 문자를 통일한다.
+
+    실제 의미를 바꿀 수 있는 O/0, I/1, l/1은 변환하지 않는다.
+    """
+    if text is None:
+        return ""
+
+    normalized = unicodedata.normalize(
+        "NFKC",
+        str(text),
+    )
+
+    normalized = normalized.replace("ºC", "°C")
+
+    normalized = re.sub(
+        r"°\s*C",
+        "°C",
+        normalized,
+        flags=re.IGNORECASE,
+    )
+
+    return normalized
+
+
 def normalize_text(text: str) -> str:
     """
     OCR 결과 비교를 위한 기본 정규화.
@@ -141,6 +168,7 @@ def normalize_text(text: str) -> str:
     if text is None:
         return ""
 
+    text = normalize_lcd_symbols(text)
     text = text.replace("\r", "\n")
     text = re.sub(r"\n+", "\n", text)
     text = re.sub(r"[ \t]+", " ", text)
@@ -160,11 +188,12 @@ def compact_text(text: str) -> str:
 
 
 def extract_numbers(text: str):
-    """
-    숫자/시간/단위 검사용 보조 함수.
-    예: 1小時5分鐘 -> ['1', '5']
-    """
-    return re.findall(r"\d+(?:\.\d+)?", text or "")
+    normalized = normalize_lcd_symbols(text)
+
+    return re.findall(
+        r"\d+(?:\.\d+)?",
+        normalized,
+    )
 
 
 def compare_ocr_text(reference_text: str, capture_text: str):
