@@ -1,0 +1,34 @@
+{
+  "reviews": {
+    "14-21.png": {
+      "manual_decision": "FAIL",
+      "original_status": "REVIEW",
+      "reviewed_at": "2026-07-30 21:36:40"
+    },
+    "11-35.png": {
+      "manual_decision": "FAIL",
+      "original_status": "REVIEW",
+      "reviewed_at": "2026-07-30 21:56:06"
+    },
+    "11-8.png": {
+      "manual_decision": "FAIL",
+      "original_status": "REVIEW",
+      "reviewed_at": "2026-07-30 21:56:24"
+    },
+    "13-12.png": {
+      "manual_decision": "FAIL",
+      "original_status": "REVIEW",
+      "reviewed_at": "2026-07-30 22:00:15"
+    },
+    "13-2.png": {
+      "manual_decision": "FAIL",
+      "original_status": "REVIEW",
+      "reviewed_at": "2026-07-30 22:14:12"
+    },
+    "14-23.png": {
+      "manual_decision": "FAIL",
+      "original_status": "REVIEW",
+      "reviewed_at": "2026-07-30 22:15:31"
+    }
+  }
+}
