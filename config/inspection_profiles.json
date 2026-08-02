@@ -120,5 +120,74 @@
     "fail_when_large_diff_area": true,
     "fail_when_text_mismatch": true,
     "fail_when_number_or_unit_mismatch": true
+  },
+
+  "binary_policy": {
+    "description": "REVIEW 없이 PASS/FAIL만 출력하는 이진 판정 정책",
+    "expected_review_mapping": "FAIL",
+    "enabled_checks": {
+      "text_content": true,
+      "text_spacing": true,
+      "gradient_color": true,
+      "text_brightness": true,
+      "progress_bar": true,
+      "image_structure": true
+    },
+    "general_fail_area_ratio": 0.12,
+    "text_spacing": {
+      "min_ocr_confidence": 0.80
+    },
+    "gradient_color": {
+      "saturation_min": 40,
+      "value_min": 25,
+      "value_max": 245,
+      "smooth_edge_max": 10.0,
+      "hue_bins": 18,
+      "saturation_bins": 16,
+      "min_smooth_color_area_ratio": 0.03,
+      "smooth_color_area_delta_fail": 0.025,
+      "color_histogram_distance_fail": 0.65
+    },
+    "confirmed_missing_text": {
+      "min_reference_text_length": 4,
+      "min_reference_confidence": 0.80,
+      "max_capture_confidence": 0.40,
+      "min_area_ratio": 0.01
+    },
+    "card_ui": {
+      "major_structure_fail_area_ratio": 0.10,
+      "major_structure_min_diff_roi_count": 5,
+      "localized_missing_min_reference_confidence": 0.75,
+      "localized_missing_max_capture_confidence": 0.20,
+      "localized_missing_min_area_ratio": 0.001
+    },
+    "guide_image": {
+      "fail_area_ratio": 0.085,
+      "min_diff_roi_count": 4
+    },
+    "popup": {
+      "major_structure_fail_area_ratio": 0.10
+    },
+    "setting_control": {
+      "localized_max_roi_count": 2,
+      "localized_brightness_loss_fail": 80.0,
+      "numeric_confidence": 0.70
+    },
+    "status_time": {
+      "progress_bar_saturation_min": 120,
+      "progress_bar_value_min": 100,
+      "progress_bar_min_width_ratio": 0.06,
+      "progress_bar_max_height": 60,
+      "progress_bar_min_aspect_ratio": 4.0,
+      "progress_bar_min_y_ratio": 0.45,
+      "progress_bar_fill_delta_fail": 0.025
+    },
+    "text_list": {
+      "large_diff_area_ratio": 0.07,
+      "large_diff_min_roi_count": 8,
+      "high_confidence_text_mismatch_count": 3,
+      "text_confidence": 0.70,
+      "matched_text_brightness_loss_fail": 40.0
+    }
   }
 }

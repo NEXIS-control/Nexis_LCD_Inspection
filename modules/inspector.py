@@ -35,7 +35,7 @@ MODULES_DIR = PROJECT_ROOT / "modules"
 SSIM_RESULTS_PATH = RESULTS_DIR / "ssim_results.json"
 OCR_RESULTS_PATH = RESULTS_DIR / "ocr_results.json"
 INSPECTION_SUMMARY_CSV_PATH = RESULTS_DIR / "inspection_summary.csv"
-FAIL_REVIEW_LIST_PATH = RESULTS_DIR / "fail_review_list.csv"
+FAIL_LIST_PATH = RESULTS_DIR / "fail_list.csv"
 CATEGORY_STATUS_SUMMARY_PATH = RESULTS_DIR / "category_status_summary.csv"
 
 
@@ -70,7 +70,7 @@ PIPELINE_STEPS = [
     },
     {
         "name": "Decision Engine",
-        "description": "최종 PASS / REVIEW / FAIL 판정",
+        "description": "최종 PASS / FAIL 이진 판정",
         "script": MODULES_DIR / "decision_engine.py",
         "required_output": INSPECTION_RESULTS_PATH,
     },
@@ -78,7 +78,7 @@ PIPELINE_STEPS = [
         "name": "Result Analyzer",
         "description": "결과 요약 CSV 생성",
         "script": MODULES_DIR / "result_analyzer.py",
-        "required_output": FAIL_REVIEW_LIST_PATH,
+        "required_output": FAIL_LIST_PATH,
     },
 ]
 
@@ -152,7 +152,7 @@ def run_step(step_index: int, total_steps: int, step: dict):
 def load_inspection_summary():
     """
     decision_engine.py가 생성한 inspection_results.json에서
-    최종 PASS / REVIEW / FAIL 개수를 읽는다.
+    최종 PASS / FAIL 개수를 읽는다.
     """
     if not INSPECTION_RESULTS_PATH.exists():
         return None
@@ -181,7 +181,6 @@ def print_final_summary(total_elapsed: float):
         print(f"Error count     : {summary.get('error_count')}")
         print("------------------------------------------------------------")
         print(f"PASS count      : {summary.get('pass_count')}")
-        print(f"REVIEW count    : {summary.get('review_count')}")
         print(f"FAIL count      : {summary.get('fail_count')}")
     else:
         print("inspection_results.json 요약을 읽을 수 없습니다.")
@@ -196,7 +195,7 @@ def print_final_summary(total_elapsed: float):
     print(f"- {OCR_RESULTS_PATH}")
     print(f"- {INSPECTION_RESULTS_PATH}")
     print(f"- {INSPECTION_SUMMARY_CSV_PATH}")
-    print(f"- {FAIL_REVIEW_LIST_PATH}")
+    print(f"- {FAIL_LIST_PATH}")
     print(f"- {CATEGORY_STATUS_SUMMARY_PATH}")
     print("============================================================")
 
