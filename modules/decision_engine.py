@@ -15,6 +15,7 @@ try:
         INSPECTION_RESULTS_PATH,
         INSPECTION_PROFILES_PATH,
         REFERENCE_REGISTRY_PATH,
+        EXPECTED_RESULTS_OVERRIDE_PATH,
     )
 except ModuleNotFoundError:
     from path_config import (
@@ -24,6 +25,7 @@ except ModuleNotFoundError:
         INSPECTION_RESULTS_PATH,
         INSPECTION_PROFILES_PATH,
         REFERENCE_REGISTRY_PATH,
+        EXPECTED_RESULTS_OVERRIDE_PATH,
     )
 
 
@@ -53,6 +55,37 @@ def load_reference_registry():
             file_name = row.get("file_name", "").strip()
             if file_name:
                 registry[file_name] = row
+
+    if EXPECTED_RESULTS_OVERRIDE_PATH.exists():
+        with open(
+            EXPECTED_RESULTS_OVERRIDE_PATH,
+            "r",
+            encoding="utf-8-sig",
+            newline="",
+        ) as f:
+            for override in csv.DictReader(f):
+                file_name = override.get("file_name", "").strip()
+                expected_result = override.get("expected_result", "").strip().upper()
+
+                if not file_name:
+                    continue
+                if file_name not in registry:
+                    raise KeyError(
+                        "expected_results.csv에 registry에 없는 파일명이 있습니다: "
+                        f"{file_name}"
+                    )
+                if expected_result not in {"PASS", "REVIEW", "FAIL"}:
+                    raise ValueError(
+                        "expected_results.csv의 expected_result는 "
+                        f"PASS/REVIEW/FAIL 중 하나여야 합니다: {file_name}"
+                    )
+
+                updated = dict(registry[file_name])
+                updated["expected_result"] = expected_result
+                override_memo = override.get("memo", "").strip()
+                if override_memo:
+                    updated["memo"] = override_memo
+                registry[file_name] = updated
 
     return registry
 
@@ -292,6 +325,61 @@ def has_confirmed_missing_text(ocr_roi: dict, ssim_roi: dict, rules: dict) -> bo
     )
 
 
+def has_bidirectional_text_presence_difference(
+    ocr_roi: dict,
+    ssim_roi: dict,
+    rules: dict,
+) -> bool:
+    """한쪽에만 신뢰할 수 있는 텍스트가 있는 국소 차이를 찾는다.
+
+    기존 누락 검사는 Reference 텍스트가 Capture에서 사라지는 한 방향만
+    확인했다. 모델별 Reference 교체를 지원하려면 Capture에만 남은 텍스트도
+    동일한 의미의 구성 요소 추가/삭제로 판정해야 한다.
+    """
+    if not ocr_roi or not ssim_roi:
+        return False
+
+    compare = ocr_roi.get("ocr_compare", {})
+    reference_text = normalize_text_for_judgement(
+        compare.get("reference_text_compact", "")
+    )
+    capture_text = normalize_text_for_judgement(
+        compare.get("capture_text_compact", "")
+    )
+    reference_confidence = float(
+        ocr_roi.get("reference_ocr", {}).get("mean_confidence", 0.0) or 0.0
+    )
+    capture_confidence = float(
+        ocr_roi.get("capture_ocr", {}).get("mean_confidence", 0.0) or 0.0
+    )
+    area_ratio = float(ocr_roi.get("area_ratio", 0.0) or 0.0)
+
+    min_length = int(rules.get("min_present_text_length", 3))
+    min_confidence = float(rules.get("min_present_confidence", 0.45))
+    max_absent_confidence = float(rules.get("max_absent_confidence", 0.15))
+    min_area_ratio = float(rules.get("min_area_ratio", 0.0015))
+
+    reference_present = (
+        len(reference_text) >= min_length
+        and reference_confidence >= min_confidence
+    )
+    capture_present = (
+        len(capture_text) >= min_length
+        and capture_confidence >= min_confidence
+    )
+    reference_absent = not reference_text or reference_confidence <= max_absent_confidence
+    capture_absent = not capture_text or capture_confidence <= max_absent_confidence
+
+    return (
+        (
+            (reference_present and capture_absent)
+            or (capture_present and reference_absent)
+        )
+        and ssim_roi.get("ssim_status") == "FAIL"
+        and area_ratio >= min_area_ratio
+    )
+
+
 def build_roi_evidence(
     category: str,
     diff_roi: dict,
@@ -309,6 +397,11 @@ def build_roi_evidence(
         ocr_roi,
         ssim_roi,
         binary_policy.get("confirmed_missing_text", {}),
+    )
+    bidirectional_presence_difference = has_bidirectional_text_presence_difference(
+        ocr_roi,
+        ssim_roi,
+        binary_policy.get("bidirectional_text_presence", {}),
     )
 
     strong_fail_reasons = []
@@ -355,6 +448,9 @@ def build_roi_evidence(
         "text_mismatch": text_mismatch,
         "spacing_mismatch": spacing_mismatch,
         "confirmed_missing_text": confirmed_missing,
+        "bidirectional_text_presence_difference": (
+            bidirectional_presence_difference
+        ),
     }
 
 
@@ -496,6 +592,157 @@ def compute_localized_brightness_loss(reference_image, capture_image, diff_rois:
     return {
         "roi_count": len(losses),
         "max_brightness_loss": round(max(losses, default=0.0), 4),
+    }
+
+
+def compute_localized_visual_evidence(
+    reference_image,
+    capture_image,
+    diff_rois: list,
+):
+    """ROI별 구성 요소 존재 여부와 선명도 차이를 방향에 상관없이 측정한다."""
+    reference_gray = cv2.cvtColor(reference_image, cv2.COLOR_BGR2GRAY)
+    capture_gray = cv2.cvtColor(capture_image, cv2.COLOR_BGR2GRAY)
+    roi_metrics = []
+
+    for diff_roi in diff_rois:
+        x, y, width, height = diff_roi.get("bbox", [0, 0, 0, 0])
+        reference_crop = reference_gray[y : y + height, x : x + width]
+        capture_crop = capture_gray[y : y + height, x : x + width]
+        if reference_crop.size == 0 or capture_crop.size == 0:
+            continue
+
+        edge_densities = []
+        sharpness_values = []
+        for crop in (reference_crop, capture_crop):
+            edges = cv2.Canny(crop, 50, 150)
+            edge_densities.append(float(np.count_nonzero(edges)) / edges.size)
+            sharpness_values.append(
+                float(cv2.Laplacian(crop, cv2.CV_64F).var())
+            )
+
+        max_edge_density = max(edge_densities)
+        min_edge_density = min(edge_densities)
+        max_sharpness = max(sharpness_values)
+        min_sharpness = min(sharpness_values)
+
+        roi_metrics.append(
+            {
+                "roi_id": diff_roi.get("roi_id", ""),
+                "area_ratio": float(diff_roi.get("area_ratio", 0.0) or 0.0),
+                "reference_edge_density": round(edge_densities[0], 6),
+                "capture_edge_density": round(edge_densities[1], 6),
+                "edge_density_ratio": round(
+                    min_edge_density / max(max_edge_density, 1e-9),
+                    6,
+                ),
+                "edge_density_delta": round(
+                    abs(edge_densities[0] - edge_densities[1]),
+                    6,
+                ),
+                "reference_sharpness": round(sharpness_values[0], 4),
+                "capture_sharpness": round(sharpness_values[1], 4),
+                "sharpness_ratio": round(
+                    min_sharpness / max(max_sharpness, 1e-9),
+                    6,
+                ),
+                "max_sharpness": round(max_sharpness, 4),
+            }
+        )
+
+    return {"roi_metrics": roi_metrics}
+
+
+def has_localized_component_presence_failure(evidence: dict, rules: dict) -> bool:
+    present_density = float(rules.get("component_present_edge_density", 0.08))
+    absent_density = float(rules.get("component_absent_edge_density", 0.02))
+    max_edge_ratio = float(rules.get("component_max_edge_ratio", 0.15))
+    min_area_ratio = float(rules.get("component_min_area_ratio", 0.001))
+
+    for roi in evidence.get("roi_metrics", []):
+        reference_density = float(roi.get("reference_edge_density", 0.0))
+        capture_density = float(roi.get("capture_edge_density", 0.0))
+        if (
+            max(reference_density, capture_density) >= present_density
+            and min(reference_density, capture_density) <= absent_density
+            and float(roi.get("edge_density_ratio", 1.0)) <= max_edge_ratio
+            and float(roi.get("area_ratio", 0.0)) >= min_area_ratio
+        ):
+            return True
+    return False
+
+
+def has_localized_blur_failure(evidence: dict, rules: dict) -> bool:
+    max_ratio = float(rules.get("blur_max_sharpness_ratio", 0.10))
+    min_variance = float(rules.get("blur_min_sharpness_variance", 1000.0))
+
+    return any(
+        float(roi.get("sharpness_ratio", 1.0)) <= max_ratio
+        and float(roi.get("max_sharpness", 0.0)) >= min_variance
+        for roi in evidence.get("roi_metrics", [])
+    )
+
+
+def compute_chromatic_color_difference(
+    reference_image,
+    capture_image,
+    rules: dict,
+):
+    """밝기가 비슷해 흑백 Diff가 놓치는 색상 차이를 LAB 색공간에서 찾는다."""
+    if reference_image.shape[:2] != capture_image.shape[:2]:
+        capture_image = cv2.resize(
+            capture_image,
+            (reference_image.shape[1], reference_image.shape[0]),
+        )
+
+    hsv_reference = cv2.cvtColor(reference_image, cv2.COLOR_BGR2HSV)
+    hsv_capture = cv2.cvtColor(capture_image, cv2.COLOR_BGR2HSV)
+    lab_reference = cv2.cvtColor(reference_image, cv2.COLOR_BGR2LAB).astype(
+        np.float32
+    )
+    lab_capture = cv2.cvtColor(capture_image, cv2.COLOR_BGR2LAB).astype(np.float32)
+
+    max_saturation = np.maximum(hsv_reference[:, :, 1], hsv_capture[:, :, 1])
+    max_value = np.maximum(hsv_reference[:, :, 2], hsv_capture[:, :, 2])
+    chroma_distance = np.linalg.norm(
+        lab_reference[:, :, 1:] - lab_capture[:, :, 1:],
+        axis=2,
+    )
+
+    color_mask = (
+        (max_saturation >= int(rules.get("saturation_min", 40)))
+        & (max_value >= int(rules.get("value_min", 40)))
+        & (
+            chroma_distance
+            >= float(rules.get("lab_chroma_distance_min", 20.0))
+        )
+    )
+    top_band_ratio = float(rules.get("card_top_band_ratio", 0.18))
+    top_height = max(1, int(reference_image.shape[0] * top_band_ratio))
+
+    return {
+        "overall_diff_area_ratio": round(float(np.mean(color_mask)), 6),
+        "top_band_diff_area_ratio": round(
+            float(np.mean(color_mask[:top_height, :])),
+            6,
+        ),
+    }
+
+
+def get_largest_roi_structure_evidence(diff_rois: list, ssim_rois: dict):
+    if not diff_rois:
+        return {"roi_id": "", "area_ratio": 0.0, "ssim_score": 1.0}
+
+    largest = max(
+        diff_rois,
+        key=lambda roi: float(roi.get("area_ratio", 0.0) or 0.0),
+    )
+    roi_id = largest.get("roi_id", "")
+    ssim_score = ssim_rois.get(roi_id, {}).get("ssim_score")
+    return {
+        "roi_id": roi_id,
+        "area_ratio": float(largest.get("area_ratio", 0.0) or 0.0),
+        "ssim_score": float(ssim_score) if ssim_score is not None else 1.0,
     }
 
 
@@ -714,6 +961,11 @@ def decide_one_item(
     confirmed_missing_count = sum(
         1 for item in roi_decisions if item["confirmed_missing_text"]
     )
+    bidirectional_text_presence_count = sum(
+        1
+        for item in roi_decisions
+        if item["bidirectional_text_presence_difference"]
+    )
 
     text_rules = binary_policy.get("text_list", {})
     high_confidence_text_mismatch_count = count_high_confidence_text_mismatches(
@@ -751,8 +1003,17 @@ def decide_one_item(
         "color_histogram_distance": 0.0,
         "max_smooth_color_area_ratio": 0.0,
     }
+    localized_visual_evidence = {"roi_metrics": []}
+    chromatic_color_evidence = {
+        "overall_diff_area_ratio": 0.0,
+        "top_band_diff_area_ratio": 0.0,
+    }
+    largest_roi_structure_evidence = get_largest_roi_structure_evidence(
+        diff_rois,
+        ssim_rois,
+    )
 
-    if diff_roi_count > 0 and category in {
+    if category in {
         "text_list",
         "status_time",
         "card_ui",
@@ -761,6 +1022,20 @@ def decide_one_item(
     }:
         reference_image = read_image(diff_item.get("reference_image", ""))
         capture_image = read_image(diff_item.get("capture_image", ""))
+
+    if reference_image is not None and diff_rois:
+        localized_visual_evidence = compute_localized_visual_evidence(
+            reference_image,
+            capture_image,
+            diff_rois,
+        )
+
+    if category in {"setting_control", "card_ui"} and reference_image is not None:
+        chromatic_color_evidence = compute_chromatic_color_difference(
+            reference_image,
+            capture_image,
+            binary_policy.get("chromatic_color", {}),
+        )
 
     if category == "text_list" and reference_image is not None:
         brightness_evidence = compute_matched_text_brightness_loss(
@@ -795,7 +1070,28 @@ def decide_one_item(
     final_reasons = []
     applied_rule = "within_tolerance"
 
-    if diff_roi_count == 0:
+    chromatic_rules = binary_policy.get("chromatic_color", {})
+    setting_color_only_failure = (
+        category == "setting_control"
+        and diff_roi_count == 0
+        and float(chromatic_color_evidence["overall_diff_area_ratio"])
+        >= float(
+            chromatic_rules.get("setting_color_only_diff_ratio_fail", 0.0015)
+        )
+    )
+
+    if (
+        is_check_enabled(binary_policy, "gradient_color")
+        and setting_color_only_failure
+    ):
+        final_status = "FAIL"
+        final_reasons.append(
+            "흑백 밝기는 비슷하지만 설정 글자·선택값의 색상이 달라짐: "
+            f"color_area={chromatic_color_evidence['overall_diff_area_ratio']}"
+        )
+        applied_rule = "setting_chromatic_color_difference"
+
+    elif diff_roi_count == 0:
         final_reasons.append("차이 ROI가 검출되지 않음")
         applied_rule = "no_difference"
 
@@ -808,6 +1104,24 @@ def decide_one_item(
             f"중요 텍스트 누락 또는 교체 증거 {confirmed_missing_count}개"
         )
         applied_rule = "confirmed_missing_text"
+
+    elif (
+        is_check_enabled(binary_policy, "text_content")
+        and bidirectional_text_presence_count >= 1
+        and diff_roi_count
+        <= int(
+            binary_policy.get("bidirectional_text_presence", {}).get(
+                "max_item_diff_roi_count",
+                2,
+            )
+        )
+    ):
+        final_status = "FAIL"
+        final_reasons.append(
+            "Reference와 Capture 중 한쪽에만 중요한 텍스트가 존재함: "
+            f"count={bidirectional_text_presence_count}"
+        )
+        applied_rule = "bidirectional_text_presence_difference"
 
     elif (
         is_check_enabled(binary_policy, "text_spacing")
@@ -842,6 +1156,24 @@ def decide_one_item(
             gradient_color_evidence,
             gradient_rules,
         )
+        card_top_color_failure = (
+            total_diff_area_ratio
+            <= float(
+                chromatic_rules.get("card_top_color_max_gray_diff_ratio", 0.01)
+            )
+            and float(chromatic_color_evidence["top_band_diff_area_ratio"])
+            >= float(
+                chromatic_rules.get("card_top_color_diff_ratio_fail", 0.0015)
+            )
+        )
+        localized_transform_failure = (
+            diff_roi_count
+            <= int(rules.get("localized_transform_max_roi_count", 3))
+            and float(largest_roi_structure_evidence["area_ratio"])
+            >= float(rules.get("localized_transform_min_area_ratio", 0.04))
+            and float(largest_roi_structure_evidence["ssim_score"])
+            <= float(rules.get("localized_transform_max_ssim", 0.25))
+        )
         if (
             is_check_enabled(binary_policy, "gradient_color")
             and gradient_failure
@@ -853,6 +1185,29 @@ def decide_one_item(
                 f"histogram_distance={gradient_color_evidence['color_histogram_distance']}"
             )
             applied_rule = "card_ui_gradient_color_difference"
+        elif (
+            is_check_enabled(binary_policy, "gradient_color")
+            and not gradient_failure
+            and card_top_color_failure
+        ):
+            final_status = "FAIL"
+            final_reasons.append(
+                "움직이는 카드 배경을 제외한 상단 UI 글자·탭 색상이 달라짐: "
+                f"color_area={chromatic_color_evidence['top_band_diff_area_ratio']}"
+            )
+            applied_rule = "card_ui_chrome_color_difference"
+        elif (
+            is_check_enabled(binary_policy, "image_structure")
+            and not gradient_failure
+            and localized_transform_failure
+        ):
+            final_status = "FAIL"
+            final_reasons.append(
+                "카드 한 개의 전경 구조가 반전·교체된 것으로 판단됨: "
+                f"area={largest_roi_structure_evidence['area_ratio']}, "
+                f"ssim={largest_roi_structure_evidence['ssim_score']}"
+            )
+            applied_rule = "card_ui_localized_transform"
         elif (
             is_check_enabled(binary_policy, "image_structure")
             and not gradient_failure
@@ -883,6 +1238,14 @@ def decide_one_item(
             gradient_color_evidence,
             gradient_rules,
         )
+        component_presence_failure = (
+            diff_roi_count
+            <= int(rules.get("localized_component_max_roi_count", 2))
+            and has_localized_component_presence_failure(
+                localized_visual_evidence,
+                binary_policy.get("localized_visual", {}),
+            )
+        )
         if (
             is_check_enabled(binary_policy, "gradient_color")
             and gradient_failure
@@ -894,6 +1257,16 @@ def decide_one_item(
                 f"histogram_distance={gradient_color_evidence['color_histogram_distance']}"
             )
             applied_rule = "popup_gradient_color_difference"
+        elif (
+            is_check_enabled(binary_policy, "image_structure")
+            and not gradient_failure
+            and component_presence_failure
+        ):
+            final_status = "FAIL"
+            final_reasons.append(
+                "팝업의 버튼 글자·아이콘이 한쪽 화면에만 존재함"
+            )
+            applied_rule = "popup_component_presence_difference"
         elif (
             is_check_enabled(binary_policy, "image_structure")
             and not gradient_failure
@@ -932,6 +1305,12 @@ def decide_one_item(
     elif category == "status_time":
         rules = binary_policy.get("status_time", {})
         fill_delta = progress_bar_evidence.get("fill_delta")
+        blur_failure = (
+            diff_roi_count <= int(rules.get("blur_max_roi_count", 2))
+            and total_diff_area_ratio
+            >= float(rules.get("blur_min_total_diff_area_ratio", 0.008))
+            and has_localized_blur_failure(localized_visual_evidence, rules)
+        )
         if (
             is_check_enabled(binary_policy, "progress_bar")
             and fill_delta is not None
@@ -944,6 +1323,15 @@ def decide_one_item(
                 f"delta={fill_delta}"
             )
             applied_rule = "status_progress_bar_difference"
+        elif (
+            is_check_enabled(binary_policy, "image_structure")
+            and blur_failure
+        ):
+            final_status = "FAIL"
+            final_reasons.append(
+                "상태 문구가 한쪽 화면에서 현저하게 흐려짐"
+            )
+            applied_rule = "status_localized_blur_difference"
 
     elif category == "text_list":
         rules = binary_policy.get("text_list", {})
@@ -1019,12 +1407,18 @@ def decide_one_item(
             "overall_ssim": overall_ssim,
             "minimum_roi_ssim": round(float(min_ssim), 6),
             "confirmed_missing_text_count": confirmed_missing_count,
+            "bidirectional_text_presence_count": (
+                bidirectional_text_presence_count
+            ),
             "high_confidence_text_mismatch_count": high_confidence_text_mismatch_count,
             "high_confidence_spacing_mismatch_count": high_confidence_spacing_mismatch_count,
             "matched_text_brightness": brightness_evidence,
             "localized_text_brightness": localized_brightness_evidence,
             "progress_bar": progress_bar_evidence,
             "gradient_color": gradient_color_evidence,
+            "localized_visual": localized_visual_evidence,
+            "chromatic_color": chromatic_color_evidence,
+            "largest_roi_structure": largest_roi_structure_evidence,
         },
         "roi_decision_summary": {
             "pass_count": roi_pass_count,
@@ -1052,6 +1446,7 @@ def save_summary_csv(results: dict):
         "overall_ssim",
         "minimum_roi_ssim",
         "confirmed_missing_text_count",
+        "bidirectional_text_presence_count",
         "high_confidence_text_mismatch_count",
         "high_confidence_spacing_mismatch_count",
         "matched_text_brightness_loss",
@@ -1059,6 +1454,10 @@ def save_summary_csv(results: dict):
         "progress_bar_fill_delta",
         "gradient_smooth_color_area_delta",
         "gradient_color_histogram_distance",
+        "chromatic_color_area_ratio",
+        "card_top_color_area_ratio",
+        "largest_roi_area_ratio",
+        "largest_roi_ssim",
         "memo",
         "final_reasons",
     ]
@@ -1090,6 +1489,9 @@ def save_summary_csv(results: dict):
                     "confirmed_missing_text_count": evidence[
                         "confirmed_missing_text_count"
                     ],
+                    "bidirectional_text_presence_count": evidence[
+                        "bidirectional_text_presence_count"
+                    ],
                     "high_confidence_text_mismatch_count": evidence[
                         "high_confidence_text_mismatch_count"
                     ],
@@ -1111,6 +1513,18 @@ def save_summary_csv(results: dict):
                     "gradient_color_histogram_distance": evidence[
                         "gradient_color"
                     ]["color_histogram_distance"],
+                    "chromatic_color_area_ratio": evidence[
+                        "chromatic_color"
+                    ]["overall_diff_area_ratio"],
+                    "card_top_color_area_ratio": evidence[
+                        "chromatic_color"
+                    ]["top_band_diff_area_ratio"],
+                    "largest_roi_area_ratio": evidence[
+                        "largest_roi_structure"
+                    ]["area_ratio"],
+                    "largest_roi_ssim": evidence["largest_roi_structure"][
+                        "ssim_score"
+                    ],
                     "memo": item["memo"],
                     "final_reasons": " | ".join(item["final_reasons"]),
                 }

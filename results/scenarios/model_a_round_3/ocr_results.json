@@ -1,0 +1,1329 @@
+{
+  "summary": {
+    "total_items": 73,
+    "processed_count": 73,
+    "error_count": 0,
+    "ocr_available": true,
+    "items_with_ocr_pass": 0,
+    "items_with_ocr_review": 0,
+    "items_with_no_text": 0,
+    "items_with_ocr_skipped": 0,
+    "errors": []
+  },
+  "results": {
+    "11-10.png": {
+      "screen_id": "11-10",
+      "file_name": "11-10.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-10.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-10.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "11-35.png": {
+      "screen_id": "11-35",
+      "file_name": "11-35.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-35.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-35.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "11-36.png": {
+      "screen_id": "11-36",
+      "file_name": "11-36.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-36.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-36.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "11-8.png": {
+      "screen_id": "11-8",
+      "file_name": "11-8.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-8.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "12-27.png": {
+      "screen_id": "12-27",
+      "file_name": "12-27.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-27.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-27.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "12-29.png": {
+      "screen_id": "12-29",
+      "file_name": "12-29.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-29.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-29.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "12-38.png": {
+      "screen_id": "12-38",
+      "file_name": "12-38.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-38.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-38.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "12-94.png": {
+      "screen_id": "12-94",
+      "file_name": "12-94.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-94.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-94.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "13-12.png": {
+      "screen_id": "13-12",
+      "file_name": "13-12.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/13-12.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/13-12.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "13-2.png": {
+      "screen_id": "13-2",
+      "file_name": "13-2.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/13-2.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/13-2.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-10.png": {
+      "screen_id": "14-10",
+      "file_name": "14-10.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-10.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-10.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-11.png": {
+      "screen_id": "14-11",
+      "file_name": "14-11.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-11.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-11.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-21.png": {
+      "screen_id": "14-21",
+      "file_name": "14-21.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-21.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-21.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-23.png": {
+      "screen_id": "14-23",
+      "file_name": "14-23.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-23.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-23.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-24.png": {
+      "screen_id": "14-24",
+      "file_name": "14-24.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-24.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-24.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-25.png": {
+      "screen_id": "14-25",
+      "file_name": "14-25.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-25.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-25.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-3.png": {
+      "screen_id": "14-3",
+      "file_name": "14-3.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-3.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-32.png": {
+      "screen_id": "14-32",
+      "file_name": "14-32.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-32.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-32.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-33.png": {
+      "screen_id": "14-33",
+      "file_name": "14-33.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-33.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-33.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-34.png": {
+      "screen_id": "14-34",
+      "file_name": "14-34.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-34.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-34.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-8.png": {
+      "screen_id": "14-8",
+      "file_name": "14-8.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-8.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "14-9.png": {
+      "screen_id": "14-9",
+      "file_name": "14-9.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-9.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-9.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-1.png": {
+      "screen_id": "15-1",
+      "file_name": "15-1.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-1.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-12.png": {
+      "screen_id": "15-12",
+      "file_name": "15-12.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-12.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-12.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-13.png": {
+      "screen_id": "15-13",
+      "file_name": "15-13.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-13.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-13.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-14.png": {
+      "screen_id": "15-14",
+      "file_name": "15-14.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-14.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-14.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-147.png": {
+      "screen_id": "15-147",
+      "file_name": "15-147.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-147.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-147.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-149.png": {
+      "screen_id": "15-149",
+      "file_name": "15-149.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-149.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-149.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-150.png": {
+      "screen_id": "15-150",
+      "file_name": "15-150.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-150.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-150.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-22.png": {
+      "screen_id": "15-22",
+      "file_name": "15-22.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-22.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-22.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-27.png": {
+      "screen_id": "15-27",
+      "file_name": "15-27.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-27.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-27.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-4.png": {
+      "screen_id": "15-4",
+      "file_name": "15-4.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-4.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-4.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-49.png": {
+      "screen_id": "15-49",
+      "file_name": "15-49.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-49.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-49.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-51.png": {
+      "screen_id": "15-51",
+      "file_name": "15-51.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-51.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-51.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-62.png": {
+      "screen_id": "15-62",
+      "file_name": "15-62.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-62.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-62.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-63.png": {
+      "screen_id": "15-63",
+      "file_name": "15-63.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-63.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-63.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-64.png": {
+      "screen_id": "15-64",
+      "file_name": "15-64.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-64.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-64.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-65.png": {
+      "screen_id": "15-65",
+      "file_name": "15-65.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-65.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-65.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-66.png": {
+      "screen_id": "15-66",
+      "file_name": "15-66.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-66.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-66.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "15-67.png": {
+      "screen_id": "15-67",
+      "file_name": "15-67.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-67.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-67.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "16-17.png": {
+      "screen_id": "16-17",
+      "file_name": "16-17.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/16-17.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/16-17.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "16-19.png": {
+      "screen_id": "16-19",
+      "file_name": "16-19.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/16-19.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/16-19.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "16-4.png": {
+      "screen_id": "16-4",
+      "file_name": "16-4.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/16-4.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/16-4.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "18-3.png": {
+      "screen_id": "18-3",
+      "file_name": "18-3.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/18-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/18-3.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "18-4.png": {
+      "screen_id": "18-4",
+      "file_name": "18-4.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/18-4.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/18-4.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "18-5.png": {
+      "screen_id": "18-5",
+      "file_name": "18-5.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/18-5.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/18-5.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-11.png": {
+      "screen_id": "2-11",
+      "file_name": "2-11.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-11.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-11.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-14.png": {
+      "screen_id": "2-14",
+      "file_name": "2-14.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-14.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-14.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-21.png": {
+      "screen_id": "2-21",
+      "file_name": "2-21.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-21.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-21.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-30.png": {
+      "screen_id": "2-30",
+      "file_name": "2-30.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-30.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-30.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-39.png": {
+      "screen_id": "2-39",
+      "file_name": "2-39.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-39.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-39.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-40.png": {
+      "screen_id": "2-40",
+      "file_name": "2-40.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-40.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-40.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "2-8.png": {
+      "screen_id": "2-8",
+      "file_name": "2-8.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-8.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "3-1.png": {
+      "screen_id": "3-1",
+      "file_name": "3-1.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-1.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "3-2.png": {
+      "screen_id": "3-2",
+      "file_name": "3-2.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-2.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-2.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "3-23.png": {
+      "screen_id": "3-23",
+      "file_name": "3-23.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-23.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-23.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "3-25.png": {
+      "screen_id": "3-25",
+      "file_name": "3-25.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-25.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-25.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "3-26.png": {
+      "screen_id": "3-26",
+      "file_name": "3-26.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-26.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-26.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "3-27.png": {
+      "screen_id": "3-27",
+      "file_name": "3-27.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-27.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-27.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "4-1.png": {
+      "screen_id": "4-1",
+      "file_name": "4-1.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-1.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "4-20.png": {
+      "screen_id": "4-20",
+      "file_name": "4-20.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-20.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-20.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "4-3.png": {
+      "screen_id": "4-3",
+      "file_name": "4-3.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-3.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "4-43.png": {
+      "screen_id": "4-43",
+      "file_name": "4-43.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-43.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-43.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "4-8.png": {
+      "screen_id": "4-8",
+      "file_name": "4-8.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-8.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "4-9.png": {
+      "screen_id": "4-9",
+      "file_name": "4-9.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-9.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-9.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "5-22.png": {
+      "screen_id": "5-22",
+      "file_name": "5-22.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/5-22.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/5-22.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "5-24.png": {
+      "screen_id": "5-24",
+      "file_name": "5-24.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/5-24.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/5-24.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "7-12.png": {
+      "screen_id": "7-12",
+      "file_name": "7-12.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/7-12.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/7-12.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "7-5.png": {
+      "screen_id": "7-5",
+      "file_name": "7-5.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/7-5.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/7-5.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "8-1.png": {
+      "screen_id": "8-1",
+      "file_name": "8-1.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-1.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "8-10.png": {
+      "screen_id": "8-10",
+      "file_name": "8-10.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-10.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-10.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "8-3.png": {
+      "screen_id": "8-3",
+      "file_name": "8-3.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-3.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    },
+    "8-7.png": {
+      "screen_id": "8-7",
+      "file_name": "8-7.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-7.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-7.png",
+      "diff_roi_count": 0,
+      "total_diff_area_ratio": 0.0,
+      "full_capture_resized_to_reference": false,
+      "ocr_summary": {
+        "pass_count": 0,
+        "review_count": 0,
+        "no_text_count": 0,
+        "skipped_count": 0
+      },
+      "roi_results": []
+    }
+  }
+}

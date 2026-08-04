@@ -154,9 +154,34 @@
       "max_capture_confidence": 0.40,
       "min_area_ratio": 0.01
     },
+    "bidirectional_text_presence": {
+      "min_present_text_length": 3,
+      "min_present_confidence": 0.45,
+      "max_absent_confidence": 0.15,
+      "min_area_ratio": 0.0015,
+      "max_item_diff_roi_count": 2
+    },
+    "localized_visual": {
+      "component_present_edge_density": 0.08,
+      "component_absent_edge_density": 0.02,
+      "component_max_edge_ratio": 0.15,
+      "component_min_area_ratio": 0.001
+    },
+    "chromatic_color": {
+      "saturation_min": 40,
+      "value_min": 40,
+      "lab_chroma_distance_min": 20.0,
+      "setting_color_only_diff_ratio_fail": 0.0015,
+      "card_top_band_ratio": 0.18,
+      "card_top_color_diff_ratio_fail": 0.0015,
+      "card_top_color_max_gray_diff_ratio": 0.01
+    },
     "card_ui": {
       "major_structure_fail_area_ratio": 0.10,
       "major_structure_min_diff_roi_count": 5,
+      "localized_transform_max_roi_count": 3,
+      "localized_transform_min_area_ratio": 0.04,
+      "localized_transform_max_ssim": 0.25,
       "localized_missing_min_reference_confidence": 0.75,
       "localized_missing_max_capture_confidence": 0.20,
       "localized_missing_min_area_ratio": 0.001
@@ -166,7 +191,8 @@
       "min_diff_roi_count": 4
     },
     "popup": {
-      "major_structure_fail_area_ratio": 0.10
+      "major_structure_fail_area_ratio": 0.10,
+      "localized_component_max_roi_count": 2
     },
     "setting_control": {
       "localized_max_roi_count": 2,
@@ -180,7 +206,11 @@
       "progress_bar_max_height": 60,
       "progress_bar_min_aspect_ratio": 4.0,
       "progress_bar_min_y_ratio": 0.45,
-      "progress_bar_fill_delta_fail": 0.025
+      "progress_bar_fill_delta_fail": 0.025,
+      "blur_max_roi_count": 2,
+      "blur_min_total_diff_area_ratio": 0.008,
+      "blur_max_sharpness_ratio": 0.10,
+      "blur_min_sharpness_variance": 1000.0
     },
     "text_list": {
       "large_diff_area_ratio": 0.07,

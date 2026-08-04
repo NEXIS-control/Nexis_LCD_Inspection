@@ -1,0 +1,11 @@
+file_name,expected_result,memo
+2-8.png,FAIL,모델 B 기준에서 UP 아이콘 존재 여부 변경
+2-11.png,FAIL,모델 B 기준에서 팝업 버튼 글자 존재 여부 변경
+12-94.png,FAIL,모델 B 기준에서 숫자와 단위 존재 여부 변경
+4-3.png,FAIL,모델 B 기준에서 선택 글자 색상 변경
+8-3.png,FAIL,모델 B 기준에서 상태 문구 존재 여부 변경
+8-7.png,FAIL,모델 B 기준에서 상태 문구 흐림 발생
+11-36.png,FAIL,모델 B 기준에서 메뉴 존재 여부 변경
+3-27.png,FAIL,모델 B 기준에서 선택 메뉴 존재 여부 변경
+3-25.png,FAIL,모델 B 기준에서 상단 글자 색상 변경
+11-10.png,FAIL,모델 B 기준에서 카드 전체 좌우 반전
