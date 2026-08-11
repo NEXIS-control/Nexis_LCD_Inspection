@@ -1,0 +1,4623 @@
+{
+  "summary": {
+    "total_items": 73,
+    "processed_count": 73,
+    "error_count": 0,
+    "pass_count": 73,
+    "fail_count": 0,
+    "errors": []
+  },
+  "binary_policy": {
+    "expected_review_mapping": "FAIL",
+    "enabled_checks": {
+      "text_content": true,
+      "text_spacing": true,
+      "gradient_color": true,
+      "text_brightness": true,
+      "progress_bar": true,
+      "image_structure": true
+    },
+    "note": "expected_result는 판정에 사용하지 않고 사후 검증에만 사용함"
+  },
+  "results": {
+    "11-10.png": {
+      "screen_id": "11-10",
+      "file_name": "11-10.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-10.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-10.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/11-10_diff.jpg"
+      }
+    },
+    "11-35.png": {
+      "screen_id": "11-35",
+      "file_name": "11-35.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-35.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-35.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "좌측 이상 글씨 검출",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/11-35_diff.jpg"
+      }
+    },
+    "11-36.png": {
+      "screen_id": "11-36",
+      "file_name": "11-36.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-36.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-36.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/11-36_diff.jpg"
+      }
+    },
+    "11-8.png": {
+      "screen_id": "11-8",
+      "file_name": "11-8.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/11-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/11-8.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/11-8_diff.jpg"
+      }
+    },
+    "12-27.png": {
+      "screen_id": "12-27",
+      "file_name": "12-27.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-27.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-27.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/12-27_diff.jpg"
+      }
+    },
+    "12-29.png": {
+      "screen_id": "12-29",
+      "file_name": "12-29.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-29.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-29.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/12-29_diff.jpg"
+      }
+    },
+    "12-38.png": {
+      "screen_id": "12-38",
+      "file_name": "12-38.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-38.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-38.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/12-38_diff.jpg"
+      }
+    },
+    "12-94.png": {
+      "screen_id": "12-94",
+      "file_name": "12-94.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/12-94.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/12-94.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/12-94_diff.jpg"
+      }
+    },
+    "13-12.png": {
+      "screen_id": "13-12",
+      "file_name": "13-12.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/13-12.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/13-12.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "게이지 검사 옵션 ON 기준 채워진 정도 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/13-12_diff.jpg"
+      }
+    },
+    "13-2.png": {
+      "screen_id": "13-2",
+      "file_name": "13-2.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/13-2.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/13-2.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/13-2_diff.jpg"
+      }
+    },
+    "14-10.png": {
+      "screen_id": "14-10",
+      "file_name": "14-10.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-10.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-10.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "글씨 아예 없음",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-10_diff.jpg"
+      }
+    },
+    "14-11.png": {
+      "screen_id": "14-11",
+      "file_name": "14-11.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-11.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-11.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-11_diff.jpg"
+      }
+    },
+    "14-21.png": {
+      "screen_id": "14-21",
+      "file_name": "14-21.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-21.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-21.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-21_diff.jpg"
+      }
+    },
+    "14-23.png": {
+      "screen_id": "14-23",
+      "file_name": "14-23.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-23.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-23.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-23_diff.jpg"
+      }
+    },
+    "14-24.png": {
+      "screen_id": "14-24",
+      "file_name": "14-24.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-24.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-24.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "카드 UI 그라데이션 색 빠짐",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-24_diff.jpg"
+      }
+    },
+    "14-25.png": {
+      "screen_id": "14-25",
+      "file_name": "14-25.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-25.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-25.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "카드 UI 그라데이션 색 빠짐",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-25_diff.jpg"
+      }
+    },
+    "14-3.png": {
+      "screen_id": "14-3",
+      "file_name": "14-3.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-3.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-3_diff.jpg"
+      }
+    },
+    "14-32.png": {
+      "screen_id": "14-32",
+      "file_name": "14-32.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-32.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-32.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-32_diff.jpg"
+      }
+    },
+    "14-33.png": {
+      "screen_id": "14-33",
+      "file_name": "14-33.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-33.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-33.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "중앙 그림 구성이 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-33_diff.jpg"
+      }
+    },
+    "14-34.png": {
+      "screen_id": "14-34",
+      "file_name": "14-34.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-34.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-34.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "중앙 그림 구성이 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-34_diff.jpg"
+      }
+    },
+    "14-8.png": {
+      "screen_id": "14-8",
+      "file_name": "14-8.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-8.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "좌측 위 그림 빠짐",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-8_diff.jpg"
+      }
+    },
+    "14-9.png": {
+      "screen_id": "14-9",
+      "file_name": "14-9.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/14-9.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/14-9.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/14-9_diff.jpg"
+      }
+    },
+    "15-1.png": {
+      "screen_id": "15-1",
+      "file_name": "15-1.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-1.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-1_diff.jpg"
+      }
+    },
+    "15-12.png": {
+      "screen_id": "15-12",
+      "file_name": "15-12.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-12.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-12.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-12_diff.jpg"
+      }
+    },
+    "15-13.png": {
+      "screen_id": "15-13",
+      "file_name": "15-13.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-13.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-13.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-13_diff.jpg"
+      }
+    },
+    "15-14.png": {
+      "screen_id": "15-14",
+      "file_name": "15-14.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-14.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-14.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-14_diff.jpg"
+      }
+    },
+    "15-147.png": {
+      "screen_id": "15-147",
+      "file_name": "15-147.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-147.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-147.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "상태 표시 아이콘 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-147_diff.jpg"
+      }
+    },
+    "15-149.png": {
+      "screen_id": "15-149",
+      "file_name": "15-149.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-149.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-149.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "글씨 구성 위치가 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-149_diff.jpg"
+      }
+    },
+    "15-150.png": {
+      "screen_id": "15-150",
+      "file_name": "15-150.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-150.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-150.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-150_diff.jpg"
+      }
+    },
+    "15-22.png": {
+      "screen_id": "15-22",
+      "file_name": "15-22.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-22.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-22.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-22_diff.jpg"
+      }
+    },
+    "15-27.png": {
+      "screen_id": "15-27",
+      "file_name": "15-27.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-27.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-27.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-27_diff.jpg"
+      }
+    },
+    "15-4.png": {
+      "screen_id": "15-4",
+      "file_name": "15-4.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-4.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-4.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "글씨 밝기 희미함",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-4_diff.jpg"
+      }
+    },
+    "15-49.png": {
+      "screen_id": "15-49",
+      "file_name": "15-49.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-49.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-49.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-49_diff.jpg"
+      }
+    },
+    "15-51.png": {
+      "screen_id": "15-51",
+      "file_name": "15-51.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-51.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-51.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-51_diff.jpg"
+      }
+    },
+    "15-62.png": {
+      "screen_id": "15-62",
+      "file_name": "15-62.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-62.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-62.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "글씨 밝기 희미함",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-62_diff.jpg"
+      }
+    },
+    "15-63.png": {
+      "screen_id": "15-63",
+      "file_name": "15-63.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-63.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-63.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "좌측 그림이 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-63_diff.jpg"
+      }
+    },
+    "15-64.png": {
+      "screen_id": "15-64",
+      "file_name": "15-64.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-64.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-64.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "좌측 그림이 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-64_diff.jpg"
+      }
+    },
+    "15-65.png": {
+      "screen_id": "15-65",
+      "file_name": "15-65.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-65.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-65.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "좌측 그림이 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-65_diff.jpg"
+      }
+    },
+    "15-66.png": {
+      "screen_id": "15-66",
+      "file_name": "15-66.png",
+      "category": "guide_image",
+      "profile": "guide_image_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-66.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-66.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "좌측 그림이 아예 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-66_diff.jpg"
+      }
+    },
+    "15-67.png": {
+      "screen_id": "15-67",
+      "file_name": "15-67.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/15-67.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/15-67.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/15-67_diff.jpg"
+      }
+    },
+    "16-17.png": {
+      "screen_id": "16-17",
+      "file_name": "16-17.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/16-17.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/16-17.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/16-17_diff.jpg"
+      }
+    },
+    "16-19.png": {
+      "screen_id": "16-19",
+      "file_name": "16-19.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/16-19.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/16-19.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/16-19_diff.jpg"
+      }
+    },
+    "16-4.png": {
+      "screen_id": "16-4",
+      "file_name": "16-4.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/16-4.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/16-4.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/16-4_diff.jpg"
+      }
+    },
+    "18-3.png": {
+      "screen_id": "18-3",
+      "file_name": "18-3.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/18-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/18-3.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "팝업 그라데이션 색, 게이지 위치, 글씨 전체 위치 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/18-3_diff.jpg"
+      }
+    },
+    "18-4.png": {
+      "screen_id": "18-4",
+      "file_name": "18-4.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/18-4.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/18-4.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "팝업 그라데이션 색, 게이지 위치, 글씨 전체 위치 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/18-4_diff.jpg"
+      }
+    },
+    "18-5.png": {
+      "screen_id": "18-5",
+      "file_name": "18-5.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/18-5.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/18-5.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "팝업 그라데이션 색, 게이지 위치, 글씨 전체 위치 다름",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/18-5_diff.jpg"
+      }
+    },
+    "2-11.png": {
+      "screen_id": "2-11",
+      "file_name": "2-11.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-11.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-11.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-11_diff.jpg"
+      }
+    },
+    "2-14.png": {
+      "screen_id": "2-14",
+      "file_name": "2-14.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-14.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-14.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-14_diff.jpg"
+      }
+    },
+    "2-21.png": {
+      "screen_id": "2-21",
+      "file_name": "2-21.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-21.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-21.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-21_diff.jpg"
+      }
+    },
+    "2-30.png": {
+      "screen_id": "2-30",
+      "file_name": "2-30.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-30.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-30.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-30_diff.jpg"
+      }
+    },
+    "2-39.png": {
+      "screen_id": "2-39",
+      "file_name": "2-39.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-39.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-39.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-39_diff.jpg"
+      }
+    },
+    "2-40.png": {
+      "screen_id": "2-40",
+      "file_name": "2-40.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-40.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-40.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-40_diff.jpg"
+      }
+    },
+    "2-8.png": {
+      "screen_id": "2-8",
+      "file_name": "2-8.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/2-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/2-8.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/2-8_diff.jpg"
+      }
+    },
+    "3-1.png": {
+      "screen_id": "3-1",
+      "file_name": "3-1.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-1.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/3-1_diff.jpg"
+      }
+    },
+    "3-2.png": {
+      "screen_id": "3-2",
+      "file_name": "3-2.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-2.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-2.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/3-2_diff.jpg"
+      }
+    },
+    "3-23.png": {
+      "screen_id": "3-23",
+      "file_name": "3-23.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-23.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-23.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "움직이는 카드 배경 차이는 검사에서 제외",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/3-23_diff.jpg"
+      }
+    },
+    "3-25.png": {
+      "screen_id": "3-25",
+      "file_name": "3-25.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-25.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-25.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/3-25_diff.jpg"
+      }
+    },
+    "3-26.png": {
+      "screen_id": "3-26",
+      "file_name": "3-26.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-26.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-26.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/3-26_diff.jpg"
+      }
+    },
+    "3-27.png": {
+      "screen_id": "3-27",
+      "file_name": "3-27.png",
+      "category": "text_list",
+      "profile": "text_list_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/3-27.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/3-27.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/3-27_diff.jpg"
+      }
+    },
+    "4-1.png": {
+      "screen_id": "4-1",
+      "file_name": "4-1.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-1.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "60°C 글씨 색 희미함",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/4-1_diff.jpg"
+      }
+    },
+    "4-20.png": {
+      "screen_id": "4-20",
+      "file_name": "4-20.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-20.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-20.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/4-20_diff.jpg"
+      }
+    },
+    "4-3.png": {
+      "screen_id": "4-3",
+      "file_name": "4-3.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-3.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/4-3_diff.jpg"
+      }
+    },
+    "4-43.png": {
+      "screen_id": "4-43",
+      "file_name": "4-43.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-43.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-43.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/4-43_diff.jpg"
+      }
+    },
+    "4-8.png": {
+      "screen_id": "4-8",
+      "file_name": "4-8.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-8.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-8.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "상단 좌측 글씨 아예 빠짐",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/4-8_diff.jpg"
+      }
+    },
+    "4-9.png": {
+      "screen_id": "4-9",
+      "file_name": "4-9.png",
+      "category": "setting_control",
+      "profile": "setting_control_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/4-9.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/4-9.png",
+      "expected_result": "FAIL",
+      "expected_binary_result": "FAIL",
+      "memo": "상단 좌측 글씨 아예 빠짐",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/4-9_diff.jpg"
+      }
+    },
+    "5-22.png": {
+      "screen_id": "5-22",
+      "file_name": "5-22.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/5-22.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/5-22.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/5-22_diff.jpg"
+      }
+    },
+    "5-24.png": {
+      "screen_id": "5-24",
+      "file_name": "5-24.png",
+      "category": "popup",
+      "profile": "popup_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/5-24.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/5-24.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/5-24_diff.jpg"
+      }
+    },
+    "7-12.png": {
+      "screen_id": "7-12",
+      "file_name": "7-12.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/7-12.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/7-12.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/7-12_diff.jpg"
+      }
+    },
+    "7-5.png": {
+      "screen_id": "7-5",
+      "file_name": "7-5.png",
+      "category": "card_ui",
+      "profile": "card_ui_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/7-5.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/7-5.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/7-5_diff.jpg"
+      }
+    },
+    "8-1.png": {
+      "screen_id": "8-1",
+      "file_name": "8-1.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-1.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-1.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/8-1_diff.jpg"
+      }
+    },
+    "8-10.png": {
+      "screen_id": "8-10",
+      "file_name": "8-10.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-10.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-10.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/8-10_diff.jpg"
+      }
+    },
+    "8-3.png": {
+      "screen_id": "8-3",
+      "file_name": "8-3.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-3.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-3.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/8-3_diff.jpg"
+      }
+    },
+    "8-7.png": {
+      "screen_id": "8-7",
+      "file_name": "8-7.png",
+      "category": "status_time",
+      "profile": "status_time_profile",
+      "reference_image": "data/scenarios/model_a_round_3/reference/8-7.png",
+      "capture_image": "data/scenarios/model_a_round_3/capture/8-7.png",
+      "expected_result": "PASS",
+      "expected_binary_result": "PASS",
+      "memo": "사람 기준 통과 가능",
+      "final_status": "PASS",
+      "applied_rule": "no_difference",
+      "final_reasons": [
+        "차이 ROI가 검출되지 않음"
+      ],
+      "diff_summary": {
+        "diff_roi_count": 0,
+        "total_diff_area_ratio": 0.0
+      },
+      "evidence_summary": {
+        "overall_ssim": 1.0,
+        "minimum_roi_ssim": 1.0,
+        "confirmed_missing_text_count": 0,
+        "high_confidence_text_mismatch_count": 0,
+        "high_confidence_spacing_mismatch_count": 0,
+        "matched_text_brightness": {
+          "matched_roi_count": 0,
+          "mean_brightness_loss": 0.0
+        },
+        "localized_text_brightness": {
+          "roi_count": 0,
+          "max_brightness_loss": 0.0
+        },
+        "progress_bar": {
+          "reference": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "capture": {
+            "found": false,
+            "fill_width_ratio": null,
+            "bbox": null
+          },
+          "fill_delta": null
+        },
+        "gradient_color": {
+          "reference_smooth_color_area_ratio": 0.0,
+          "capture_smooth_color_area_ratio": 0.0,
+          "smooth_color_area_delta": 0.0,
+          "color_histogram_distance": 0.0,
+          "max_smooth_color_area_ratio": 0.0
+        }
+      },
+      "roi_decision_summary": {
+        "pass_count": 0,
+        "fail_count": 0
+      },
+      "roi_decisions": [],
+      "debug_images": {
+        "diff_debug": "results/scenarios/model_a_round_3/diff_debug/8-7_diff.jpg"
+      }
+    }
+  }
+}

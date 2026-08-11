@@ -70,11 +70,15 @@ def copy_if_exists(src: Path, dst: Path):
 
 def find_diff_debug_image(file_name: str):
     """
-    diff_debug 폴더 안에서 해당 파일명과 관련된 debug 이미지를 찾는다.
-    diff_detector.py의 저장 이름이 조금 달라도 찾을 수 있도록 stem 기준으로 검색한다.
+    diff_debug 폴더에서 해당 화면의 debug 이미지만 정확히 찾는다.
+
+    부분 문자열 검색을 사용하면 4-9가 14-9_diff.jpg와도 일치하는 문제가
+    생긴다. diff_detector.py의 저장 규칙인 "{screen_id}_diff"와 파일 stem이
+    완전히 같은 경우만 선택한다.
     """
 
     stem = Path(file_name).stem
+    expected_debug_stem = f"{stem}_diff".casefold()
     diff_debug_dir = RESULTS_DIR / "diff_debug"
 
     if not diff_debug_dir.exists():
@@ -86,8 +90,7 @@ def find_diff_debug_image(file_name: str):
         if not path.is_file():
             continue
 
-        name = path.name.lower()
-        if stem.lower() in name:
+        if path.stem.casefold() == expected_debug_stem:
             candidates.append(path)
 
     if candidates:
@@ -99,15 +102,13 @@ def find_diff_debug_image(file_name: str):
 def get_priority(final_status: str):
     """
     사람이 볼 우선순위.
-    FAIL을 가장 먼저 보고, 그다음 REVIEW를 본다.
+    이진 판정에서는 FAIL을 먼저 본다.
     """
 
     if final_status == "FAIL":
         return 1
-    if final_status == "REVIEW":
-        return 2
     if final_status == "PASS":
-        return 3
+        return 2
     return 9
 
 
@@ -156,7 +157,6 @@ def flatten_item(item: dict):
         "final_status": item.get("final_status", ""),
         "diff_roi_count": diff_summary.get("diff_roi_count", ""),
         "pass_roi_count": roi_summary.get("pass_count", ""),
-        "review_roi_count": roi_summary.get("review_count", ""),
         "fail_roi_count": roi_summary.get("fail_count", ""),
         "total_diff_area_ratio": diff_summary.get("total_diff_area_ratio", ""),
         "fail_area_ratio_threshold": diff_summary.get("fail_area_ratio_threshold", ""),
@@ -199,7 +199,6 @@ def export_validation_pack():
 
     status_counts = {
         "PASS": 0,
-        "REVIEW": 0,
         "FAIL": 0,
     }
 
@@ -243,7 +242,7 @@ def export_validation_pack():
         if is_auto_pass_candidate(item):
             auto_pass_rows.append(row)
 
-        if final_status in {"FAIL", "REVIEW"}:
+        if final_status == "FAIL":
             manual_row = dict(row)
             manual_row["manual_check_priority"] = get_priority(final_status)
             manual_check_rows.append(manual_row)
@@ -269,7 +268,6 @@ def export_validation_pack():
     print(f"Total items : {len(all_rows)}")
     print("---------------------------------------------")
     print(f"PASS count  : {status_counts['PASS']}")
-    print(f"REVIEW count: {status_counts['REVIEW']}")
     print(f"FAIL count  : {status_counts['FAIL']}")
     print("---------------------------------------------")
     print(f"Auto PASS candidates : {len(auto_pass_rows)}")

@@ -1,7 +1,0 @@
-streamlit
-pandas
-numpy
-Pillow
-opencv-python-headless
-scikit-image
-python-docx==1.2.0

@@ -1,0 +1,7 @@
+﻿category,total,engine_PASS,engine_FAIL,expected_binary_PASS,expected_binary_FAIL,MATCH,DANGEROUS_FALSE_PASS,FALSE_FAIL,MISMATCH,UNLABELLED
+card_ui,16,9,7,9,7,16,0,0,0,0
+guide_image,4,0,4,0,4,4,0,0,0,0
+popup,13,9,4,8,5,12,1,0,0,0
+setting_control,12,7,5,7,5,12,0,0,0,0
+status_time,13,9,4,9,4,13,0,0,0,0
+text_list,15,8,7,8,7,15,0,0,0,0

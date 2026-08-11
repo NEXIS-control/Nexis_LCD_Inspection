@@ -1,3 +1,5 @@
+import os
+import re
 from pathlib import Path
 
 # ============================================================
@@ -15,16 +17,61 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 # ============================================================
+# Optional Scenario Selection
+# ============================================================
+# 기본 실행은 지금까지와 똑같이 data/reference, data/capture, results를 쓴다.
+# NEXIS_SCENARIO 환경 변수가 있으면 해당 시나리오의 data/results만 사용한다.
+# 예: NEXIS_SCENARIO=model_a_round_1
+# ============================================================
+
+SCENARIO_ENV_VAR = "NEXIS_SCENARIO"
+DEFAULT_SCENARIO_ID = "default"
+
+
+def validate_scenario_id(value: str) -> str:
+    scenario_id = (value or "").strip().lower()
+
+    if not scenario_id or scenario_id == DEFAULT_SCENARIO_ID:
+        return DEFAULT_SCENARIO_ID
+
+    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,63}", scenario_id):
+        raise ValueError(
+            "NEXIS_SCENARIO는 영문 소문자, 숫자, 밑줄(_), 하이픈(-)만 "
+            "사용할 수 있습니다. 예: model_a_round_1"
+        )
+
+    return scenario_id
+
+
+ACTIVE_SCENARIO_ID = validate_scenario_id(os.environ.get(SCENARIO_ENV_VAR, ""))
+IS_SCENARIO_MODE = ACTIVE_SCENARIO_ID != DEFAULT_SCENARIO_ID
+
+
+# ============================================================
 # Main Directories
 # ============================================================
 
-DATA_DIR = PROJECT_ROOT / "data"
+BASE_DATA_DIR = PROJECT_ROOT / "data"
+SCENARIO_DATA_ROOT = BASE_DATA_DIR / "scenarios"
+
+BASE_RESULTS_DIR = PROJECT_ROOT / "results"
+SCENARIO_RESULTS_ROOT = BASE_RESULTS_DIR / "scenarios"
+
+DATA_DIR = (
+    SCENARIO_DATA_ROOT / ACTIVE_SCENARIO_ID
+    if IS_SCENARIO_MODE
+    else BASE_DATA_DIR
+)
 REFERENCE_DIR = DATA_DIR / "reference"
 CAPTURE_DIR = DATA_DIR / "capture"
 
 CONFIG_DIR = PROJECT_ROOT / "config"
 MODULES_DIR = PROJECT_ROOT / "modules"
-RESULTS_DIR = PROJECT_ROOT / "results"
+RESULTS_DIR = (
+    SCENARIO_RESULTS_ROOT / ACTIVE_SCENARIO_ID
+    if IS_SCENARIO_MODE
+    else BASE_RESULTS_DIR
+)
 TESTS_DIR = PROJECT_ROOT / "tests"
 
 
@@ -35,6 +82,7 @@ TESTS_DIR = PROJECT_ROOT / "tests"
 REFERENCE_REGISTRY_PATH = CONFIG_DIR / "reference_registry.csv"
 INSPECTION_PROFILES_PATH = CONFIG_DIR / "inspection_profiles.json"
 CRITICAL_TEXT_RULES_PATH = CONFIG_DIR / "critical_text_rules.json"
+EXPECTED_RESULTS_OVERRIDE_PATH = DATA_DIR / "expected_results.csv"
 
 
 # ============================================================
@@ -65,6 +113,10 @@ def ensure_directories():
     이미 존재하는 폴더는 그대로 둔다.
     """
     directories = [
+        BASE_DATA_DIR,
+        SCENARIO_DATA_ROOT,
+        BASE_RESULTS_DIR,
+        SCENARIO_RESULTS_ROOT,
         DATA_DIR,
         REFERENCE_DIR,
         CAPTURE_DIR,
@@ -112,6 +164,8 @@ def print_path_summary():
 
     print("========== PATH CONFIG SUMMARY ==========")
     print(f"PROJECT_ROOT: {PROJECT_ROOT}")
+    print(f"ACTIVE_SCENARIO_ID: {ACTIVE_SCENARIO_ID}")
+    print(f"IS_SCENARIO_MODE: {IS_SCENARIO_MODE}")
     print(f"DATA_DIR: {DATA_DIR}")
     print(f"REFERENCE_DIR: {REFERENCE_DIR}")
     print(f"CAPTURE_DIR: {CAPTURE_DIR}")
