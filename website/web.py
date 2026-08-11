@@ -1,60 +1,77 @@
 from __future__ import annotations
 
 import json
-import time
-from html import escape
-from io import BytesIO
+import re
+import shutil
+import sys
 from pathlib import Path
-from typing import Any
 
 import streamlit as st
-from PIL import Image, ImageChops, ImageEnhance
-from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Inches, Pt
 
 
 # =========================================================
 # 0. 프로젝트 경로
 # =========================================================
-# Nexis_LCD_Inspection/
-# ├── data/
-# │   ├── reference/
-# │   └── capture/
-# ├── results/
-# │   ├── inspection_results.json
-# │   └── manual_review_results.json   ← 자동 생성
-# └── website/
-#     └── web.py
 
 WEBSITE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = WEBSITE_DIR.parent
 
-REFERENCE_DIR = PROJECT_ROOT / "data" / "reference"
-CAPTURE_DIR = PROJECT_ROOT / "data" / "capture"
-
-INSPECTION_RESULT_PATH = (
-    PROJECT_ROOT / "results" / "inspection_results.json"
+CONFIG_DIR = (
+    PROJECT_ROOT
+    / "config"
 )
 
-MANUAL_REVIEW_PATH = (
-    PROJECT_ROOT / "results" / "manual_review_results.json"
+INSPECTION_PROFILES_PATH = (
+    CONFIG_DIR
+    / "inspection_profiles.json"
 )
 
-SUPPORTED_EXTENSIONS = {
-    ".png",
-    ".jpg",
-    ".jpeg",
-    ".bmp",
-    ".webp",
-}
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(
+        0,
+        str(PROJECT_ROOT),
+    )
+
+if str(WEBSITE_DIR) not in sys.path:
+    sys.path.insert(
+        0,
+        str(WEBSITE_DIR),
+    )
 
 
 # =========================================================
-# 1. Streamlit 설정
+# 1. 판독 결과 조회 서비스
 # =========================================================
+
+from scenario_model_service import (
+    load_models_from_scenarios,
+    load_model_from_scenarios,
+    load_scenario_by_id,
+)
+
+
+# =========================================================
+# 2. 기존 판독 엔진 Scenario 관리 기능
+# =========================================================
+
+from modules.scenario_manager import (
+    capture_dir as scenario_capture_dir,
+    copy_images,
+    create_scenario,
+    image_names,
+    reference_dir as scenario_reference_dir,
+    run_module_for_scenario,
+    scenario_data_dir,
+    scenario_results_dir,
+)
+
+
+# =========================================================
+# 3. Streamlit 기본 설정
+# =========================================================
+
 st.set_page_config(
-    page_title="NEXIS LCD Inspection",
+    page_title="NEXIS LCD Inspection System",
     page_icon="🔍",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -62,117 +79,51 @@ st.set_page_config(
 
 
 # =========================================================
-# 2. CSS
+# 4. 전체 화면 스타일
 # =========================================================
+
 st.markdown(
     """
     <style>
+
+    .stApp {
+        background-color: #f3f6fa;
+    }
+
     .block-container {
-        max-width: 1500px;
-        padding-top: 1.4rem;
+        max-width: 1250px;
+        padding-top: 1.8rem;
         padding-bottom: 3rem;
     }
 
-    .hero {
-        padding: 2.3rem 2.5rem;
-        border: 1px solid #e5e7eb;
-        border-radius: 22px;
-        background:
-            linear-gradient(135deg, #ffffff 0%, #f4f7fb 100%);
-        margin-bottom: 1.3rem;
-    }
-
-    .hero-title {
-        font-size: 2.35rem;
-        font-weight: 850;
-        color: #111827;
-        margin-bottom: 0.35rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        color: #6b7280;
-    }
-
-    .section-title {
-        font-size: 1.35rem;
-        font-weight: 800;
-        color: #111827;
-        margin-top: 1rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .status-card {
-        border-radius: 18px;
-        padding: 1.4rem 1.6rem;
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 850;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        margin-bottom: 1rem;
-    }
-
-    .status-pass {
-        background: rgba(34, 197, 94, 0.12);
-        color: #15803d;
-    }
-
-    .status-fail {
-        background: rgba(239, 68, 68, 0.12);
-        color: #b91c1c;
-    }
-
-    .status-review {
-        background: rgba(245, 158, 11, 0.16);
-        color: #b45309;
-    }
-
-    .status-unknown {
-        background: rgba(107, 114, 128, 0.12);
-        color: #4b5563;
-    }
-
-    .info-box {
-        border: 1px solid #e5e7eb;
-        background: #f8fafc;
-        border-radius: 14px;
-        padding: 1rem 1.15rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .reason-card {
-        border: 1px solid #e5e7eb;
-        border-left: 5px solid #9ca3af;
-        border-radius: 12px;
-        background: #ffffff;
-        padding: 0.9rem 1rem;
-        margin-bottom: 0.7rem;
-    }
-
-    .caption {
-        color: #6b7280;
-        font-size: 0.86rem;
-        margin-top: 0.3rem;
-        word-break: break-all;
+    div.stButton > button {
+        border-radius: 9px;
+        font-weight: 650;
+        min-height: 2.7rem;
     }
 
     div[data-testid="stMetric"] {
-        border: 1px solid #e5e7eb;
-        border-radius: 15px;
+        background-color: #ffffff;
+        border: 1px solid #edf0f4;
+        border-radius: 12px;
         padding: 1rem;
-        background: #ffffff;
     }
 
     div[data-testid="stMetricLabel"] {
-        font-weight: 700;
+        color: #6b7280;
     }
 
-    .stButton > button,
-    .stDownloadButton > button {
-        border-radius: 12px;
-        font-weight: 750;
-        min-height: 46px;
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        background-color: #ffffff;
+        border-radius: 16px;
     }
+
+    h1,
+    h2,
+    h3 {
+        color: #111827;
+    }
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -180,27 +131,174 @@ st.markdown(
 
 
 # =========================================================
-# 3. 공통 함수
+# 5. Session State 초기화
 # =========================================================
-def load_json(path: Path) -> dict[str, Any]:
+
+def initialize_session_state() -> None:
+
+    defaults = {
+        "current_view": "home",
+        "selected_model_id": None,
+        "selected_inspection_id": None,
+        "selected_file_name": None,
+    }
+
+    for key, value in defaults.items():
+
+        if key not in st.session_state:
+            st.session_state[key] = value
+
+
+initialize_session_state()
+
+
+# =========================================================
+# 6. 기본 공통 함수
+# =========================================================
+
+def format_accuracy(
+    value,
+) -> str:
+
+    if value is None:
+        return "-"
+
+    try:
+        return f"{float(value):.1f}%"
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+        return "-"
+
+
+def format_decimal(
+    value,
+    digits: int = 3,
+) -> str:
+
+    if value is None:
+        return "-"
+
+    try:
+        return f"{float(value):.{digits}f}"
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+        return "-"
+
+
+def format_percentage_from_ratio(
+    value,
+) -> str:
+
+    if value is None:
+        return "-"
+
+    try:
+
+        number = float(value)
+
+        if 0 <= number <= 1:
+            number *= 100
+
+        return f"{number:.2f}%"
+
+    except (
+        TypeError,
+        ValueError,
+    ):
+        return "-"
+
+
+def go_to_view(
+    view_name: str,
+    *,
+    model_id: str | None = None,
+    inspection_id: str | None = None,
+    file_name: str | None = None,
+) -> None:
+
+    st.session_state.current_view = (
+        view_name
+    )
+
+    if model_id is not None:
+
+        st.session_state.selected_model_id = (
+            model_id
+        )
+
+    if inspection_id is not None:
+
+        st.session_state.selected_inspection_id = (
+            inspection_id
+        )
+
+    if file_name is not None:
+
+        st.session_state.selected_file_name = (
+            file_name
+        )
+
+    st.rerun()
+
+
+# =========================================================
+# 7. JSON 공통 함수
+# =========================================================
+
+def load_json_file(
+    path: Path,
+) -> dict:
+
     if not path.exists():
-        raise FileNotFoundError(f"파일이 없습니다: {path}")
+        return {}
 
-    with path.open("r", encoding="utf-8") as file:
-        data = json.load(file)
+    try:
 
-    if not isinstance(data, dict):
-        raise ValueError(f"JSON 최상위 구조가 객체가 아닙니다: {path}")
+        with path.open(
+            "r",
+            encoding="utf-8",
+        ) as file:
 
-    return data
+            data = json.load(
+                file
+            )
+
+        if isinstance(
+            data,
+            dict,
+        ):
+            return data
+
+    except (
+        OSError,
+        json.JSONDecodeError,
+    ):
+        pass
+
+    return {}
 
 
-def save_json(path: Path, data: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+def save_json_file(
+    path: Path,
+    data: dict,
+) -> None:
 
-    temporary_path = path.with_suffix(path.suffix + ".tmp")
+    path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
-    with temporary_path.open("w", encoding="utf-8") as file:
+    with path.open(
+        "w",
+        encoding="utf-8",
+    ) as file:
+
         json.dump(
             data,
             file,
@@ -208,1520 +306,3510 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
             indent=2,
         )
 
-    temporary_path.replace(path)
 
+# =========================================================
+# 8. 판독 프로파일 설정
+# =========================================================
 
-def load_manual_reviews() -> dict[str, Any]:
-    if not MANUAL_REVIEW_PATH.exists():
-        return {"reviews": {}}
-
-    try:
-        data = load_json(MANUAL_REVIEW_PATH)
-    except (json.JSONDecodeError, ValueError):
-        return {"reviews": {}}
-
-    reviews = data.get("reviews")
-
-    if not isinstance(reviews, dict):
-        data["reviews"] = {}
-
-    return data
-
-
-def save_manual_review(
-    file_name: str,
-    decision: str,
-    original_status: str,
-) -> None:
-    data = load_manual_reviews()
-    reviews = data.setdefault("reviews", {})
-
-    reviews[file_name] = {
-        "manual_decision": decision,
-        "original_status": original_status,
-        "reviewed_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-    }
-
-    save_json(MANUAL_REVIEW_PATH, data)
-
-
-def find_image_files(folder: Path) -> list[Path]:
-    if not folder.exists():
-        return []
-
-    return sorted(
-        [
-            path
-            for path in folder.iterdir()
-            if path.is_file()
-            and path.suffix.lower() in SUPPORTED_EXTENSIONS
-        ],
-        key=lambda path: path.name.lower(),
-    )
-
-
-def build_image_map(files: list[Path]) -> dict[str, Path]:
-    return {
-        path.stem: path
-        for path in files
-    }
-
-
-def normalize_status(value: Any) -> str:
-    status = str(value or "UNKNOWN").strip().upper()
-
-    if status in {"PASS", "FAIL", "REVIEW"}:
-        return status
-
-    return "UNKNOWN"
-
-
-def get_results_dict(
-    inspection_data: dict[str, Any],
-) -> dict[str, dict[str, Any]]:
-    results = inspection_data.get("results", {})
-
-    if not isinstance(results, dict):
-        raise ValueError(
-            "inspection_results.json의 'results'는 객체여야 합니다."
-        )
-
-    normalized_results: dict[str, dict[str, Any]] = {}
-
-    for file_name, result in results.items():
-        if isinstance(result, dict):
-            normalized_results[str(file_name)] = result
-
-    return normalized_results
-
-
-def get_status_file_map(
-    results: dict[str, dict[str, Any]],
-) -> dict[str, list[str]]:
-    status_map = {
-        "PASS": [],
-        "FAIL": [],
-        "REVIEW": [],
-        "UNKNOWN": [],
-    }
-
-    for file_name, result in results.items():
-        status = normalize_status(result.get("final_status"))
-        status_map.setdefault(status, []).append(file_name)
-
-    for file_names in status_map.values():
-        file_names.sort(key=str.lower)
-
-    return status_map
-
-
-def open_image(path: Path) -> Image.Image:
-    with Image.open(path) as image:
-        return image.convert("RGB")
-
-
-def create_difference_image(
-    reference_path: Path,
-    capture_path: Path,
-    enhancement_factor: float = 3.0,
-) -> Image.Image:
-    reference = open_image(reference_path)
-    capture = open_image(capture_path)
-
-    if capture.size != reference.size:
-        capture = capture.resize(reference.size)
-
-    difference = ImageChops.difference(
-        reference,
-        capture,
-    )
-
-    return ImageEnhance.Contrast(
-        difference
-    ).enhance(
-        enhancement_factor
-    )
-
-
-def resolve_image_path(
-    file_name: str,
-    image_map: dict[str, Path],
-) -> Path | None:
-    return image_map.get(Path(file_name).stem)
-
-
-def get_status_class(status: str) -> str:
-    return {
-        "PASS": "status-pass",
-        "FAIL": "status-fail",
-        "REVIEW": "status-review",
-    }.get(status, "status-unknown")
-
-
-def display_status_card(
-    status: str,
-    file_name: str,
-) -> None:
-    icon = {
-        "PASS": "✅",
-        "FAIL": "❌",
-        "REVIEW": "⚠️",
-    }.get(status, "❔")
-
-    st.markdown(
-        f"""
-        <div class="status-card {get_status_class(status)}">
-            {icon} {escape(status)}
-            <div style="
-                font-size: 0.92rem;
-                font-weight: 550;
-                margin-top: 0.35rem;
-            ">
-                {escape(file_name)}
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-def get_final_reasons(
-    result: dict[str, Any],
-) -> list[str]:
-    raw_reasons = result.get("final_reasons", [])
-
-    if isinstance(raw_reasons, list):
-        return [
-            str(reason)
-            for reason in raw_reasons
-            if str(reason).strip()
-        ]
-
-    if raw_reasons:
-        return [str(raw_reasons)]
-
-    return []
-
-
-def calculate_system_reliability(
-    results: dict[str, dict[str, Any]],
-) -> tuple[float | None, int, int]:
+def load_inspection_profiles() -> dict:
     """
-    현재 신뢰도 정의:
-    expected_result와 final_status가 모두 있는 항목 중
-    두 판정이 정확히 일치한 비율.
+    config/inspection_profiles.json을 읽는다.
+
+    원본 설정은 웹에서 수정하지 않는다.
     """
-    comparable_count = 0
-    matched_count = 0
 
-    for result in results.values():
-        expected = normalize_status(
-            result.get("expected_result")
-        )
-        actual = normalize_status(
-            result.get("final_status")
-        )
-
-        if expected == "UNKNOWN" or actual == "UNKNOWN":
-            continue
-
-        comparable_count += 1
-
-        if expected == actual:
-            matched_count += 1
-
-    if comparable_count == 0:
-        return None, matched_count, comparable_count
-
-    reliability = (
-        matched_count
-        / comparable_count
-        * 100
+    return load_json_file(
+        INSPECTION_PROFILES_PATH
     )
 
-    return reliability, matched_count, comparable_count
+
+PROFILE_DISPLAY_NAMES = {
+
+    "general_diff_profile":
+        "일반 화면",
+
+    "text_list_profile":
+        "텍스트 목록",
+
+    "status_time_profile":
+        "시간 · 상태 표시",
+
+    "guide_image_profile":
+        "안내 이미지",
+
+    "popup_profile":
+        "팝업 화면",
+
+    "card_ui_profile":
+        "카드 UI",
+
+    "setting_control_profile":
+        "설정 · 제어 화면",
+}
 
 
-def status_korean(status: str) -> str:
-    return {
-        "PASS": "합격",
-        "FAIL": "불합격",
-        "REVIEW": "검토 필요",
-        "UNKNOWN": "판정 없음",
-    }.get(status, status)
+PROFILE_HELP_TEXT = {
+
+    "general_diff_profile":
+        "특정 유형에 속하지 않는 일반적인 LCD 화면",
+
+    "text_list_profile":
+        "목록, 설정 항목, 여러 줄 텍스트가 많은 화면",
+
+    "status_time_profile":
+        "시간, 숫자, 진행 상태, 단위 표시가 중요한 화면",
+
+    "guide_image_profile":
+        "안내 그림, 설명 이미지, 도식이 포함된 화면",
+
+    "popup_profile":
+        "확인·취소·로딩 등 중앙 팝업이 포함된 화면",
+
+    "card_ui_profile":
+        "코스 카드, 대시보드, 타일 형태의 UI 화면",
+
+    "setting_control_profile":
+        "슬라이더, 토글, 옵션 버튼, 설정값 조절 화면",
+}
 
 
-def add_file_list_section(
-    document: Document,
-    title: str,
-    file_names: list[str],
-) -> None:
+CHECK_DISPLAY_NAMES = {
+
+    "text_content":
+        "텍스트 내용",
+
+    "text_spacing":
+        "텍스트 간격",
+
+    "gradient_color":
+        "색상 및 그라데이션",
+
+    "text_brightness":
+        "텍스트 밝기",
+
+    "progress_bar":
+        "진행 상태 표시",
+
+    "image_structure":
+        "화면 구성 및 이미지 구조",
+}
+
+
+CHECK_HELP_TEXT = {
+
+    "text_content":
+        "표시된 글자의 내용이 기준 화면과 일치하는지 확인합니다.",
+
+    "text_spacing":
+        "글자 사이 간격과 텍스트 배치 차이를 확인합니다.",
+
+    "gradient_color":
+        "UI 색상과 부드러운 그라데이션의 차이를 확인합니다.",
+
+    "text_brightness":
+        "텍스트 밝기가 기준보다 어둡거나 밝은지 확인합니다.",
+
+    "progress_bar":
+        "진행바와 상태 표시 영역이 기준과 일치하는지 확인합니다.",
+
+    "image_structure":
+        "아이콘, 카드, 이미지 등 화면 구성 요소의 누락·변형을 확인합니다.",
+}
+
+
+def get_default_enabled_checks() -> dict[
+    str,
+    bool
+]:
     """
-    상태별 파일명 목록을 워드 표로 추가한다.
+    inspection_profiles.json의
+    binary_policy.enabled_checks를 기본값으로 사용한다.
     """
-    document.add_heading(
-        f"{title} ({len(file_names)}개)",
-        level=2,
+
+    config = (
+        load_inspection_profiles()
     )
 
-    if not file_names:
-        document.add_paragraph(
-            "해당 상태의 파일이 없습니다."
-        )
-        return
-
-    table = document.add_table(
-        rows=1,
-        cols=2,
-    )
-    table.style = "Table Grid"
-
-    header_cells = table.rows[0].cells
-    header_cells[0].text = "번호"
-    header_cells[1].text = "파일명"
-
-    for index, file_name in enumerate(
-        file_names,
-        start=1,
-    ):
-        row_cells = table.add_row().cells
-        row_cells[0].text = str(index)
-        row_cells[1].text = file_name
-
-
-def build_word_report(
-    inspection_data: dict[str, Any],
-    inspection_results: dict[str, dict[str, Any]],
-    elapsed_time: float | None,
-    reliability: float | None,
-    matched_count: int,
-    comparable_count: int,
-) -> bytes:
-    """
-    사람이 바로 읽을 수 있는 최종 검사 리포트를
-    Word(.docx) 형식으로 생성한다.
-    """
-    status_map = get_status_file_map(
-        inspection_results
-    )
-
-    manual_reviews_data = load_manual_reviews()
-    manual_reviews = manual_reviews_data.get(
-        "reviews",
-        {},
-    )
-
-    if not isinstance(manual_reviews, dict):
-        manual_reviews = {}
-
-    document = Document()
-
-    section = document.sections[0]
-    section.top_margin = Inches(0.65)
-    section.bottom_margin = Inches(0.65)
-    section.left_margin = Inches(0.75)
-    section.right_margin = Inches(0.75)
-
-    normal_style = document.styles["Normal"]
-    normal_style.font.name = "Arial"
-    normal_style.font.size = Pt(10)
-
-    title = document.add_paragraph()
-    title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-    title_run = title.add_run(
-        "NEXIS LCD 자동 판독 최종 결과 리포트"
-    )
-    title_run.bold = True
-    title_run.font.size = Pt(18)
-
-    subtitle = document.add_paragraph()
-    subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    subtitle.add_run(
-        "Reference·Capture 이미지 자동 검사 결과 및 REVIEW 수동 판정 기록"
-    )
-
-    document.add_paragraph()
-
-    # 1. 검사 개요
-    document.add_heading(
-        "1. 검사 개요",
-        level=1,
-    )
-
-    overview_table = document.add_table(
-        rows=0,
-        cols=2,
-    )
-    overview_table.style = "Table Grid"
-
-    overview_items = [
-        (
-            "리포트 생성 시각",
-            time.strftime("%Y-%m-%d %H:%M:%S"),
-        ),
-        (
-            "총 검사 파일 수",
-            str(len(inspection_results)),
-        ),
-        (
-            "총 소요 시간",
-            (
-                f"{elapsed_time:.2f}초"
-                if isinstance(
-                    elapsed_time,
-                    (int, float),
-                )
-                else "확인 불가"
-            ),
-        ),
-        (
-            "시스템 신뢰도",
-            (
-                f"{reliability:.2f}%"
-                if isinstance(
-                    reliability,
-                    (int, float),
-                )
-                else "계산 불가"
-            ),
-        ),
-        (
-            "신뢰도 검증 데이터",
-            f"{matched_count}개 일치 / {comparable_count}개 비교",
-        ),
-    ]
-
-    for label, value in overview_items:
-        row_cells = overview_table.add_row().cells
-        row_cells[0].text = label
-        row_cells[1].text = value
-
-    # 2. 전체 판정 요약
-    document.add_heading(
-        "2. 전체 판정 요약",
-        level=1,
-    )
-
-    summary_table = document.add_table(
-        rows=1,
-        cols=4,
-    )
-    summary_table.style = "Table Grid"
-
-    summary_headers = [
-        "총 검사",
-        "PASS",
-        "REVIEW",
-        "FAIL",
-    ]
-
-    summary_values = [
-        len(inspection_results),
-        len(status_map["PASS"]),
-        len(status_map["REVIEW"]),
-        len(status_map["FAIL"]),
-    ]
-
-    for index, header in enumerate(
-        summary_headers
-    ):
-        summary_table.rows[0].cells[index].text = (
-            header
-        )
-
-    summary_row = summary_table.add_row().cells
-
-    for index, value in enumerate(
-        summary_values
-    ):
-        summary_row[index].text = str(value)
-
-    document.add_paragraph(
-        "PASS는 자동 판독 기준을 충족한 항목, "
-        "FAIL은 자동 판독 기준에서 불합격한 항목, "
-        "REVIEW는 사람이 추가로 확인해야 하는 항목입니다."
-    )
-
-    # 3. 상태별 파일 목록
-    document.add_heading(
-        "3. 상태별 파일 목록",
-        level=1,
-    )
-
-    add_file_list_section(
-        document,
-        "PASS 파일",
-        status_map["PASS"],
-    )
-
-    add_file_list_section(
-        document,
-        "REVIEW 파일",
-        status_map["REVIEW"],
-    )
-
-    add_file_list_section(
-        document,
-        "FAIL 파일",
-        status_map["FAIL"],
-    )
-
-    # 4. REVIEW 수동 확정 결과
-    document.add_heading(
-        "4. REVIEW 수동 확정 결과",
-        level=1,
-    )
-
-    if manual_reviews:
-        manual_table = document.add_table(
-            rows=1,
-            cols=4,
-        )
-        manual_table.style = "Table Grid"
-
-        headers = [
-            "파일명",
-            "자동 판정",
-            "사람의 최종 판정",
-            "판정 시각",
-        ]
-
-        for index, header in enumerate(
-            headers
-        ):
-            manual_table.rows[0].cells[index].text = (
-                header
-            )
-
-        for file_name in sorted(
-            manual_reviews.keys(),
-            key=str.lower,
-        ):
-            review = manual_reviews[file_name]
-
-            if not isinstance(review, dict):
-                continue
-
-            row_cells = manual_table.add_row().cells
-            row_cells[0].text = file_name
-            row_cells[1].text = status_korean(
-                normalize_status(
-                    review.get("original_status")
-                )
-            )
-            row_cells[2].text = status_korean(
-                normalize_status(
-                    review.get("manual_decision")
-                )
-            )
-            row_cells[3].text = str(
-                review.get(
-                    "reviewed_at",
-                    "-",
-                )
-            )
-    else:
-        document.add_paragraph(
-            "아직 사람이 확정한 REVIEW 항목이 없습니다."
-        )
-
-    # 5. 파일별 세부 결과
-    document.add_heading(
-        "5. 파일별 세부 판독 결과",
-        level=1,
-    )
-
-    for file_name in sorted(
-        inspection_results.keys(),
-        key=str.lower,
-    ):
-        result = inspection_results[file_name]
-        status = normalize_status(
-            result.get("final_status")
-        )
-
-        document.add_heading(
-            file_name,
-            level=2,
-        )
-
-        detail_table = document.add_table(
-            rows=0,
-            cols=2,
-        )
-        detail_table.style = "Table Grid"
-
-        detail_items = [
-            (
-                "자동 최종 판정",
-                status_korean(status),
-            ),
-            (
-                "화면 ID",
-                str(
-                    result.get(
-                        "screen_id",
-                        Path(file_name).stem,
-                    )
-                ),
-            ),
-            (
-                "카테고리",
-                str(
-                    result.get(
-                        "category",
-                        "-",
-                    )
-                ),
-            ),
-            (
-                "프로파일",
-                str(
-                    result.get(
-                        "profile",
-                        "-",
-                    )
-                ),
-            ),
-            (
-                "예상 결과",
-                status_korean(
-                    normalize_status(
-                        result.get(
-                            "expected_result"
-                        )
-                    )
-                ),
-            ),
-        ]
-
-        manual_result = manual_reviews.get(
-            file_name
-        )
-
-        if isinstance(manual_result, dict):
-            detail_items.append(
-                (
-                    "사람의 최종 판정",
-                    status_korean(
-                        normalize_status(
-                            manual_result.get(
-                                "manual_decision"
-                            )
-                        )
-                    ),
-                )
-            )
-
-        for label, value in detail_items:
-            row_cells = detail_table.add_row().cells
-            row_cells[0].text = label
-            row_cells[1].text = value
-
-        reasons = get_final_reasons(result)
-
-        document.add_paragraph(
-            "판정 사유:",
-            style=None,
-        )
-
-        if reasons:
-            for reason in reasons:
-                document.add_paragraph(
-                    reason,
-                    style="List Bullet",
-                )
-        else:
-            document.add_paragraph(
-                "기록된 세부 오류 사유가 없습니다.",
-                style="List Bullet",
-            )
-
-        roi_summary = result.get(
-            "roi_decision_summary",
+    enabled_checks = (
+        config
+        .get(
+            "binary_policy",
             {},
         )
-
-        if isinstance(roi_summary, dict):
-            document.add_paragraph(
-                "ROI 판정 요약:"
-            )
-
-            roi_table = document.add_table(
-                rows=1,
-                cols=4,
-            )
-            roi_table.style = "Table Grid"
-
-            roi_headers = [
-                "PASS",
-                "REVIEW",
-                "FAIL",
-                "누락 문자 확정",
-            ]
-
-            roi_values = [
-                roi_summary.get(
-                    "pass_count",
-                    "-",
-                ),
-                roi_summary.get(
-                    "review_count",
-                    "-",
-                ),
-                roi_summary.get(
-                    "fail_count",
-                    "-",
-                ),
-                roi_summary.get(
-                    "confirmed_missing_text_count",
-                    "-",
-                ),
-            ]
-
-            for index, header in enumerate(
-                roi_headers
-            ):
-                roi_table.rows[0].cells[index].text = (
-                    header
-                )
-
-            roi_row = roi_table.add_row().cells
-
-            for index, value in enumerate(
-                roi_values
-            ):
-                roi_row[index].text = str(value)
-
-        document.add_paragraph()
-
-    # 6. 신뢰도 설명
-    document.add_heading(
-        "6. 시스템 신뢰도 산정 기준",
-        level=1,
+        .get(
+            "enabled_checks",
+            {},
+        )
     )
 
-    document.add_paragraph(
-        "현재 시스템 신뢰도는 각 이미지의 expected_result와 "
-        "자동 판독 결과 final_status가 모두 존재하는 항목을 대상으로, "
-        "두 값이 정확히 일치한 비율로 계산합니다."
-    )
+    defaults = {}
 
-    if reliability is not None:
-        document.add_paragraph(
-            f"계산 결과: {matched_count}개 일치 / "
-            f"{comparable_count}개 비교 = "
-            f"{reliability:.2f}%"
-        )
-    else:
-        document.add_paragraph(
-            "비교 가능한 expected_result 데이터가 없어 "
-            "신뢰도를 계산하지 못했습니다."
-        )
+    for check_key in (
+        CHECK_DISPLAY_NAMES
+    ):
 
-    # 원본 summary 보존
-    original_summary = inspection_data.get(
-        "summary",
-        {},
-    )
-
-    if isinstance(original_summary, dict):
-        document.add_heading(
-            "7. 원본 분석 요약 데이터",
-            level=1,
-        )
-
-        for key, value in original_summary.items():
-            document.add_paragraph(
-                f"{key}: {value}"
+        defaults[
+            check_key
+        ] = bool(
+            enabled_checks.get(
+                check_key,
+                True,
             )
+        )
 
-    output = BytesIO()
-    document.save(output)
-
-    return output.getvalue()
+    return defaults
 
 
-def open_detail_page(file_name: str) -> None:
+# =========================================================
+# 9. 새 모델 ID 자동 결정
+# =========================================================
+
+def get_next_model_info() -> dict:
     """
-    상태별 파일 목록에서 파일명을 누르면
-    세부 판독 화면으로 이동한다.
+    현재 모델 목록을 확인해서
+    다음 알파벳 모델을 자동 배정한다.
+
+    예:
+    Model A + Model B
+    -> Model C
     """
-    st.session_state.selected_detail_file = file_name
-    st.session_state.current_view = "detail"
-    st.rerun()
+
+    models = (
+        load_models_from_scenarios()
+    )
+
+    used_letters = set()
+
+    for model in models:
+
+        model_id = str(
+            model.get(
+                "model_id",
+                "",
+            )
+        ).lower()
+
+        match = re.fullmatch(
+            r"model_([a-z])",
+            model_id,
+        )
+
+        if match:
+
+            used_letters.add(
+                match.group(1)
+            )
+
+    next_letter = None
+
+    for letter_code in range(
+        ord("a"),
+        ord("z") + 1,
+    ):
+
+        letter = chr(
+            letter_code
+        )
+
+        if letter not in (
+            used_letters
+        ):
+
+            next_letter = (
+                letter
+            )
+
+            break
+
+    if next_letter is None:
+
+        raise RuntimeError(
+            "추가할 수 있는 모델 이름이 없습니다."
+        )
+
+    return {
+        "model_id":
+            f"model_{next_letter}",
+
+        "model_name":
+            f"Model {next_letter.upper()}",
+
+        "scenario_id":
+            f"model_{next_letter}_round_1",
+
+        "round_number":
+            1,
+    }
 
 
-def render_file_buttons(
-    title: str,
-    file_names: list[str],
-    status: str,
+# =========================================================
+# 10. 모델별 판독 설정 저장
+# =========================================================
+
+def save_scenario_inspection_settings(
+    scenario_id: str,
+    *,
+    model_name: str,
+    model_description: str,
+    profile_key: str,
+    enabled_checks: dict[
+        str,
+        bool
+    ],
 ) -> None:
     """
-    상태별 파일명 버튼을 표시한다.
+    새 모델에서 사용자가 선택한 판독 설정을
+    해당 scenario.json에 저장한다.
 
-    REVIEW 파일 중 사람이 PASS/FAIL 수동 판정을 완료한 경우:
-        파일명 (수동 처리 완료: PASS)
-        파일명 (수동 처리 완료: FAIL)
-    형식으로 표시한다.
+    원본 inspection_profiles.json은 수정하지 않는다.
     """
-    st.markdown(f"#### {title}")
 
-    if not file_names:
-        st.info("해당 파일이 없습니다.")
-        return
-
-    manual_reviews_data = load_manual_reviews()
-    manual_reviews = manual_reviews_data.get(
-        "reviews",
-        {},
+    scenario_dir = (
+        scenario_data_dir(
+            scenario_id
+        )
     )
 
-    if not isinstance(manual_reviews, dict):
-        manual_reviews = {}
+    scenario_json_path = (
+        scenario_dir
+        / "scenario.json"
+    )
 
-    for index, file_name in enumerate(
-        file_names,
-        start=1,
+    scenario_data = (
+        load_json_file(
+            scenario_json_path
+        )
+    )
+
+    scenario_data[
+        "model_name"
+    ] = model_name
+
+    scenario_data[
+        "model_description"
+    ] = (
+        model_description
+    )
+
+    scenario_data[
+        "inspection_profile"
+    ] = profile_key
+
+    scenario_data[
+        "inspection_profile_name"
+    ] = (
+        PROFILE_DISPLAY_NAMES.get(
+            profile_key,
+            profile_key,
+        )
+    )
+
+    scenario_data[
+        "enabled_checks"
+    ] = enabled_checks
+
+    save_json_file(
+        scenario_json_path,
+        scenario_data,
+    )
+
+
+# =========================================================
+# 11. 판독 결과 공통 함수
+# =========================================================
+
+def get_round_number(
+    model: dict | None,
+    scenario_id: str | None,
+) -> int | None:
+
+    if not model:
+        return None
+
+    if not scenario_id:
+        return None
+
+    for round_data in model.get(
+        "rounds",
+        [],
     ):
-        button_label = file_name
 
-        manual_review = manual_reviews.get(
-            file_name
+        current_id = str(
+            round_data.get(
+                "scenario_id",
+                "",
+            )
+        )
+
+        if current_id == str(
+            scenario_id
+        ):
+
+            try:
+
+                return int(
+                    round_data.get(
+                        "round_number"
+                    )
+                )
+
+            except (
+                TypeError,
+                ValueError,
+            ):
+
+                return None
+
+    return None
+
+
+def get_display_file_name(
+    result_key: str,
+    result_data: dict,
+) -> str:
+
+    candidates = [
+        result_data.get(
+            "file_name"
+        ),
+        result_data.get(
+            "capture_file"
+        ),
+        result_data.get(
+            "screen_id"
+        ),
+        result_key,
+    ]
+
+    for candidate in candidates:
+
+        if candidate:
+
+            return Path(
+                str(candidate)
+            ).name
+
+    return "파일명 없음"
+
+
+def split_results_by_status(
+    results_mapping: dict,
+) -> tuple[
+    list[tuple[str, dict]],
+    list[tuple[str, dict]],
+]:
+
+    pass_results = []
+    fail_results = []
+
+    for result_key, result_data in (
+        results_mapping.items()
+    ):
+
+        if not isinstance(
+            result_data,
+            dict,
+        ):
+            continue
+
+        status = str(
+            result_data.get(
+                "final_status",
+                "",
+            )
+        ).strip().upper()
+
+        if status == "PASS":
+
+            pass_results.append(
+                (
+                    str(result_key),
+                    result_data,
+                )
+            )
+
+        elif status == "FAIL":
+
+            fail_results.append(
+                (
+                    str(result_key),
+                    result_data,
+                )
+            )
+
+    pass_results.sort(
+        key=lambda item:
+        get_display_file_name(
+            item[0],
+            item[1],
+        ).lower()
+    )
+
+    fail_results.sort(
+        key=lambda item:
+        get_display_file_name(
+            item[0],
+            item[1],
+        ).lower()
+    )
+
+    return (
+        pass_results,
+        fail_results,
+    )
+
+
+# =========================================================
+# 12. 이미지 검색
+# =========================================================
+
+def find_image(
+    image_dir: Path,
+    result_key: str,
+    result_data: dict,
+    *,
+    preferred_field: str | None = None,
+) -> Path | None:
+
+    if not image_dir.exists():
+        return None
+
+    candidates = []
+
+    if preferred_field:
+
+        candidates.append(
+            result_data.get(
+                preferred_field
+            )
+        )
+
+    candidates.extend(
+        [
+            result_data.get(
+                "file_name"
+            ),
+            result_data.get(
+                "capture_file"
+            ),
+            result_data.get(
+                "screen_id"
+            ),
+            result_key,
+        ]
+    )
+
+    supported_extensions = [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".bmp",
+        ".webp",
+    ]
+
+    for candidate in candidates:
+
+        if not candidate:
+            continue
+
+        candidate_text = str(
+            candidate
+        ).strip()
+
+        if not candidate_text:
+            continue
+
+        candidate_name = Path(
+            candidate_text
+        ).name
+
+        direct_path = (
+            image_dir
+            / candidate_name
         )
 
         if (
-            status == "REVIEW"
-            and isinstance(
-                manual_review,
-                dict,
-            )
+            direct_path.exists()
+            and direct_path.is_file()
         ):
-            manual_decision = normalize_status(
-                manual_review.get(
-                    "manual_decision"
-                )
+
+            return direct_path
+
+        stem = Path(
+            candidate_name
+        ).stem
+
+        for extension in (
+            supported_extensions
+        ):
+
+            possible_path = (
+                image_dir
+                / f"{stem}{extension}"
             )
 
-            if manual_decision in {
-                "PASS",
-                "FAIL",
-            }:
-                button_label = (
-                    f"{file_name} "
-                    f"(수동 처리 완료: {manual_decision})"
+            if (
+                possible_path.exists()
+                and possible_path.is_file()
+            ):
+
+                return possible_path
+
+    return None
+
+
+def find_capture_image(
+    capture_dir: Path,
+    result_key: str,
+    result_data: dict,
+) -> Path | None:
+
+    return find_image(
+        capture_dir,
+        result_key,
+        result_data,
+        preferred_field="capture_file",
+    )
+
+
+def find_reference_image(
+    reference_dir: Path,
+    result_key: str,
+    result_data: dict,
+) -> Path | None:
+
+    return find_image(
+        reference_dir,
+        result_key,
+        result_data,
+        preferred_field="reference_image",
+    )
+
+
+# =========================================================
+# 13. FAIL 표시 이미지
+# =========================================================
+
+def find_fail_display_image(
+    capture_dir: Path,
+    result_key: str,
+    result_data: dict,
+) -> Path | None:
+    """
+    현재 FAIL 화면에서는 원본 Capture 이미지를 표시한다.
+
+    오류 위치 표시 이미지가 완성되면
+    이 함수만 수정하면 된다.
+    """
+
+    return find_capture_image(
+        capture_dir,
+        result_key,
+        result_data,
+    )
+
+
+# =========================================================
+# 14. FAIL 오류 원인
+# =========================================================
+
+def get_failure_reasons(
+    result_data: dict,
+) -> list[str]:
+
+    for key in [
+        "final_reasons",
+        "reasons",
+    ]:
+
+        reasons = (
+            result_data.get(
+                key
+            )
+        )
+
+        if isinstance(
+            reasons,
+            list,
+        ):
+
+            cleaned = [
+                str(reason).strip()
+                for reason in reasons
+                if str(reason).strip()
+            ]
+
+            if cleaned:
+                return cleaned
+
+    reason = (
+        result_data.get(
+            "reason"
+        )
+    )
+
+    if reason:
+
+        return [
+            str(reason).strip()
+        ]
+
+    return [
+        "기준 이미지와 차이가 검출되었습니다."
+    ]
+
+
+def clean_failure_reason(
+    reason: str,
+) -> str:
+
+    text = str(
+        reason
+    ).strip()
+
+    if not text:
+
+        return (
+            "기준 이미지와 차이가 검출되었습니다."
+        )
+
+    text = re.sub(
+        r":\s*"
+        r"[A-Za-z_][A-Za-z0-9_]*\s*="
+        r".*$",
+        "",
+        text,
+    )
+
+    text = re.sub(
+        r"\b"
+        r"[A-Za-z_][A-Za-z0-9_]*"
+        r"\s*=\s*"
+        r"[-+]?"
+        r"(?:\d+(?:\.\d*)?|\.\d+)"
+        r"\b",
+        "",
+        text,
+    )
+
+    internal_terms = [
+        "area_delta",
+        "histogram_distance",
+        "diff_ratio",
+        "diff_area_ratio",
+        "total_diff_area_ratio",
+        "overall_ssim",
+        "minimum_roi_ssim",
+        "min_roi_ssim",
+    ]
+
+    for term in internal_terms:
+
+        text = re.sub(
+            rf"\b{re.escape(term)}\b",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+
+    text = re.sub(
+        r"\s*,\s*,+",
+        ", ",
+        text,
+    )
+
+    text = re.sub(
+        r",\s*$",
+        "",
+        text,
+    )
+
+    text = re.sub(
+        r":\s*$",
+        "",
+        text,
+    )
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text,
+    ).strip()
+
+    if text.endswith(
+        "검출됨"
+    ):
+
+        text = (
+            text[:-3]
+            + "검출되었습니다."
+        )
+
+    elif text.endswith(
+        "발생함"
+    ):
+
+        text = (
+            text[:-3]
+            + "발생했습니다."
+        )
+
+    elif not text.endswith(
+        "."
+    ):
+
+        text += "."
+
+    return text
+
+
+# =========================================================
+# 15. Category 표시명
+# =========================================================
+
+def get_category_display_name(
+    value,
+) -> str:
+
+    category = str(
+        value or ""
+    ).strip().lower()
+
+    category_names = {
+
+        "text_list":
+            "텍스트 목록",
+
+        "status_time":
+            "상태 · 시간",
+
+        "guide_image":
+            "안내 이미지",
+
+        "popup":
+            "팝업",
+
+        "card_ui":
+            "카드 UI",
+
+        "setting_control":
+            "설정 화면",
+
+        "general_diff":
+            "일반 화면",
+    }
+
+    return category_names.get(
+        category,
+        "일반 화면",
+    )
+
+
+# =========================================================
+# 16. 기존 모델 새 판독 관련 함수
+# =========================================================
+
+def get_latest_round(
+    model: dict,
+) -> dict | None:
+
+    rounds = model.get(
+        "rounds",
+        [],
+    )
+
+    if not rounds:
+        return None
+
+    return max(
+        rounds,
+        key=lambda item: int(
+            item.get(
+                "round_number",
+                0,
+            )
+        ),
+    )
+
+
+def get_next_round_number(
+    model: dict,
+) -> int:
+
+    latest_round = (
+        get_latest_round(
+            model
+        )
+    )
+
+    if latest_round is None:
+        return 1
+
+    return (
+        int(
+            latest_round.get(
+                "round_number",
+                0,
+            )
+        )
+        + 1
+    )
+
+
+def build_next_scenario_id(
+    model: dict,
+) -> str:
+
+    model_id = str(
+        model.get(
+            "model_id",
+            "",
+        )
+    ).strip()
+
+    next_round = (
+        get_next_round_number(
+            model
+        )
+    )
+
+    return (
+        f"{model_id}_round_"
+        f"{next_round}"
+    )
+
+
+def get_latest_reference_dir(
+    model: dict,
+) -> Path | None:
+
+    latest_round = (
+        get_latest_round(
+            model
+        )
+    )
+
+    if not latest_round:
+        return None
+
+    reference_value = (
+        latest_round.get(
+            "reference_dir"
+        )
+    )
+
+    if not reference_value:
+        return None
+
+    reference_path = Path(
+        reference_value
+    )
+
+    if not reference_path.exists():
+        return None
+
+    return reference_path
+
+
+# =========================================================
+# 17. 이미지 업로드 관련 함수
+# =========================================================
+
+def get_uploaded_file_names(
+    uploaded_files,
+) -> list[str]:
+
+    if not uploaded_files:
+        return []
+
+    return [
+        Path(
+            uploaded.name
+        ).name
+        for uploaded in uploaded_files
+    ]
+
+
+def save_uploaded_images(
+    uploaded_files,
+    destination_dir: Path,
+) -> int:
+
+    destination_dir.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    saved_count = 0
+
+    for uploaded in uploaded_files:
+
+        safe_name = Path(
+            uploaded.name
+        ).name
+
+        target_path = (
+            destination_dir
+            / safe_name
+        )
+
+        with target_path.open(
+            "wb"
+        ) as file:
+
+            file.write(
+                uploaded.getbuffer()
+            )
+
+        saved_count += 1
+
+    return saved_count
+
+
+def save_uploaded_capture_images(
+    uploaded_files,
+    destination_dir: Path,
+) -> int:
+
+    return save_uploaded_images(
+        uploaded_files,
+        destination_dir,
+    )
+
+
+def remove_incomplete_scenario(
+    scenario_id: str,
+) -> None:
+
+    data_dir = (
+        scenario_data_dir(
+            scenario_id
+        )
+    )
+
+    results_dir = (
+        scenario_results_dir(
+            scenario_id
+        )
+    )
+
+    completed_result = (
+        results_dir
+        / "inspection_results.json"
+    )
+
+    if completed_result.exists():
+
+        raise FileExistsError(
+            "이미 완료된 판독입니다."
+        )
+
+    if data_dir.exists():
+
+        shutil.rmtree(
+            data_dir
+        )
+
+    if results_dir.exists():
+
+        shutil.rmtree(
+            results_dir
+        )
+
+
+# =========================================================
+# 18. 공통 Header
+# =========================================================
+
+def render_header() -> None:
+
+    with st.container(
+        border=True
+    ):
+
+        st.title(
+            "NEXIS LCD Inspection System"
+        )
+
+        st.caption(
+            "LCD Reference · Capture 이미지 자동 판독 시스템"
+        )
+
+
+# =========================================================
+# 19. HOME 모델 카드
+# =========================================================
+
+def render_model_card(
+    model: dict,
+) -> None:
+
+    model_id = str(
+        model.get(
+            "model_id",
+            "",
+        )
+    )
+
+    model_name = str(
+        model.get(
+            "model_name",
+            model_id,
+        )
+    )
+
+    inspection_count = int(
+        model.get(
+            "inspection_count",
+            0,
+        )
+        or 0
+    )
+
+    latest_round = (
+        model.get(
+            "latest_round_number"
+        )
+    )
+
+    reference_count = int(
+        model.get(
+            "reference_count",
+            0,
+        )
+        or 0
+    )
+
+    pass_count = int(
+        model.get(
+            "latest_pass_count",
+            0,
+        )
+        or 0
+    )
+
+    fail_count = int(
+        model.get(
+            "latest_fail_count",
+            0,
+        )
+        or 0
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        st.subheader(
+            model_name
+        )
+
+        if latest_round:
+
+            st.caption(
+                f"최근 판독 {latest_round}차"
+            )
+
+        else:
+
+            st.caption(
+                "판독 이력 없음"
+            )
+
+        cols = st.columns(5)
+
+        cols[0].metric(
+            "현재 정확도",
+            format_accuracy(
+                model.get(
+                    "latest_accuracy"
                 )
+            ),
+        )
+
+        cols[1].metric(
+            "판독 횟수",
+            f"{inspection_count}회",
+        )
+
+        cols[2].metric(
+            "Reference",
+            f"{reference_count}개",
+        )
+
+        cols[3].metric(
+            "PASS",
+            pass_count,
+        )
+
+        cols[4].metric(
+            "FAIL",
+            fail_count,
+        )
+
+        button1, button2, spacer = (
+            st.columns(
+                [1.3, 1.3, 3]
+            )
+        )
+
+        with button1:
+
+            if st.button(
+                "모델 상세 보기",
+                key=(
+                    f"open_model_"
+                    f"{model_id}"
+                ),
+                use_container_width=True,
+            ):
+
+                go_to_view(
+                    "model_detail",
+                    model_id=model_id,
+                )
+
+        with button2:
+
+            st.button(
+                "모델 리포트",
+                key=(
+                    f"report_"
+                    f"{model_id}"
+                ),
+                disabled=True,
+                use_container_width=True,
+            )
+
+
+# =========================================================
+# 20. HOME
+# =========================================================
+
+def render_home() -> None:
+
+    render_header()
+
+    st.write("")
+
+    title_col, create_col = (
+        st.columns(
+            [5, 1.5]
+        )
+    )
+
+    with title_col:
+
+        st.header(
+            "검사 모델 관리"
+        )
+
+        st.caption(
+            "등록된 검사 모델의 최신 판독 결과와 "
+            "판독 이력을 확인합니다."
+        )
+
+    with create_col:
+
+        st.write("")
 
         if st.button(
-            button_label,
-            key=f"open_{status}_{index}_{file_name}",
+            "＋ 새 모델 생성",
+            type="primary",
             use_container_width=True,
         ):
-            open_detail_page(file_name)
 
+            go_to_view(
+                "model_create"
+            )
 
-def render_roi_details(roi_decisions: Any) -> None:
-    if not isinstance(
-        roi_decisions,
-        list,
-    ) or not roi_decisions:
+    models = (
+        load_models_from_scenarios()
+    )
+
+    if not models:
+
         st.info(
-            "ROI별 세부 판정 데이터가 없습니다."
+            "등록된 검사 모델이 없습니다."
         )
+
         return
 
-    for index, roi in enumerate(
-        roi_decisions,
-        start=1,
-    ):
-        if not isinstance(roi, dict):
-            continue
+    for model in models:
 
-        roi_id = str(
-            roi.get(
-                "roi_id",
-                roi.get("id", f"ROI-{index}"),
+        render_model_card(
+            model
+        )
+
+        st.write("")
+
+
+# =========================================================
+# 21. MODEL DETAIL
+# =========================================================
+
+def render_model_detail() -> None:
+
+    render_header()
+
+    st.write("")
+
+    if st.button(
+        "← 모델 목록",
+        key="back_to_model_list",
+    ):
+
+        go_to_view(
+            "home"
+        )
+
+    model_id = (
+        st.session_state.get(
+            "selected_model_id"
+        )
+    )
+
+    if not model_id:
+
+        st.error(
+            "선택된 모델이 없습니다."
+        )
+
+        return
+
+    model = (
+        load_model_from_scenarios(
+            str(model_id)
+        )
+    )
+
+    if not model:
+
+        st.error(
+            "모델 정보를 불러오지 못했습니다."
+        )
+
+        return
+
+    model_name = str(
+        model.get(
+            "model_name",
+            "Model",
+        )
+    )
+
+    st.header(
+        model_name
+    )
+
+    st.caption(
+        "모델의 전체 판독 이력과 "
+        "차수별 결과를 확인합니다."
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        cols = st.columns(4)
+
+        cols[0].metric(
+            "Reference",
+            f"{model.get('reference_count', 0)}개",
+        )
+
+        cols[1].metric(
+            "판독 횟수",
+            f"{model.get('inspection_count', 0)}회",
+        )
+
+        cols[2].metric(
+            "현재 정확도",
+            format_accuracy(
+                model.get(
+                    "latest_accuracy"
+                )
+            ),
+        )
+
+        latest_round = (
+            model.get(
+                "latest_round_number"
             )
         )
 
-        roi_status = normalize_status(
-            roi.get(
-                "roi_final_status",
-                roi.get(
-                    "final_status",
-                    roi.get("status"),
+        cols[3].metric(
+            "최근 판독",
+            (
+                f"{latest_round}차"
+                if latest_round
+                else "-"
+            ),
+        )
+
+    st.subheader(
+        "판독 이력"
+    )
+
+    rounds = sorted(
+        model.get(
+            "rounds",
+            [],
+        ),
+        key=lambda item: int(
+            item.get(
+                "round_number",
+                0,
+            )
+        ),
+        reverse=True,
+    )
+
+    for round_data in rounds:
+
+        scenario_id = str(
+            round_data.get(
+                "scenario_id",
+                "",
+            )
+        )
+
+        round_number = int(
+            round_data.get(
+                "round_number",
+                0,
+            )
+            or 0
+        )
+
+        with st.container(
+            border=True
+        ):
+
+            st.subheader(
+                f"{round_number}차 판독"
+            )
+
+            cols = st.columns(
+                [1, 1, 1, 1, 1.3]
+            )
+
+            cols[0].metric(
+                "Capture",
+                f"{round_data.get('capture_count', 0)}개",
+            )
+
+            cols[1].metric(
+                "PASS",
+                round_data.get(
+                    "pass_count",
+                    0,
+                ),
+            )
+
+            cols[2].metric(
+                "FAIL",
+                round_data.get(
+                    "fail_count",
+                    0,
+                ),
+            )
+
+            cols[3].metric(
+                "정확도",
+                format_accuracy(
+                    round_data.get(
+                        "accuracy"
+                    )
+                ),
+            )
+
+            with cols[4]:
+
+                st.write("")
+
+                if st.button(
+                    "결과 보기",
+                    key=(
+                        f"open_result_"
+                        f"{scenario_id}"
+                    ),
+                    use_container_width=True,
+                ):
+
+                    go_to_view(
+                        "inspection_result",
+                        model_id=str(
+                            model_id
+                        ),
+                        inspection_id=(
+                            scenario_id
+                        ),
+                    )
+
+    st.write("")
+
+    left, center, right = (
+        st.columns(
+            [2, 1.5, 2]
+        )
+    )
+
+    with center:
+
+        if st.button(
+            "＋ 새로운 판독",
+            type="primary",
+            use_container_width=True,
+        ):
+
+            go_to_view(
+                "inspection_create",
+                model_id=str(
+                    model_id
+                ),
+            )
+
+
+# =========================================================
+# 22. 새 모델 생성
+# =========================================================
+
+def render_model_create() -> None:
+
+    render_header()
+
+    st.write("")
+
+    if st.button(
+        "← 모델 목록",
+        key="back_model_create",
+    ):
+
+        go_to_view(
+            "home"
+        )
+
+    try:
+
+        new_model = (
+            get_next_model_info()
+        )
+
+    except RuntimeError:
+
+        st.error(
+            "새로운 모델 이름을 생성하지 못했습니다."
+        )
+
+        return
+
+    model_id = str(
+        new_model[
+            "model_id"
+        ]
+    )
+
+    model_name = str(
+        new_model[
+            "model_name"
+        ]
+    )
+
+    scenario_id = str(
+        new_model[
+            "scenario_id"
+        ]
+    )
+
+    # =====================================================
+    # 제목
+    # =====================================================
+
+    st.header(
+        "새 검사 모델 생성"
+    )
+
+    st.caption(
+        "Reference와 Capture 이미지를 등록하고 "
+        "새로운 검사 모델의 판독 기준을 설정합니다."
+    )
+
+    st.write("")
+
+    # =====================================================
+    # 1. 모델 정보
+    # =====================================================
+
+    st.subheader(
+        "1. 모델 정보"
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        info_col1, info_col2 = (
+            st.columns(
+                [1, 2]
+            )
+        )
+
+        with info_col1:
+
+            st.metric(
+                "새 모델",
+                model_name,
+            )
+
+        with info_col2:
+
+            st.metric(
+                "최초 판독",
+                "1차",
+            )
+
+        model_description = (
+            st.text_input(
+                "모델 설명",
+                placeholder=(
+                    "예: 건조기 LCD 신규 UI 검사 모델"
                 ),
             )
         )
 
-        with st.expander(
-            f"{index}. {roi_id} — {roi_status}",
-            expanded=(roi_status != "PASS"),
-        ):
-            st.json(roi)
+    st.write("")
 
+    # =====================================================
+    # 2. 판독 화면 유형
+    # =====================================================
 
-# =========================================================
-# 4. 초기 상태
-# =========================================================
-if "inspection_started" not in st.session_state:
-    st.session_state.inspection_started = False
-
-if "inspection_finished" not in st.session_state:
-    st.session_state.inspection_finished = False
-
-if "elapsed_time_sec" not in st.session_state:
-    st.session_state.elapsed_time_sec = None
-
-if "selected_detail_file" not in st.session_state:
-    st.session_state.selected_detail_file = None
-
-if "current_view" not in st.session_state:
-    st.session_state.current_view = "summary"
-
-
-# =========================================================
-# 5. 데이터 불러오기
-# =========================================================
-try:
-    inspection_data = load_json(
-        INSPECTION_RESULT_PATH
-    )
-
-    inspection_results = get_results_dict(
-        inspection_data
-    )
-
-except (
-    FileNotFoundError,
-    json.JSONDecodeError,
-    ValueError,
-) as error:
-    st.error(str(error))
-    st.stop()
-
-
-reference_files = find_image_files(
-    REFERENCE_DIR
-)
-
-capture_files = find_image_files(
-    CAPTURE_DIR
-)
-
-reference_map = build_image_map(
-    reference_files
-)
-
-capture_map = build_image_map(
-    capture_files
-)
-
-
-# =========================================================
-# 6. 헤더
-# =========================================================
-st.markdown(
-    """
-    <div class="hero">
-        <div class="hero-title">
-            NEXIS LCD Inspection System
-        </div>
-        <div class="hero-subtitle">
-            LCD Reference·Capture 이미지 자동 판독 및
-            REVIEW 수동 확정 시스템
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-# =========================================================
-# 7. 초기 화면
-# =========================================================
-if not st.session_state.inspection_started:
-    st.markdown(
-        '<div class="section-title">검사 준비</div>',
-        unsafe_allow_html=True,
-    )
-
-    info_col1, info_col2, info_col3 = st.columns(3)
-
-    info_col1.metric(
-        "Reference 이미지",
-        len(reference_files),
-    )
-
-    info_col2.metric(
-        "Capture 이미지",
-        len(capture_files),
-    )
-
-    info_col3.metric(
-        "판독 결과 데이터",
-        len(inspection_results),
-    )
-
-    st.markdown(
-        """
-        <div class="info-box">
-            판독 시작 버튼을 누르면 현재 연결된
-            <b>inspection_results.json</b>을 읽고,
-            전체 결과를 순차적으로 불러옵니다.
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    if st.button(
-        "▶ 판독 시작",
-        type="primary",
-        use_container_width=True,
-    ):
-        st.session_state.inspection_started = True
-        st.session_state.inspection_finished = False
-        st.session_state.current_view = "summary"
-
-        start_time = time.perf_counter()
-
-        progress_bar = st.progress(0)
-        progress_text = st.empty()
-        current_file_text = st.empty()
-
-        file_names = list(
-            inspection_results.keys()
-        )
-
-        total_count = len(file_names)
-
-        for index, file_name in enumerate(
-            file_names,
-            start=1,
-        ):
-            progress = (
-                index / total_count
-                if total_count
-                else 1.0
-            )
-
-            progress_bar.progress(progress)
-
-            progress_text.markdown(
-                f"**판독 진행률:** "
-                f"{index} / {total_count} "
-                f"({progress * 100:.1f}%)"
-            )
-
-            current_file_text.caption(
-                f"현재 처리 중: {file_name}"
-            )
-
-            time.sleep(0.025)
-
-        st.session_state.elapsed_time_sec = (
-            time.perf_counter()
-            - start_time
-        )
-
-        st.session_state.inspection_finished = True
-        st.rerun()
-
-    st.stop()
-
-
-# =========================================================
-# 8. 결과 공통 계산
-# =========================================================
-status_file_map = get_status_file_map(
-    inspection_results
-)
-
-pass_files = status_file_map["PASS"]
-fail_files = status_file_map["FAIL"]
-review_files = status_file_map["REVIEW"]
-
-elapsed_time = st.session_state.elapsed_time_sec
-
-reliability, matched_count, comparable_count = (
-    calculate_system_reliability(
-        inspection_results
-    )
-)
-
-
-# =========================================================
-# 9. 세부 판독 화면
-# =========================================================
-if st.session_state.current_view == "detail":
-    selected_file_name = (
-        st.session_state.selected_detail_file
-    )
-
-    if selected_file_name not in inspection_results:
-        st.error(
-            "선택한 파일의 결과를 찾지 못했습니다."
-        )
-
-        if st.button(
-            "← 결과 요약 화면으로 돌아가기"
-        ):
-            st.session_state.current_view = "summary"
-            st.rerun()
-
-        st.stop()
-
-    top_back_col, top_title_col = st.columns(
-        [1, 4]
-    )
-
-    with top_back_col:
-        if st.button(
-            "← 결과 목록",
-            use_container_width=True,
-        ):
-            st.session_state.current_view = "summary"
-            st.rerun()
-
-    with top_title_col:
-        st.markdown(
-            '<div class="section-title">'
-            '세부 이미지 판독'
-            '</div>',
-            unsafe_allow_html=True,
-        )
-
-    selected_result = inspection_results[
-        selected_file_name
-    ]
-
-    selected_status = normalize_status(
-        selected_result.get("final_status")
-    )
-
-    selected_reference_path = resolve_image_path(
-        selected_file_name,
-        reference_map,
-    )
-
-    selected_capture_path = resolve_image_path(
-        selected_file_name,
-        capture_map,
-    )
-
-    display_status_card(
-        selected_status,
-        selected_file_name,
-    )
-
-    # -----------------------------------------------------
-    # 이미지 표시
-    # -----------------------------------------------------
-    reference_col, capture_col = st.columns(2)
-
-    with reference_col:
-        st.markdown("### Reference")
-
-        if selected_reference_path:
-            st.image(
-                str(selected_reference_path),
-                use_container_width=True,
-            )
-
-            st.markdown(
-                f"""
-                <div class="caption">
-                    {escape(selected_reference_path.name)}
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        else:
-            st.error(
-                "Reference 이미지를 찾지 못했습니다."
-            )
-
-    with capture_col:
-        st.markdown("### Capture")
-
-        if selected_capture_path:
-            st.image(
-                str(selected_capture_path),
-                use_container_width=True,
-            )
-
-            st.markdown(
-                f"""
-                <div class="caption">
-                    {escape(selected_capture_path.name)}
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        else:
-            st.error(
-                "Capture 이미지를 찾지 못했습니다."
-            )
-
-    # -----------------------------------------------------
-    # REVIEW 수동 판정 버튼: 사진 바로 아래
-    # -----------------------------------------------------
-    manual_review_data = load_manual_reviews()
-    manual_reviews = manual_review_data.get(
-        "reviews",
-        {},
-    )
-
-    existing_manual_review = (
-        manual_reviews.get(selected_file_name)
-        if isinstance(manual_reviews, dict)
-        else None
-    )
-
-    if selected_status == "REVIEW":
-        st.markdown(
-            '<div class="section-title">'
-            '사람의 최종 판정'
-            '</div>',
-            unsafe_allow_html=True,
-        )
-
-        st.warning(
-            "Reference와 Capture 이미지를 비교한 뒤 "
-            "PASS 또는 FAIL로 확정하세요."
-        )
-
-        manual_pass_col, manual_fail_col = st.columns(2)
-
-        with manual_pass_col:
-            if st.button(
-                "✅ PASS로 확정",
-                type="primary",
-                use_container_width=True,
-            ):
-                save_manual_review(
-                    file_name=selected_file_name,
-                    decision="PASS",
-                    original_status=selected_status,
-                )
-
-                st.success(
-                    f"{selected_file_name}을 PASS로 저장했습니다."
-                )
-                st.rerun()
-
-        with manual_fail_col:
-            if st.button(
-                "❌ FAIL로 확정",
-                use_container_width=True,
-            ):
-                save_manual_review(
-                    file_name=selected_file_name,
-                    decision="FAIL",
-                    original_status=selected_status,
-                )
-
-                st.success(
-                    f"{selected_file_name}을 FAIL로 저장했습니다."
-                )
-                st.rerun()
-
-        if isinstance(existing_manual_review, dict):
-            st.info(
-                "현재 저장된 수동 판정: "
-                f"**{existing_manual_review.get('manual_decision', '-')}** "
-                f"({existing_manual_review.get('reviewed_at', '-')})"
-            )
-
-    # -----------------------------------------------------
-    # Difference 이미지
-    # -----------------------------------------------------
-    st.markdown(
-        '<div class="section-title">'
-        'Difference'
-        '</div>',
-        unsafe_allow_html=True,
-    )
-
-    if (
-        selected_reference_path
-        and selected_capture_path
-    ):
-        try:
-            difference_image = create_difference_image(
-                selected_reference_path,
-                selected_capture_path,
-            )
-
-            st.image(
-                difference_image,
-                use_container_width=True,
-            )
-        except Exception as error:
-            st.error(
-                "Difference 이미지를 생성하지 못했습니다."
-            )
-            st.code(str(error))
-    else:
-        st.info(
-            "두 이미지가 모두 있어야 차이 이미지를 표시할 수 있습니다."
-        )
-
-    # -----------------------------------------------------
-    # 세부 오류 사항
-    # -----------------------------------------------------
-    st.markdown(
-        '<div class="section-title">'
-        '세부 오류 사항'
-        '</div>',
-        unsafe_allow_html=True,
-    )
-
-    final_reasons = get_final_reasons(
-        selected_result
-    )
-
-    if final_reasons:
-        for index, reason in enumerate(
-            final_reasons,
-            start=1,
-        ):
-            st.markdown(
-                f"""
-                <div class="reason-card">
-                    <b>{index}.</b>
-                    {escape(reason)}
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-    else:
-        st.success(
-            "기록된 최종 오류 사유가 없습니다."
-        )
-
-    detail_col1, detail_col2 = st.columns(2)
-
-    diff_summary = selected_result.get(
-        "diff_summary",
-        {},
-    )
-
-    roi_summary = selected_result.get(
-        "roi_decision_summary",
-        {},
-    )
-
-    with detail_col1:
-        st.markdown("#### 차이 분석 요약")
-
-        if isinstance(diff_summary, dict):
-            st.json(diff_summary)
-        else:
-            st.info(
-                "차이 분석 요약 데이터가 없습니다."
-            )
-
-    with detail_col2:
-        st.markdown("#### ROI 판정 집계")
-
-        if isinstance(roi_summary, dict):
-            st.json(roi_summary)
-        else:
-            st.info(
-                "ROI 판정 집계 데이터가 없습니다."
-            )
-
-    st.markdown("#### ROI별 상세 판정")
-
-    render_roi_details(
-        selected_result.get(
-            "roi_decisions",
-            [],
-        )
-    )
-
-    with st.expander(
-        "현재 선택 결과 원본 JSON",
-        expanded=False,
-    ):
-        st.json(selected_result)
-
-    st.stop()
-
-
-# =========================================================
-# 10. 결과 요약 화면
-# =========================================================
-completion_col, download_col = st.columns(
-    [4, 1.4]
-)
-
-with completion_col:
-    st.success(
-        "전체 판독 결과 불러오기가 완료되었습니다."
-    )
-
-word_report_bytes = build_word_report(
-    inspection_data=inspection_data,
-    inspection_results=inspection_results,
-    elapsed_time=elapsed_time,
-    reliability=reliability,
-    matched_count=matched_count,
-    comparable_count=comparable_count,
-)
-
-with download_col:
-    st.download_button(
-        label="⬇ 최종 결과 리포트",
-        data=word_report_bytes,
-        file_name=(
-            "NEXIS_LCD_Inspection_Report_"
-            + time.strftime("%Y%m%d_%H%M%S")
-            + ".docx"
-        ),
-        mime=(
-            "application/vnd.openxmlformats-officedocument."
-            "wordprocessingml.document"
-        ),
-        use_container_width=True,
-    )
-
-
-summary_col1, summary_col2, summary_col3, summary_col4 = (
-    st.columns(4)
-)
-
-summary_col1.metric(
-    "총 소요 시간",
-    (
-        f"{elapsed_time:.2f} sec"
-        if isinstance(elapsed_time, (int, float))
-        else "-"
-    ),
-)
-
-summary_col2.metric(
-    "PASS",
-    len(pass_files),
-)
-
-summary_col3.metric(
-    "REVIEW",
-    len(review_files),
-)
-
-summary_col4.metric(
-    "FAIL",
-    len(fail_files),
-)
-
-
-# =========================================================
-# 11. 판정별 파일 목록
-# =========================================================
-st.markdown(
-    '<div class="section-title">'
-    '상태별 사진 파일명 목록'
-    '</div>',
-    unsafe_allow_html=True,
-)
-
-pass_tab, review_tab, fail_tab = st.tabs(
-    [
-        f"PASS ({len(pass_files)})",
-        f"REVIEW ({len(review_files)})",
-        f"FAIL ({len(fail_files)})",
-    ]
-)
-
-with pass_tab:
-    render_file_buttons(
-        "PASS 파일",
-        pass_files,
-        "PASS",
-    )
-
-with review_tab:
-    render_file_buttons(
-        "REVIEW 파일",
-        review_files,
-        "REVIEW",
-    )
-
-with fail_tab:
-    render_file_buttons(
-        "FAIL 파일",
-        fail_files,
-        "FAIL",
-    )
-
-
-# =========================================================
-# 12. 시스템 신뢰도
-# =========================================================
-st.divider()
-
-st.markdown(
-    '<div class="section-title">'
-    '전체 시스템 신뢰도'
-    '</div>',
-    unsafe_allow_html=True,
-)
-
-if reliability is None:
-    st.warning(
-        "expected_result가 없어 시스템 신뢰도를 계산할 수 없습니다."
-    )
-else:
-    reliability_col1, reliability_col2, reliability_col3 = (
-        st.columns(3)
-    )
-
-    reliability_col1.metric(
-        "시스템 신뢰도",
-        f"{reliability:.2f}%",
-    )
-
-    reliability_col2.metric(
-        "예상 결과와 일치",
-        matched_count,
-    )
-
-    reliability_col3.metric(
-        "검증 가능 데이터",
-        comparable_count,
-    )
-
-    st.progress(
-        min(
-            max(
-                reliability / 100,
-                0.0,
-            ),
-            1.0,
-        )
+    st.subheader(
+        "2. 판독 화면 유형"
     )
 
     st.caption(
-        "현재 신뢰도는 expected_result와 final_status가 "
-        "정확히 일치한 비율로 계산합니다."
+        "이 모델에서 주로 검사할 LCD 화면의 "
+        "형태를 선택하세요."
     )
 
+    profile_keys = list(
+        PROFILE_DISPLAY_NAMES.keys()
+    )
+
+    selected_profile = (
+        st.radio(
+            "화면 유형",
+            options=profile_keys,
+            format_func=lambda key:
+                PROFILE_DISPLAY_NAMES.get(
+                    key,
+                    key,
+                ),
+            horizontal=True,
+            label_visibility="collapsed",
+        )
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        st.write(
+            f"**{PROFILE_DISPLAY_NAMES.get(selected_profile)}**"
+        )
+
+        st.caption(
+            PROFILE_HELP_TEXT.get(
+                selected_profile,
+                "",
+            )
+        )
+
+    st.write("")
+
+    # =====================================================
+    # 3. 중점 판독 항목
+    # =====================================================
+
+    st.subheader(
+        "3. 중점 판독 항목"
+    )
+
+    st.caption(
+        "판독 과정에서 중요하게 확인할 항목을 "
+        "선택하세요."
+    )
+
+    defaults = (
+        get_default_enabled_checks()
+    )
+
+    selected_checks = {}
+
+    with st.container(
+        border=True
+    ):
+
+        row1 = st.columns(3)
+
+        check_keys = list(
+            CHECK_DISPLAY_NAMES.keys()
+        )
+
+        for index, check_key in enumerate(
+            check_keys[:3]
+        ):
+
+            with row1[index]:
+
+                selected_checks[
+                    check_key
+                ] = st.checkbox(
+                    CHECK_DISPLAY_NAMES[
+                        check_key
+                    ],
+                    value=defaults.get(
+                        check_key,
+                        True,
+                    ),
+                    help=CHECK_HELP_TEXT.get(
+                        check_key
+                    ),
+                    key=(
+                        f"new_model_check_"
+                        f"{check_key}"
+                    ),
+                )
+
+        row2 = st.columns(3)
+
+        for index, check_key in enumerate(
+            check_keys[3:]
+        ):
+
+            with row2[index]:
+
+                selected_checks[
+                    check_key
+                ] = st.checkbox(
+                    CHECK_DISPLAY_NAMES[
+                        check_key
+                    ],
+                    value=defaults.get(
+                        check_key,
+                        True,
+                    ),
+                    help=CHECK_HELP_TEXT.get(
+                        check_key
+                    ),
+                    key=(
+                        f"new_model_check_"
+                        f"{check_key}"
+                    ),
+                )
+
+    selected_check_count = sum(
+        1
+        for enabled in (
+            selected_checks.values()
+        )
+        if enabled
+    )
+
+    if selected_check_count == 0:
+
+        st.warning(
+            "최소 한 개 이상의 판독 항목을 선택해주세요."
+        )
+
+    else:
+
+        st.caption(
+            f"현재 {selected_check_count}개의 "
+            f"판독 항목이 선택되어 있습니다."
+        )
+
+    st.write("")
+
+    # =====================================================
+    # 4. Reference 이미지 등록
+    # =====================================================
+
+    st.subheader(
+        "4. Reference 이미지 등록"
+    )
+
+    st.caption(
+        "새 모델의 정상 기준으로 사용할 "
+        "Reference 이미지를 등록하세요."
+    )
+
+    reference_files = (
+        st.file_uploader(
+            "Reference 이미지 선택",
+            type=[
+                "png",
+                "jpg",
+                "jpeg",
+                "bmp",
+            ],
+            accept_multiple_files=True,
+            key="new_model_reference_upload",
+            label_visibility="collapsed",
+        )
+    )
+
+    reference_names = (
+        get_uploaded_file_names(
+            reference_files
+        )
+    )
+
+    reference_name_set = set(
+        reference_names
+    )
+
+    st.write("")
+
+    # =====================================================
+    # 5. Capture 이미지 등록
+    # =====================================================
+
+    st.subheader(
+        "5. Capture 이미지 등록"
+    )
+
+    st.caption(
+        "최초 1차 판독에 사용할 Capture 이미지를 "
+        "등록하세요."
+    )
+
+    capture_files = (
+        st.file_uploader(
+            "Capture 이미지 선택",
+            type=[
+                "png",
+                "jpg",
+                "jpeg",
+                "bmp",
+            ],
+            accept_multiple_files=True,
+            key="new_model_capture_upload",
+            label_visibility="collapsed",
+        )
+    )
+
+    capture_names = (
+        get_uploaded_file_names(
+            capture_files
+        )
+    )
+
+    capture_name_set = set(
+        capture_names
+    )
+
+    # =====================================================
+    # 파일 검증
+    # =====================================================
+
+    reference_duplicate_count = (
+        len(reference_names)
+        - len(reference_name_set)
+    )
+
+    capture_duplicate_count = (
+        len(capture_names)
+        - len(capture_name_set)
+    )
+
+    matched_names = (
+        reference_name_set
+        & capture_name_set
+    )
+
+    missing_capture = (
+        reference_name_set
+        - capture_name_set
+    )
+
+    extra_capture = (
+        capture_name_set
+        - reference_name_set
+    )
+
+    st.write("")
+
+    with st.container(
+        border=True
+    ):
+
+        status_cols = (
+            st.columns(3)
+        )
+
+        status_cols[0].metric(
+            "Reference",
+            f"{len(reference_names)}개",
+        )
+
+        status_cols[1].metric(
+            "Capture",
+            f"{len(capture_names)}개",
+        )
+
+        status_cols[2].metric(
+            "매칭 완료",
+            f"{len(matched_names)}개",
+        )
+
+    images_ready = False
+
+    if (
+        not reference_files
+        and not capture_files
+    ):
+
+        st.info(
+            "Reference와 Capture 이미지를 등록해주세요."
+        )
+
+    elif not reference_files:
+
+        st.warning(
+            "Reference 이미지를 등록해주세요."
+        )
+
+    elif not capture_files:
+
+        st.warning(
+            "Capture 이미지를 등록해주세요."
+        )
+
+    elif reference_duplicate_count > 0:
+
+        st.error(
+            "Reference 이미지에 중복된 파일명이 있습니다."
+        )
+
+    elif capture_duplicate_count > 0:
+
+        st.error(
+            "Capture 이미지에 중복된 파일명이 있습니다."
+        )
+
+    elif missing_capture:
+
+        st.warning(
+            "일부 Reference 이미지와 일치하는 "
+            "Capture 이미지가 없습니다."
+        )
+
+    elif extra_capture:
+
+        st.warning(
+            "Reference에 없는 Capture 이미지가 "
+            "포함되어 있습니다."
+        )
+
+    elif (
+        reference_name_set
+        == capture_name_set
+        and reference_name_set
+    ):
+
+        images_ready = True
+
+        st.success(
+            "Reference와 Capture 이미지의 "
+            "파일 매칭이 완료되었습니다."
+        )
+
+    # =====================================================
+    # 최종 준비 상태
+    # =====================================================
+
+    settings_ready = (
+        selected_check_count
+        > 0
+    )
+
+    ready_to_create = (
+        images_ready
+        and settings_ready
+    )
+
+    st.write("")
+
+    # =====================================================
+    # 모델 생성 버튼
+    # =====================================================
+
+    left, center, right = (
+        st.columns(
+            [2, 2, 2]
+        )
+    )
+
+    with center:
+
+        create_clicked = (
+            st.button(
+                "모델 생성 및 1차 판독 시작",
+                type="primary",
+                use_container_width=True,
+                disabled=(
+                    not ready_to_create
+                ),
+            )
+        )
+
+    # =====================================================
+    # 실제 모델 생성
+    # =====================================================
+
+    if create_clicked:
+
+        progress = (
+            st.progress(
+                0,
+                text=(
+                    "새 모델을 준비하고 있습니다."
+                ),
+            )
+        )
+
+        try:
+
+            # -------------------------------------------------
+            # 1. 동일 Scenario 존재 여부 확인
+            # -------------------------------------------------
+
+            progress.progress(
+                10,
+                text=(
+                    "모델 저장 공간을 준비하고 있습니다."
+                ),
+            )
+
+            remove_incomplete_scenario(
+                scenario_id
+            )
+
+            # -------------------------------------------------
+            # 2. Scenario 생성
+            # -------------------------------------------------
+
+            create_scenario(
+                scenario_id,
+                (
+                    f"{model_name} "
+                    f"1차 판독"
+                ),
+            )
+
+            # -------------------------------------------------
+            # 3. 모델별 판독 설정 저장
+            # -------------------------------------------------
+
+            progress.progress(
+                20,
+                text=(
+                    "판독 설정을 저장하고 있습니다."
+                ),
+            )
+
+            save_scenario_inspection_settings(
+                scenario_id,
+                model_name=model_name,
+                model_description=(
+                    model_description
+                ),
+                profile_key=(
+                    selected_profile
+                ),
+                enabled_checks=(
+                    selected_checks
+                ),
+            )
+
+            # -------------------------------------------------
+            # 4. Reference 저장
+            # -------------------------------------------------
+
+            progress.progress(
+                30,
+                text=(
+                    "Reference 이미지를 저장하고 있습니다."
+                ),
+            )
+
+            target_reference_dir = (
+                scenario_reference_dir(
+                    scenario_id
+                )
+            )
+
+            saved_reference_count = (
+                save_uploaded_images(
+                    reference_files,
+                    target_reference_dir,
+                )
+            )
+
+            if (
+                saved_reference_count
+                != len(
+                    reference_names
+                )
+            ):
+
+                raise RuntimeError(
+                    "Reference 이미지 저장 실패"
+                )
+
+            # -------------------------------------------------
+            # 5. Capture 저장
+            # -------------------------------------------------
+
+            progress.progress(
+                40,
+                text=(
+                    "Capture 이미지를 저장하고 있습니다."
+                ),
+            )
+
+            target_capture_dir = (
+                scenario_capture_dir(
+                    scenario_id
+                )
+            )
+
+            saved_capture_count = (
+                save_uploaded_images(
+                    capture_files,
+                    target_capture_dir,
+                )
+            )
+
+            if (
+                saved_capture_count
+                != len(
+                    capture_names
+                )
+            ):
+
+                raise RuntimeError(
+                    "Capture 이미지 저장 실패"
+                )
+
+            # -------------------------------------------------
+            # 6. 실제 저장된 파일 재검증
+            # -------------------------------------------------
+
+            saved_reference_names = (
+                image_names(
+                    target_reference_dir
+                )
+            )
+
+            saved_capture_names = (
+                image_names(
+                    target_capture_dir
+                )
+            )
+
+            if (
+                saved_reference_names
+                != saved_capture_names
+            ):
+
+                raise RuntimeError(
+                    "Reference와 Capture "
+                    "파일 매칭 실패"
+                )
+
+            # -------------------------------------------------
+            # 7. 판독 엔진 실행
+            # -------------------------------------------------
+
+            progress.progress(
+                50,
+                text=(
+                    "새 모델의 1차 판독을 진행하고 있습니다."
+                ),
+            )
+
+            with st.spinner(
+                "판독 엔진이 이미지를 분석하고 있습니다."
+            ):
+
+                run_module_for_scenario(
+                    scenario_id,
+                    "modules.inspector",
+                )
+
+            # -------------------------------------------------
+            # 8. 결과 확인
+            # -------------------------------------------------
+
+            progress.progress(
+                90,
+                text=(
+                    "판독 결과를 확인하고 있습니다."
+                ),
+            )
+
+            result_file = (
+                scenario_results_dir(
+                    scenario_id
+                )
+                / "inspection_results.json"
+            )
+
+            if not result_file.exists():
+
+                raise RuntimeError(
+                    "판독 결과 생성 실패"
+                )
+
+            progress.progress(
+                100,
+                text=(
+                    "새 모델 생성이 완료되었습니다."
+                ),
+            )
+
+            # -------------------------------------------------
+            # 9. 결과 화면으로 이동
+            # -------------------------------------------------
+
+            go_to_view(
+                "inspection_result",
+                model_id=model_id,
+                inspection_id=scenario_id,
+            )
+
+        except FileExistsError:
+
+            st.error(
+                "동일한 모델의 1차 판독이 "
+                "이미 존재합니다."
+            )
+
+        except Exception:
+
+            st.error(
+                "새 모델을 생성하지 못했습니다. "
+                "이미지 구성과 판독 설정을 확인해주세요."
+            )
+
 
 # =========================================================
-# 13. 하단 제어
+# 23. PASS 이미지 그리드
 # =========================================================
-st.divider()
 
-if st.button(
-    "🔄 판독 화면 다시 시작",
-    use_container_width=True,
-):
-    st.session_state.inspection_started = False
-    st.session_state.inspection_finished = False
-    st.session_state.elapsed_time_sec = None
-    st.session_state.selected_detail_file = None
-    st.session_state.current_view = "summary"
-    st.rerun()
+def render_pass_image_grid(
+    pass_results,
+    capture_dir: Path,
+) -> None:
+
+    if not pass_results:
+
+        st.info(
+            "PASS 판독 결과가 없습니다."
+        )
+
+        return
+
+    column_count = 3
+
+    for start in range(
+        0,
+        len(pass_results),
+        column_count,
+    ):
+
+        columns = st.columns(
+            column_count
+        )
+
+        row = (
+            pass_results[
+                start:
+                start + column_count
+            ]
+        )
+
+        for index, (
+            result_key,
+            result_data,
+        ) in enumerate(row):
+
+            with columns[index]:
+
+                image_path = (
+                    find_capture_image(
+                        capture_dir,
+                        result_key,
+                        result_data,
+                    )
+                )
+
+                display_name = (
+                    get_display_file_name(
+                        result_key,
+                        result_data,
+                    )
+                )
+
+                if image_path:
+
+                    st.image(
+                        str(
+                            image_path
+                        ),
+                        use_container_width=True,
+                    )
+
+                else:
+
+                    st.warning(
+                        "이미지를 찾을 수 없습니다."
+                    )
+
+                st.caption(
+                    display_name
+                )
+
+
+# =========================================================
+# 24. FAIL 이미지 그리드
+# =========================================================
+
+def render_fail_image_grid(
+    fail_results,
+    capture_dir: Path,
+    *,
+    model_id: str,
+    scenario_id: str,
+) -> None:
+
+    if not fail_results:
+
+        st.success(
+            "FAIL 판독 결과가 없습니다."
+        )
+
+        return
+
+    column_count = 3
+
+    for start in range(
+        0,
+        len(fail_results),
+        column_count,
+    ):
+
+        columns = st.columns(
+            column_count
+        )
+
+        row = (
+            fail_results[
+                start:
+                start + column_count
+            ]
+        )
+
+        for index, (
+            result_key,
+            result_data,
+        ) in enumerate(row):
+
+            with columns[index]:
+
+                image_path = (
+                    find_fail_display_image(
+                        capture_dir,
+                        result_key,
+                        result_data,
+                    )
+                )
+
+                display_name = (
+                    get_display_file_name(
+                        result_key,
+                        result_data,
+                    )
+                )
+
+                if image_path:
+
+                    st.image(
+                        str(
+                            image_path
+                        ),
+                        use_container_width=True,
+                    )
+
+                else:
+
+                    st.warning(
+                        "이미지를 찾을 수 없습니다."
+                    )
+
+                st.caption(
+                    display_name
+                )
+
+                if st.button(
+                    "상세 보기",
+                    key=(
+                        f"fail_detail_"
+                        f"{scenario_id}_"
+                        f"{result_key}"
+                    ),
+                    use_container_width=True,
+                ):
+
+                    go_to_view(
+                        "image_detail",
+                        model_id=model_id,
+                        inspection_id=scenario_id,
+                        file_name=result_key,
+                    )
+
+
+# =========================================================
+# 25. 판독 결과 화면
+# =========================================================
+
+def render_inspection_result() -> None:
+
+    render_header()
+
+    model_id = (
+        st.session_state.get(
+            "selected_model_id"
+        )
+    )
+
+    scenario_id = (
+        st.session_state.get(
+            "selected_inspection_id"
+        )
+    )
+
+    if st.button(
+        "← 모델 상세",
+        key="back_to_model_detail",
+    ):
+
+        go_to_view(
+            "model_detail",
+            model_id=str(
+                model_id
+            ),
+        )
+
+    if (
+        not model_id
+        or not scenario_id
+    ):
+
+        st.error(
+            "판독 정보를 찾을 수 없습니다."
+        )
+
+        return
+
+    model = (
+        load_model_from_scenarios(
+            str(model_id)
+        )
+    )
+
+    scenario = (
+        load_scenario_by_id(
+            str(scenario_id)
+        )
+    )
+
+    if not model:
+
+        st.error(
+            "모델 정보를 불러오지 못했습니다."
+        )
+
+        return
+
+    round_number = (
+        get_round_number(
+            model,
+            str(scenario_id),
+        )
+    )
+
+    model_name = str(
+        model.get(
+            "model_name",
+            "Model",
+        )
+    )
+
+    st.header(
+        f"{model_name} · "
+        f"{round_number}차 판독 결과"
+    )
+
+    st.caption(
+        "판독 결과를 확인하고 "
+        "개별 이미지의 상세 결과를 확인합니다."
+    )
+
+    capture_dir_value = (
+        scenario.get(
+            "capture_dir"
+        )
+    )
+
+    capture_dir = (
+        Path(
+            capture_dir_value
+        )
+        if capture_dir_value
+        else Path()
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        cols = st.columns(4)
+
+        cols[0].metric(
+            "전체 판독",
+            f"{scenario.get('capture_count', 0)}개",
+        )
+
+        cols[1].metric(
+            "PASS",
+            scenario.get(
+                "pass_count",
+                0,
+            ),
+        )
+
+        cols[2].metric(
+            "FAIL",
+            scenario.get(
+                "fail_count",
+                0,
+            ),
+        )
+
+        cols[3].metric(
+            "PASS 비율",
+            format_accuracy(
+                scenario.get(
+                    "accuracy"
+                )
+            ),
+        )
+
+    (
+        pass_results,
+        fail_results,
+    ) = split_results_by_status(
+        scenario.get(
+            "results_mapping",
+            {},
+        )
+    )
+
+    fail_tab, pass_tab = st.tabs(
+        [
+            f"FAIL {len(fail_results)}",
+            f"PASS {len(pass_results)}",
+        ]
+    )
+
+    with fail_tab:
+
+        st.subheader(
+            "FAIL"
+        )
+
+        st.caption(
+            "오류가 검출된 Capture 이미지입니다."
+        )
+
+        render_fail_image_grid(
+            fail_results,
+            capture_dir,
+            model_id=str(
+                model_id
+            ),
+            scenario_id=str(
+                scenario_id
+            ),
+        )
+
+    with pass_tab:
+
+        st.subheader(
+            "PASS"
+        )
+
+        st.caption(
+            "정상 판정된 Capture 이미지입니다."
+        )
+
+        render_pass_image_grid(
+            pass_results,
+            capture_dir,
+        )
+
+
+# =========================================================
+# 26. FAIL 상세 화면
+# =========================================================
+
+def render_image_detail() -> None:
+
+    render_header()
+
+    model_id = (
+        st.session_state.get(
+            "selected_model_id"
+        )
+    )
+
+    scenario_id = (
+        st.session_state.get(
+            "selected_inspection_id"
+        )
+    )
+
+    file_key = (
+        st.session_state.get(
+            "selected_file_name"
+        )
+    )
+
+    if st.button(
+        "← 판독 결과",
+        key="back_from_detail",
+    ):
+
+        go_to_view(
+            "inspection_result",
+            model_id=str(
+                model_id
+            ),
+            inspection_id=str(
+                scenario_id
+            ),
+        )
+
+    if not scenario_id:
+
+        st.error(
+            "판독 정보를 찾을 수 없습니다."
+        )
+
+        return
+
+    scenario = (
+        load_scenario_by_id(
+            str(scenario_id)
+        )
+    )
+
+    results_mapping = (
+        scenario.get(
+            "results_mapping",
+            {},
+        )
+    )
+
+    result_data = (
+        results_mapping.get(
+            str(file_key),
+            {},
+        )
+    )
+
+    if not result_data:
+
+        st.error(
+            "해당 이미지의 판독 결과를 "
+            "찾을 수 없습니다."
+        )
+
+        return
+
+    display_name = (
+        get_display_file_name(
+            str(file_key),
+            result_data,
+        )
+    )
+
+    status = str(
+        result_data.get(
+            "final_status",
+            "",
+        )
+    ).strip().upper()
+
+    reference_dir_value = (
+        scenario.get(
+            "reference_dir"
+        )
+    )
+
+    capture_dir_value = (
+        scenario.get(
+            "capture_dir"
+        )
+    )
+
+    reference_dir = (
+        Path(
+            reference_dir_value
+        )
+        if reference_dir_value
+        else Path()
+    )
+
+    capture_dir = (
+        Path(
+            capture_dir_value
+        )
+        if capture_dir_value
+        else Path()
+    )
+
+    reference_image = (
+        find_reference_image(
+            reference_dir,
+            str(file_key),
+            result_data,
+        )
+    )
+
+    capture_image = (
+        find_fail_display_image(
+            capture_dir,
+            str(file_key),
+            result_data,
+        )
+    )
+
+    # =====================================================
+    # 파일명 + 상태
+    # =====================================================
+
+    if status == "FAIL":
+
+        st.markdown(
+            f"## {display_name} **[FAIL]**"
+        )
+
+    elif status == "PASS":
+
+        st.markdown(
+            f"## {display_name} **[PASS]**"
+        )
+
+    else:
+
+        st.markdown(
+            f"## {display_name}"
+        )
+
+    # =====================================================
+    # Reference / Capture
+    # =====================================================
+
+    reference_column, capture_column = (
+        st.columns(
+            2,
+            gap="small",
+        )
+    )
+
+    with reference_column:
+
+        with st.container(
+            border=True
+        ):
+
+            st.markdown(
+                "**Reference**"
+            )
+
+            st.caption(
+                "정상 기준 이미지"
+            )
+
+            if reference_image:
+
+                st.image(
+                    str(
+                        reference_image
+                    ),
+                    use_container_width=True,
+                )
+
+            else:
+
+                st.warning(
+                    "Reference 이미지를 찾을 수 없습니다."
+                )
+
+    with capture_column:
+
+        with st.container(
+            border=True
+        ):
+
+            st.markdown(
+                "**Capture**"
+            )
+
+            st.caption(
+                "판독 대상 이미지"
+            )
+
+            if capture_image:
+
+                st.image(
+                    str(
+                        capture_image
+                    ),
+                    use_container_width=True,
+                )
+
+            else:
+
+                st.warning(
+                    "Capture 이미지를 찾을 수 없습니다."
+                )
+
+    # =====================================================
+    # 오류 원인
+    # =====================================================
+
+    if status == "FAIL":
+
+        st.markdown(
+            "### 오류 원인"
+        )
+
+        reasons = (
+            get_failure_reasons(
+                result_data
+            )
+        )
+
+        with st.container(
+            border=True
+        ):
+
+            st.caption(
+                "판독 과정에서 다음 문제가 검출되었습니다."
+            )
+
+            for reason in reasons:
+
+                cleaned_reason = (
+                    clean_failure_reason(
+                        str(reason)
+                    )
+                )
+
+                st.error(
+                    cleaned_reason,
+                    icon=None,
+                )
+
+    # =====================================================
+    # 상세 판독 정보
+    # =====================================================
+
+    st.markdown(
+        "#### 상세 판독 정보"
+    )
+
+    category = (
+        get_category_display_name(
+            result_data.get(
+                "category"
+            )
+        )
+    )
+
+    diff_summary = (
+        result_data.get(
+            "diff_summary",
+            {},
+        )
+    )
+
+    evidence_summary = (
+        result_data.get(
+            "evidence_summary",
+            {},
+        )
+    )
+
+    if not isinstance(
+        diff_summary,
+        dict,
+    ):
+
+        diff_summary = {}
+
+    if not isinstance(
+        evidence_summary,
+        dict,
+    ):
+
+        evidence_summary = {}
+
+    diff_roi_count = (
+        diff_summary.get(
+            "diff_roi_count"
+        )
+    )
+
+    if diff_roi_count is None:
+
+        diff_roi_count = (
+            evidence_summary.get(
+                "diff_roi_count"
+            )
+        )
+
+    total_diff_ratio = (
+        diff_summary.get(
+            "total_diff_area_ratio"
+        )
+    )
+
+    if total_diff_ratio is None:
+
+        total_diff_ratio = (
+            evidence_summary.get(
+                "total_diff_area_ratio"
+            )
+        )
+
+    overall_ssim = (
+        evidence_summary.get(
+            "overall_ssim"
+        )
+    )
+
+    minimum_roi_ssim = (
+        evidence_summary.get(
+            "minimum_roi_ssim"
+        )
+    )
+
+    if minimum_roi_ssim is None:
+
+        minimum_roi_ssim = (
+            evidence_summary.get(
+                "min_roi_ssim"
+            )
+        )
+
+    with st.container(
+        border=True
+    ):
+
+        (
+            detail1,
+            detail2,
+            detail3,
+            detail4,
+            detail5,
+        ) = st.columns(
+            5,
+            gap="small",
+        )
+
+        with detail1:
+
+            st.caption(
+                "검사 유형"
+            )
+
+            st.write(
+                category
+            )
+
+        with detail2:
+
+            st.caption(
+                "차이 영역"
+            )
+
+            if diff_roi_count is not None:
+
+                st.write(
+                    f"{diff_roi_count}개"
+                )
+
+            else:
+
+                st.write("-")
+
+        with detail3:
+
+            st.caption(
+                "전체 차이 비율"
+            )
+
+            st.write(
+                format_percentage_from_ratio(
+                    total_diff_ratio
+                )
+            )
+
+        with detail4:
+
+            st.caption(
+                "전체 유사도"
+            )
+
+            st.write(
+                format_decimal(
+                    overall_ssim
+                )
+            )
+
+        with detail5:
+
+            st.caption(
+                "최저 유사도"
+            )
+
+            st.write(
+                format_decimal(
+                    minimum_roi_ssim
+                )
+            )
+
+
+# =========================================================
+# 27. 기존 모델의 새로운 판독
+# =========================================================
+
+def render_inspection_create() -> None:
+
+    render_header()
+
+    model_id = (
+        st.session_state.get(
+            "selected_model_id"
+        )
+    )
+
+    if st.button(
+        "← 모델 상세",
+        key="back_new_inspection",
+    ):
+
+        go_to_view(
+            "model_detail",
+            model_id=str(
+                model_id
+            ),
+        )
+
+    if not model_id:
+
+        st.error(
+            "선택된 모델이 없습니다."
+        )
+
+        return
+
+    model = (
+        load_model_from_scenarios(
+            str(model_id)
+        )
+    )
+
+    if not model:
+
+        st.error(
+            "모델 정보를 불러오지 못했습니다."
+        )
+
+        return
+
+    model_name = str(
+        model.get(
+            "model_name",
+            "Model",
+        )
+    )
+
+    next_round = (
+        get_next_round_number(
+            model
+        )
+    )
+
+    next_scenario_id = (
+        build_next_scenario_id(
+            model
+        )
+    )
+
+    latest_reference_dir = (
+        get_latest_reference_dir(
+            model
+        )
+    )
+
+    st.header(
+        f"{model_name} · "
+        f"{next_round}차 판독"
+    )
+
+    st.caption(
+        "새로운 Capture 이미지를 등록하여 "
+        "판독을 실행합니다."
+    )
+
+    if not latest_reference_dir:
+
+        st.error(
+            "Reference 이미지를 "
+            "불러오지 못했습니다."
+        )
+
+        return
+
+    reference_names = (
+        image_names(
+            latest_reference_dir
+        )
+    )
+
+    reference_count = len(
+        reference_names
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        st.subheader(
+            "Reference"
+        )
+
+        st.caption(
+            "기존 모델에 등록된 Reference 이미지를 "
+            "자동으로 사용합니다."
+        )
+
+        st.metric(
+            "Reference 이미지",
+            f"{reference_count}개",
+        )
+
+    st.subheader(
+        "Capture 이미지 등록"
+    )
+
+    st.caption(
+        "검사할 Capture 이미지들을 "
+        "한 번에 선택하거나 드래그하여 등록하세요."
+    )
+
+    uploaded_files = (
+        st.file_uploader(
+            "Capture 이미지 선택",
+            type=[
+                "png",
+                "jpg",
+                "jpeg",
+                "bmp",
+            ],
+            accept_multiple_files=True,
+            label_visibility="collapsed",
+        )
+    )
+
+    uploaded_names = (
+        get_uploaded_file_names(
+            uploaded_files
+        )
+    )
+
+    uploaded_name_set = set(
+        uploaded_names
+    )
+
+    duplicate_count = (
+        len(uploaded_names)
+        - len(uploaded_name_set)
+    )
+
+    matched_names = (
+        reference_names
+        & uploaded_name_set
+    )
+
+    missing_capture = (
+        reference_names
+        - uploaded_name_set
+    )
+
+    extra_capture = (
+        uploaded_name_set
+        - reference_names
+    )
+
+    with st.container(
+        border=True
+    ):
+
+        cols = st.columns(3)
+
+        cols[0].metric(
+            "Reference",
+            f"{reference_count}개",
+        )
+
+        cols[1].metric(
+            "Capture",
+            f"{len(uploaded_names)}개",
+        )
+
+        cols[2].metric(
+            "매칭 완료",
+            f"{len(matched_names)}개",
+        )
+
+    ready_to_run = False
+
+    if not uploaded_files:
+
+        st.info(
+            "Capture 이미지를 등록해주세요."
+        )
+
+    elif duplicate_count > 0:
+
+        st.error(
+            "같은 이름의 Capture 이미지가 "
+            "중복으로 포함되어 있습니다."
+        )
+
+    elif missing_capture:
+
+        st.warning(
+            "Reference와 이름이 일치하지 않는 "
+            "Capture 이미지가 있습니다."
+        )
+
+        st.caption(
+            f"현재 매칭된 이미지: "
+            f"{len(matched_names)} / "
+            f"{reference_count}"
+        )
+
+    elif extra_capture:
+
+        st.warning(
+            "Reference에 없는 Capture 이미지가 "
+            "포함되어 있습니다."
+        )
+
+    elif (
+        uploaded_name_set
+        == reference_names
+    ):
+
+        ready_to_run = True
+
+        st.success(
+            "판독 준비가 완료되었습니다."
+        )
+
+    left, center, right = (
+        st.columns(
+            [2, 1.6, 2]
+        )
+    )
+
+    with center:
+
+        start_clicked = (
+            st.button(
+                "판독 시작",
+                type="primary",
+                disabled=(
+                    not ready_to_run
+                ),
+                use_container_width=True,
+            )
+        )
+
+    if start_clicked:
+
+        progress = st.progress(
+            0,
+            text=(
+                "판독을 준비하고 있습니다."
+            ),
+        )
+
+        try:
+
+            progress.progress(
+                10,
+                text=(
+                    "판독 환경을 준비하고 있습니다."
+                ),
+            )
+
+            remove_incomplete_scenario(
+                next_scenario_id
+            )
+
+            create_scenario(
+                next_scenario_id,
+                (
+                    f"{model_name} "
+                    f"{next_round}차 판독"
+                ),
+            )
+
+            progress.progress(
+                20,
+                text=(
+                    "Reference 이미지를 "
+                    "준비하고 있습니다."
+                ),
+            )
+
+            target_reference_dir = (
+                scenario_reference_dir(
+                    next_scenario_id
+                )
+            )
+
+            copied_reference_count = (
+                copy_images(
+                    latest_reference_dir,
+                    target_reference_dir,
+                )
+            )
+
+            if (
+                copied_reference_count
+                != reference_count
+            ):
+
+                raise RuntimeError(
+                    "Reference 이미지 준비 실패"
+                )
+
+            progress.progress(
+                30,
+                text=(
+                    "Capture 이미지를 "
+                    "등록하고 있습니다."
+                ),
+            )
+
+            target_capture_dir = (
+                scenario_capture_dir(
+                    next_scenario_id
+                )
+            )
+
+            saved_capture_count = (
+                save_uploaded_capture_images(
+                    uploaded_files,
+                    target_capture_dir,
+                )
+            )
+
+            if (
+                saved_capture_count
+                != reference_count
+            ):
+
+                raise RuntimeError(
+                    "Capture 이미지 저장 실패"
+                )
+
+            saved_reference_names = (
+                image_names(
+                    target_reference_dir
+                )
+            )
+
+            saved_capture_names = (
+                image_names(
+                    target_capture_dir
+                )
+            )
+
+            if (
+                saved_reference_names
+                != saved_capture_names
+            ):
+
+                raise RuntimeError(
+                    "Reference와 Capture "
+                    "파일 매칭 실패"
+                )
+
+            progress.progress(
+                40,
+                text=(
+                    "이미지 판독을 "
+                    "진행하고 있습니다."
+                ),
+            )
+
+            with st.spinner(
+                "판독 엔진이 이미지를 "
+                "분석하고 있습니다."
+            ):
+
+                run_module_for_scenario(
+                    next_scenario_id,
+                    "modules.inspector",
+                )
+
+            progress.progress(
+                90,
+                text=(
+                    "판독 결과를 "
+                    "정리하고 있습니다."
+                ),
+            )
+
+            result_file = (
+                scenario_results_dir(
+                    next_scenario_id
+                )
+                / "inspection_results.json"
+            )
+
+            if not result_file.exists():
+
+                raise RuntimeError(
+                    "판독 결과 생성 실패"
+                )
+
+            progress.progress(
+                100,
+                text=(
+                    "판독이 완료되었습니다."
+                ),
+            )
+
+            go_to_view(
+                "inspection_result",
+                model_id=str(
+                    model_id
+                ),
+                inspection_id=(
+                    next_scenario_id
+                ),
+            )
+
+        except FileExistsError:
+
+            st.error(
+                "해당 판독 차수는 "
+                "이미 완료되어 있습니다."
+            )
+
+        except Exception:
+
+            st.error(
+                "판독을 완료하지 못했습니다. "
+                "이미지 구성을 확인한 뒤 "
+                "다시 시도해주세요."
+            )
+
+
+# =========================================================
+# 28. Router
+# =========================================================
+
+def main() -> None:
+
+    current_view = (
+        st.session_state.get(
+            "current_view",
+            "home",
+        )
+    )
+
+    if current_view == "home":
+
+        render_home()
+
+    elif current_view == (
+        "model_detail"
+    ):
+
+        render_model_detail()
+
+    elif current_view == (
+        "model_create"
+    ):
+
+        render_model_create()
+
+    elif current_view == (
+        "inspection_result"
+    ):
+
+        render_inspection_result()
+
+    elif current_view == (
+        "image_detail"
+    ):
+
+        render_image_detail()
+
+    elif current_view == (
+        "inspection_create"
+    ):
+
+        render_inspection_create()
+
+    else:
+
+        st.session_state.current_view = (
+            "home"
+        )
+
+        st.rerun()
+
+
+# =========================================================
+# 29. 실행
+# =========================================================
+
+if __name__ == "__main__":
+
+    main()
