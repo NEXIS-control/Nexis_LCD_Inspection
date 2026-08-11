@@ -222,6 +222,9 @@ def go_to_view(
     file_name: str | None = None,
 ) -> None:
 
+    # 화면이 바뀌면 다음 화면을 최상단에서 시작
+    st.session_state.scroll_to_top = True
+
     st.session_state.current_view = (
         view_name
     )
@@ -3755,6 +3758,30 @@ def render_inspection_create() -> None:
 # =========================================================
 
 def main() -> None:
+
+    # 화면 이동 직후 브라우저 스크롤을 최상단으로 이동
+    if st.session_state.pop(
+        "scroll_to_top",
+        False,
+    ):
+        st.components.v1.html(
+            """
+            <script>
+                const doc = window.parent.document;
+                const container = doc.querySelector(
+                    '[data-testid="stAppViewContainer"]'
+                );
+
+                if (container) {
+                    container.scrollTo(0, 0);
+                }
+
+                window.parent.scrollTo(0, 0);
+            </script>
+            """,
+            height=0,
+            width=0,
+        )
 
     current_view = (
         st.session_state.get(
