@@ -893,17 +893,122 @@ def find_reference_image(
 # 13. FAIL 표시 이미지
 # =========================================================
 
+ROI_VISUALIZATION_OUTPUT_DIR = (
+    PROJECT_ROOT
+    / "roi_visualization"
+    / "output"
+)
+
+
+def get_roi_visualization_dir(
+    scenario_id: str | None,
+) -> Path | None:
+    """
+    Scenario ID를 ROI 시각화 결과 폴더와 연결한다.
+
+    예:
+    model_a_round_1 -> roi_visualization/output/A-1차
+    model_a_round_2 -> roi_visualization/output/A-2차
+    model_b         -> roi_visualization/output/B-1차
+    model_b_round_1 -> roi_visualization/output/B-1차
+
+    ROI 폴더가 없으면 None을 반환한다.
+    """
+
+    if not scenario_id:
+        return None
+
+    scenario_name = str(
+        scenario_id
+    ).strip().lower()
+
+    # model_a_round_1 같은 일반적인 차수형 Scenario
+    round_match = re.fullmatch(
+        r"model_([a-z])_round_(\d+)",
+        scenario_name,
+    )
+
+    if round_match:
+
+        model_letter = (
+            round_match.group(1).upper()
+        )
+
+        round_number = int(
+            round_match.group(2)
+        )
+
+    else:
+
+        # 기존 Model B처럼 model_b 자체가 1차인 경우도 지원
+        simple_match = re.fullmatch(
+            r"model_([a-z])",
+            scenario_name,
+        )
+
+        if not simple_match:
+            return None
+
+        model_letter = (
+            simple_match.group(1).upper()
+        )
+
+        round_number = 1
+
+    roi_dir = (
+        ROI_VISUALIZATION_OUTPUT_DIR
+        / f"{model_letter}-{round_number}차"
+    )
+
+    if (
+        roi_dir.exists()
+        and roi_dir.is_dir()
+    ):
+        return roi_dir
+
+    return None
+
+
 def find_fail_display_image(
     capture_dir: Path,
     result_key: str,
     result_data: dict,
+    *,
+    scenario_id: str | None = None,
 ) -> Path | None:
     """
-    현재 FAIL 화면에서는 원본 Capture 이미지를 표시한다.
+    FAIL 화면에서 표시할 이미지를 결정한다.
 
-    오류 위치 표시 이미지가 완성되면
-    이 함수만 수정하면 된다.
+    1순위:
+        roi_visualization/output/<모델>-<차수>차/
+        의 ROI 오류 표시 이미지
+
+    2순위:
+        기존 원본 Capture 이미지
+
+    ROI 이미지가 없거나 해당 차수의 ROI 폴더가 없으면
+    기존 Capture 이미지로 자동 대체된다.
     """
+
+    roi_dir = (
+        get_roi_visualization_dir(
+            scenario_id
+        )
+    )
+
+    if roi_dir is not None:
+
+        roi_image = (
+            find_image(
+                roi_dir,
+                result_key,
+                result_data,
+                preferred_field="capture_file",
+            )
+        )
+
+        if roi_image is not None:
+            return roi_image
 
     return find_capture_image(
         capture_dir,
@@ -2638,6 +2743,7 @@ def render_fail_image_grid(
                         capture_dir,
                         result_key,
                         result_data,
+                        scenario_id=scenario_id,
                     )
                 )
 
@@ -3009,6 +3115,9 @@ def render_image_detail() -> None:
             capture_dir,
             str(file_key),
             result_data,
+            scenario_id=str(
+                scenario_id
+            ),
         )
     )
 
@@ -3081,11 +3190,11 @@ def render_image_detail() -> None:
         ):
 
             st.markdown(
-                "**Capture**"
+                "**Capture · 오류 위치**"
             )
 
             st.caption(
-                "판독 대상 이미지"
+                "판독 대상 이미지의 ROI 오류 표시"
             )
 
             if capture_image:
