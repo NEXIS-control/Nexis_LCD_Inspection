@@ -4,6 +4,7 @@ import json
 import re
 import shutil
 import sys
+import time
 from pathlib import Path
 
 import streamlit as st
@@ -150,6 +151,41 @@ def initialize_session_state() -> None:
 
 
 initialize_session_state()
+
+
+# =========================================================
+# 5-1. Model C / Model D 데모 초기화
+# =========================================================
+
+def reset_demo_models_once() -> None:
+    """
+    브라우저를 새로고침해서 새 세션이 시작될 때마다
+    Model C / Model D 데모 모델을 깨끗하게 지운다.
+    같은 세션 안에서 버튼을 눌러 재실행되는 경우에는
+    지우지 않는다 (그러면 방금 만든 모델이 바로 사라져버림).
+    """
+
+    if st.session_state.get("demo_cd_reset_done"):
+        return
+
+    st.session_state["demo_cd_reset_done"] = True
+
+    for demo_model_id in ("model_c", "model_d"):
+
+        demo_scenario_id = f"{demo_model_id}_round_1"
+
+        shutil.rmtree(
+            scenario_data_dir(demo_scenario_id),
+            ignore_errors=True,
+        )
+
+        shutil.rmtree(
+            scenario_results_dir(demo_scenario_id),
+            ignore_errors=True,
+        )
+
+
+reset_demo_models_once()
 
 
 # =========================================================
@@ -2555,16 +2591,35 @@ def render_model_create() -> None:
 
                 if model_id in ("model_c", "model_d"):
 
-                    from modules.demo_progress_bar_inspector import (
-                        run_demo_progress_bar_inspection,
+                    from modules.demo_fixed_result_inspector import (
+                        run_demo_fixed_result_inspection,
                     )
 
-                    run_demo_progress_bar_inspection(
+                    forced_status = (
+                        "PASS" if model_id == "model_c" else "FAIL"
+                    )
+
+                    run_demo_fixed_result_inspection(
                         reference_dir=target_reference_dir,
                         capture_dir=target_capture_dir,
                         results_dir=scenario_results_dir(scenario_id),
+                        final_status=forced_status,
                         enabled_checks=selected_checks,
                     )
+
+                    # 실제 계산이 없어 순식간에 끝나므로,
+                    # 판독하는 느낌을 주기 위해 약 2초간
+                    # 진행 게이지를 채워서 보여준다.
+                    for step_value in (55, 60, 65, 70, 75, 80, 85, 90):
+
+                        progress.progress(
+                            step_value,
+                            text=(
+                                "새 모델의 1차 판독을 진행하고 있습니다."
+                            ),
+                        )
+
+                        time.sleep(0.25)
 
                 else:
 
@@ -2621,12 +2676,14 @@ def render_model_create() -> None:
                 "이미 존재합니다."
             )
 
-        except Exception:
+        except Exception as error:
 
             st.error(
                 "새 모델을 생성하지 못했습니다. "
                 "이미지 구성과 판독 설정을 확인해주세요."
             )
+
+            st.exception(error)
 
 
 # =========================================================
