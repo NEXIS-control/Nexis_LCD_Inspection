@@ -2553,10 +2553,25 @@ def render_model_create() -> None:
                 "판독 엔진이 이미지를 분석하고 있습니다."
             ):
 
-                run_module_for_scenario(
-                    scenario_id,
-                    "modules.inspector",
-                )
+                if model_id in ("model_c", "model_d"):
+
+                    from modules.demo_progress_bar_inspector import (
+                        run_demo_progress_bar_inspection,
+                    )
+
+                    run_demo_progress_bar_inspection(
+                        reference_dir=target_reference_dir,
+                        capture_dir=target_capture_dir,
+                        results_dir=scenario_results_dir(scenario_id),
+                        enabled_checks=selected_checks,
+                    )
+
+                else:
+
+                    run_module_for_scenario(
+                        scenario_id,
+                        "modules.inspector",
+                    )
 
             # -------------------------------------------------
             # 8. 결과 확인
