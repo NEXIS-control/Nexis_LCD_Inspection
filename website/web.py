@@ -1426,6 +1426,69 @@ def remove_incomplete_scenario(
 
 
 # =========================================================
+# 17.5 리포트 캐시 생성 함수
+#
+# st.cache_data로 감싸서, 모델/차수 데이터가 바뀌지 않는 한
+# 리포트를 다시 만들지 않고 캐시된 파일을 그대로 재사용한다.
+# 이렇게 하면 "생성" 버튼 없이 처음부터
+# "다운로드" 버튼 하나만 보여주고 바로 눌러서 받을 수 있다.
+# =========================================================
+
+@st.cache_data(show_spinner="모델 리포트를 준비하고 있습니다.")
+def _generate_model_report_bytes(
+    model_id: str,
+    cache_key: str,
+) -> tuple[bytes, str]:
+    """
+    cache_key가 바뀔 때만(즉, 모델 데이터가 실제로 바뀔 때만)
+    report.py의 generate_model_report()를 다시 실행한다.
+    """
+
+    from report import (
+        generate_model_report,
+    )
+
+    report_path = (
+        generate_model_report(
+            model_id
+        )
+    )
+
+    return (
+        report_path.read_bytes(),
+        report_path.name,
+    )
+
+
+@st.cache_data(show_spinner="차수 리포트를 준비하고 있습니다.")
+def _generate_round_report_bytes(
+    model_id: str,
+    scenario_id: str,
+    cache_key: str,
+) -> tuple[bytes, str]:
+    """
+    cache_key가 바뀔 때만 report.py의
+    generate_round_report()를 다시 실행한다.
+    """
+
+    from report import (
+        generate_round_report,
+    )
+
+    report_path = (
+        generate_round_report(
+            model_id,
+            scenario_id,
+        )
+    )
+
+    return (
+        report_path.read_bytes(),
+        report_path.name,
+    )
+
+
+# =========================================================
 # 18. 공통 Header
 # =========================================================
 
@@ -1579,15 +1642,58 @@ def render_model_card(
 
         with button2:
 
-            st.button(
-                "모델 리포트",
-                key=(
-                    f"report_"
-                    f"{model_id}"
-                ),
-                disabled=True,
-                use_container_width=True,
+            # ---------------------------------------------
+            # 모델 리포트 다운로드 (한 번 클릭)
+            #
+            # st.cache_data로 감싼 _generate_model_report_bytes를
+            # 부르는데, cache_key(정확도/판독횟수/PASS/FAIL 조합)가
+            # 이전과 같으면 캐시된 바이트를 그대로 재사용하고,
+            # 데이터가 실제로 바뀐 경우에만 리포트를 다시 만든다.
+            #
+            # 그래서 "생성" 버튼 없이 처음부터
+            # "리포트 다운로드" 버튼 하나만 보이고,
+            # 클릭하면 바로 다운로드된다.
+            # ---------------------------------------------
+
+            report_cache_key = (
+                f"{inspection_count}-"
+                f"{model.get('latest_accuracy')}-"
+                f"{pass_count}-"
+                f"{fail_count}"
             )
+
+            try:
+
+                (
+                    report_bytes,
+                    report_file_name,
+                ) = (
+                    _generate_model_report_bytes(
+                        model_id,
+                        report_cache_key,
+                    )
+                )
+
+                st.download_button(
+                    "⬇ 리포트 다운로드",
+                    data=report_bytes,
+                    file_name=report_file_name,
+                    mime=(
+                        "application/vnd.openxmlformats-officedocument"
+                        ".wordprocessingml.document"
+                    ),
+                    key=(
+                        f"download_"
+                        f"{model_id}"
+                    ),
+                    use_container_width=True,
+                )
+
+            except Exception as error:
+
+                st.error(
+                    f"리포트를 생성하지 못했습니다: {error}"
+                )
 
 
 # =========================================================
@@ -2868,15 +2974,77 @@ def render_inspection_result() -> None:
         )
     )
 
-    st.header(
-        f"{model_name} · "
-        f"{round_number}차 판독 결과"
+    header_col, report_col = (
+        st.columns(
+            [4, 1.4]
+        )
     )
 
-    st.caption(
-        "판독 결과를 확인하고 "
-        "개별 이미지의 상세 결과를 확인합니다."
-    )
+    with header_col:
+
+        st.header(
+            f"{model_name} · "
+            f"{round_number}차 판독 결과"
+        )
+
+        st.caption(
+            "판독 결과를 확인하고 "
+            "개별 이미지의 상세 결과를 확인합니다."
+        )
+
+    with report_col:
+
+        st.write("")
+        st.write("")
+
+        # ---------------------------------------------
+        # 이 차수(scenario_id)만의 리포트 다운로드 (한 번 클릭)
+        #
+        # "모델 리포트"(모델 전체)와 별개로,
+        # 지금 보고 있는 차수의 결과만 담긴 리포트를
+        # st.cache_data로 캐시해서 즉시 다운로드 버튼으로 보여준다.
+        # ---------------------------------------------
+
+        round_report_cache_key = (
+            f"{scenario.get('capture_count', 0)}-"
+            f"{scenario.get('pass_count', 0)}-"
+            f"{scenario.get('fail_count', 0)}-"
+            f"{scenario.get('accuracy')}"
+        )
+
+        try:
+
+            (
+                round_report_bytes,
+                round_report_file_name,
+            ) = (
+                _generate_round_report_bytes(
+                    str(model_id),
+                    str(scenario_id),
+                    round_report_cache_key,
+                )
+            )
+
+            st.download_button(
+                "⬇ 이 차수 리포트 다운로드",
+                data=round_report_bytes,
+                file_name=round_report_file_name,
+                mime=(
+                    "application/vnd.openxmlformats-officedocument"
+                    ".wordprocessingml.document"
+                ),
+                key=(
+                    f"download_round_report_"
+                    f"{scenario_id}"
+                ),
+                use_container_width=True,
+            )
+
+        except Exception as error:
+
+            st.error(
+                f"리포트를 생성하지 못했습니다: {error}"
+            )
 
     capture_dir_value = (
         scenario.get(
