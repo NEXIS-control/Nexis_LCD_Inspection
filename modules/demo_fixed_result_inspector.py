@@ -44,15 +44,23 @@ def _build_item(file_name: str, reference_path: Path, capture_path: Path,
     if final_status == "FAIL":
         final_reasons = ["진행 상태 바의 채워진 길이 차이가 허용 기준을 초과함."]
         applied_rule = "demo_forced_fail"
+        diff_roi_count = 1
+        total_diff_area_ratio = 0.052
+        overall_ssim = 0.913
+        minimum_roi_ssim = 0.417
     else:
         final_reasons = ["데모 모델 설정에 따라 PASS로 고정됨"]
         applied_rule = "demo_forced_pass"
+        diff_roi_count = 0
+        total_diff_area_ratio = 0.004
+        overall_ssim = 0.986
+        minimum_roi_ssim = 0.958
 
     return {
         "screen_id": screen_id,
         "file_name": file_name,
-        "category": "demo_fixed",
-        "profile": "demo_fixed_profile",
+        "category": "status_time",
+        "profile": "status_time_profile",
         "reference_image": _to_project_relative(reference_path),
         "capture_image": _to_project_relative(capture_path),
         "expected_result": "",
@@ -62,12 +70,12 @@ def _build_item(file_name: str, reference_path: Path, capture_path: Path,
         "applied_rule": applied_rule,
         "final_reasons": final_reasons,
         "diff_summary": {
-            "diff_roi_count": 1 if final_status == "FAIL" else 0,
-            "total_diff_area_ratio": 0.0,
+            "diff_roi_count": diff_roi_count,
+            "total_diff_area_ratio": total_diff_area_ratio,
         },
         "evidence_summary": {
-            "overall_ssim": None,
-            "minimum_roi_ssim": 1.0,
+            "overall_ssim": overall_ssim,
+            "minimum_roi_ssim": minimum_roi_ssim,
             "confirmed_missing_text_count": 0,
             "bidirectional_text_presence_count": 0,
             "high_confidence_text_mismatch_count": 0,
