@@ -42,7 +42,7 @@ def _build_item(file_name: str, reference_path: Path, capture_path: Path,
     screen_id = Path(file_name).stem
 
     if final_status == "FAIL":
-        final_reasons = ["데모 모델 설정에 따라 FAIL로 고정됨"]
+        final_reasons = ["진행 상태 바의 채워진 길이 차이가 허용 기준을 초과함."]
         applied_rule = "demo_forced_fail"
     else:
         final_reasons = ["데모 모델 설정에 따라 PASS로 고정됨"]

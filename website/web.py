@@ -23,6 +23,14 @@ CONFIG_DIR = (
     / "config"
 )
 
+# Model D 데모의 FAIL 상세 화면에서, 실제 업로드한 Capture 대신
+# 항상 이 고정 이미지를 보여준다. 여기에 파일을 미리 넣어두면 된다.
+DEMO_MODEL_D_FAIL_CAPTURE_PATH = (
+    WEBSITE_DIR
+    / "demo_assets"
+    / "model_d_fail_capture.png"
+)
+
 INSPECTION_PROFILES_PATH = (
     CONFIG_DIR
     / "inspection_profiles.json"
@@ -3245,6 +3253,18 @@ def render_image_detail() -> None:
             ),
         )
     )
+
+    # Model D 데모: FAIL 화면에서는 실제 업로드한 Capture 대신
+    # 미리 준비해둔 고정 이미지를 항상 보여준다.
+    if (
+        model_id == "model_d"
+        and status == "FAIL"
+        and DEMO_MODEL_D_FAIL_CAPTURE_PATH.exists()
+    ):
+
+        capture_image = (
+            DEMO_MODEL_D_FAIL_CAPTURE_PATH
+        )
 
     # =====================================================
     # 파일명 + 상태
