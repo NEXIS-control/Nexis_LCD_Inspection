@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 import streamlit as st
+from PIL import Image
 
 
 # =========================================================
@@ -248,6 +249,58 @@ def format_percentage_from_ratio(
         ValueError,
     ):
         return "-"
+
+
+def load_image_fitted_to_canvas(
+    image_path,
+    canvas_width: int = 1280,
+    canvas_height: int = 480,
+):
+    """
+    Reference/Capture 이미지의 실제 해상도나 가로세로 비율이
+    서로 달라도, 항상 동일한 크기(canvas_width x canvas_height)로
+    보이도록 검은 배경에 맞춰서 반환한다.
+
+    비율이 다른 사진은 억지로 늘리지 않고(찌그러짐 방지),
+    비율을 유지한 채 축소해서 중앙에 배치한다.
+    """
+
+    try:
+        original = Image.open(str(image_path)).convert("RGB")
+
+    except Exception:
+        return None
+
+    original_width, original_height = original.size
+
+    if original_width <= 0 or original_height <= 0:
+        return None
+
+    scale = min(
+        canvas_width / original_width,
+        canvas_height / original_height,
+    )
+
+    resized_width = max(1, int(original_width * scale))
+    resized_height = max(1, int(original_height * scale))
+
+    resized = original.resize(
+        (resized_width, resized_height),
+        Image.LANCZOS,
+    )
+
+    canvas = Image.new(
+        "RGB",
+        (canvas_width, canvas_height),
+        (0, 0, 0),
+    )
+
+    offset_x = (canvas_width - resized_width) // 2
+    offset_y = (canvas_height - resized_height) // 2
+
+    canvas.paste(resized, (offset_x, offset_y))
+
+    return canvas
 
 
 def go_to_view(
@@ -3242,12 +3295,27 @@ def render_image_detail() -> None:
 
             if reference_image:
 
-                st.image(
-                    str(
+                fitted_reference = (
+                    load_image_fitted_to_canvas(
                         reference_image
-                    ),
-                    use_container_width=True,
+                    )
                 )
+
+                if fitted_reference is not None:
+
+                    st.image(
+                        fitted_reference,
+                        use_container_width=True,
+                    )
+
+                else:
+
+                    st.image(
+                        str(
+                            reference_image
+                        ),
+                        use_container_width=True,
+                    )
 
             else:
 
@@ -3271,12 +3339,27 @@ def render_image_detail() -> None:
 
             if capture_image:
 
-                st.image(
-                    str(
+                fitted_capture = (
+                    load_image_fitted_to_canvas(
                         capture_image
-                    ),
-                    use_container_width=True,
+                    )
                 )
+
+                if fitted_capture is not None:
+
+                    st.image(
+                        fitted_capture,
+                        use_container_width=True,
+                    )
+
+                else:
+
+                    st.image(
+                        str(
+                            capture_image
+                        ),
+                        use_container_width=True,
+                    )
 
             else:
 
