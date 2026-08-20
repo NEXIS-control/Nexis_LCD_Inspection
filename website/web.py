@@ -1676,15 +1676,19 @@ def render_model_card(
 
         with button2:
 
-            st.button(
+            if st.button(
                 "모델 리포트",
                 key=(
                     f"report_"
                     f"{model_id}"
                 ),
-                disabled=True,
                 use_container_width=True,
-            )
+            ):
+
+                go_to_view(
+                    "model_detail",
+                    model_id=model_id,
+                )
 
 
 # =========================================================
