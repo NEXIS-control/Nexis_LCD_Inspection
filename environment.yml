@@ -1,0 +1,17 @@
+name: nexis_lcd
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - streamlit==1.60.0
+      - opencv-python==5.0.0.93
+      - matplotlib==3.11.1
+      - python-docx==1.2.0
+      - pillow==12.3.0
+      - numpy==2.4.6
+      - pandas==3.0.5
+      - scipy==1.17.1
+      - scikit-image==0.26.0
