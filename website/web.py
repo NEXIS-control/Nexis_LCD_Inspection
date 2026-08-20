@@ -1812,6 +1812,74 @@ def render_model_detail() -> None:
         "차수별 결과를 확인합니다."
     )
 
+    report_session_key = (
+        f"generated_report_path::{model_id}"
+    )
+
+    if st.button(
+        "📄 모델 리포트 생성",
+        key="generate_model_report_button",
+    ):
+
+        try:
+
+            with st.spinner(
+                "리포트를 생성하고 있습니다."
+            ):
+
+                from report import (
+                    generate_model_report,
+                )
+
+                report_path = (
+                    generate_model_report(
+                        str(model_id)
+                    )
+                )
+
+            st.session_state[
+                report_session_key
+            ] = str(report_path)
+
+        except Exception as error:
+
+            st.error(
+                "리포트를 생성하지 못했습니다."
+            )
+
+            st.exception(error)
+
+    generated_report_path = (
+        st.session_state.get(
+            report_session_key
+        )
+    )
+
+    if (
+        generated_report_path
+        and Path(
+            generated_report_path
+        ).exists()
+    ):
+
+        with open(
+            generated_report_path,
+            "rb",
+        ) as report_file:
+
+            st.download_button(
+                "리포트 다운로드",
+                data=report_file.read(),
+                file_name=Path(
+                    generated_report_path
+                ).name,
+                mime=(
+                    "application/vnd.openxmlformats-officedocument"
+                    ".wordprocessingml.document"
+                ),
+                key="download_model_report_button",
+            )
+
     with st.container(
         border=True
     ):
