@@ -4,11 +4,9 @@ import json
 import re
 import shutil
 import sys
-import time
 from pathlib import Path
 
 import streamlit as st
-from PIL import Image
 
 
 # =========================================================
@@ -21,14 +19,6 @@ PROJECT_ROOT = WEBSITE_DIR.parent
 CONFIG_DIR = (
     PROJECT_ROOT
     / "config"
-)
-
-# Model D 데모의 FAIL 상세 화면에서, 실제 업로드한 Capture 대신
-# 항상 이 고정 이미지를 보여준다. 여기에 파일을 미리 넣어두면 된다.
-DEMO_MODEL_D_FAIL_CAPTURE_PATH = (
-    WEBSITE_DIR
-    / "demo_assets"
-    / "model_d_fail_capture.png"
 )
 
 INSPECTION_PROFILES_PATH = (
@@ -57,6 +47,8 @@ from scenario_model_service import (
     load_models_from_scenarios,
     load_model_from_scenarios,
     load_scenario_by_id,
+    save_model_display_name,
+    reset_model_display_name,
 )
 
 
@@ -163,41 +155,6 @@ initialize_session_state()
 
 
 # =========================================================
-# 5-1. Model C / Model D 데모 초기화
-# =========================================================
-
-def reset_demo_models_once() -> None:
-    """
-    브라우저를 새로고침해서 새 세션이 시작될 때마다
-    Model C / Model D 데모 모델을 깨끗하게 지운다.
-    같은 세션 안에서 버튼을 눌러 재실행되는 경우에는
-    지우지 않는다 (그러면 방금 만든 모델이 바로 사라져버림).
-    """
-
-    if st.session_state.get("demo_cd_reset_done"):
-        return
-
-    st.session_state["demo_cd_reset_done"] = True
-
-    for demo_model_id in ("model_c", "model_d"):
-
-        demo_scenario_id = f"{demo_model_id}_round_1"
-
-        shutil.rmtree(
-            scenario_data_dir(demo_scenario_id),
-            ignore_errors=True,
-        )
-
-        shutil.rmtree(
-            scenario_results_dir(demo_scenario_id),
-            ignore_errors=True,
-        )
-
-
-reset_demo_models_once()
-
-
-# =========================================================
 # 6. 기본 공통 함수
 # =========================================================
 
@@ -257,58 +214,6 @@ def format_percentage_from_ratio(
         ValueError,
     ):
         return "-"
-
-
-def load_image_fitted_to_canvas(
-    image_path,
-    canvas_width: int = 1280,
-    canvas_height: int = 480,
-):
-    """
-    Reference/Capture 이미지의 실제 해상도나 가로세로 비율이
-    서로 달라도, 항상 동일한 크기(canvas_width x canvas_height)로
-    보이도록 검은 배경에 맞춰서 반환한다.
-
-    비율이 다른 사진은 억지로 늘리지 않고(찌그러짐 방지),
-    비율을 유지한 채 축소해서 중앙에 배치한다.
-    """
-
-    try:
-        original = Image.open(str(image_path)).convert("RGB")
-
-    except Exception:
-        return None
-
-    original_width, original_height = original.size
-
-    if original_width <= 0 or original_height <= 0:
-        return None
-
-    scale = min(
-        canvas_width / original_width,
-        canvas_height / original_height,
-    )
-
-    resized_width = max(1, int(original_width * scale))
-    resized_height = max(1, int(original_height * scale))
-
-    resized = original.resize(
-        (resized_width, resized_height),
-        Image.LANCZOS,
-    )
-
-    canvas = Image.new(
-        "RGB",
-        (canvas_width, canvas_height),
-        (0, 0, 0),
-    )
-
-    offset_x = (canvas_width - resized_width) // 2
-    offset_y = (canvas_height - resized_height) // 2
-
-    canvas.paste(resized, (offset_x, offset_y))
-
-    return canvas
 
 
 def go_to_view(
@@ -1523,6 +1428,69 @@ def remove_incomplete_scenario(
 
 
 # =========================================================
+# 17.5 리포트 캐시 생성 함수
+#
+# st.cache_data로 감싸서, 모델/차수 데이터가 바뀌지 않는 한
+# 리포트를 다시 만들지 않고 캐시된 파일을 그대로 재사용한다.
+# 이렇게 하면 "생성" 버튼 없이 처음부터
+# "다운로드" 버튼 하나만 보여주고 바로 눌러서 받을 수 있다.
+# =========================================================
+
+@st.cache_data(show_spinner="모델 리포트를 준비하고 있습니다.")
+def _generate_model_report_bytes(
+    model_id: str,
+    cache_key: str,
+) -> tuple[bytes, str]:
+    """
+    cache_key가 바뀔 때만(즉, 모델 데이터가 실제로 바뀔 때만)
+    report.py의 generate_model_report()를 다시 실행한다.
+    """
+
+    from report import (
+        generate_model_report,
+    )
+
+    report_path = (
+        generate_model_report(
+            model_id
+        )
+    )
+
+    return (
+        report_path.read_bytes(),
+        report_path.name,
+    )
+
+
+@st.cache_data(show_spinner="차수 리포트를 준비하고 있습니다.")
+def _generate_round_report_bytes(
+    model_id: str,
+    scenario_id: str,
+    cache_key: str,
+) -> tuple[bytes, str]:
+    """
+    cache_key가 바뀔 때만 report.py의
+    generate_round_report()를 다시 실행한다.
+    """
+
+    from report import (
+        generate_round_report,
+    )
+
+    report_path = (
+        generate_round_report(
+            model_id,
+            scenario_id,
+        )
+    )
+
+    return (
+        report_path.read_bytes(),
+        report_path.name,
+    )
+
+
+# =========================================================
 # 18. 공통 Header
 # =========================================================
 
@@ -1605,9 +1573,129 @@ def render_model_card(
         border=True
     ):
 
-        st.subheader(
-            model_name
+        title_col, rename_col = (
+            st.columns(
+                [4, 1.6]
+            )
         )
+
+        with title_col:
+
+            st.subheader(
+                model_name
+            )
+
+        with rename_col:
+
+            st.write("")
+
+            rename_state_key = (
+                f"renaming_{model_id}"
+            )
+
+            if st.button(
+                "이름변경",
+                key=(
+                    f"rename_toggle_"
+                    f"{model_id}"
+                ),
+                help="모델 이름 변경",
+                use_container_width=True,
+            ):
+
+                st.session_state[
+                    rename_state_key
+                ] = not st.session_state.get(
+                    rename_state_key,
+                    False,
+                )
+
+        if st.session_state.get(
+            rename_state_key := f"renaming_{model_id}"
+        ):
+
+            with st.form(
+                key=f"rename_form_{model_id}"
+            ):
+
+                new_model_name = (
+                    st.text_input(
+                        "새 모델 이름",
+                        value=model_name,
+                        key=(
+                            f"rename_input_"
+                            f"{model_id}"
+                        ),
+                    )
+                )
+
+                (
+                    save_col,
+                    cancel_col,
+                    reset_col,
+                ) = st.columns(3)
+
+                with save_col:
+
+                    save_clicked = (
+                        st.form_submit_button(
+                            "저장",
+                            use_container_width=True,
+                        )
+                    )
+
+                with cancel_col:
+
+                    cancel_clicked = (
+                        st.form_submit_button(
+                            "취소",
+                            use_container_width=True,
+                        )
+                    )
+
+                with reset_col:
+
+                    reset_clicked = (
+                        st.form_submit_button(
+                            "기본 이름으로",
+                            use_container_width=True,
+                        )
+                    )
+
+            if save_clicked:
+
+                if new_model_name.strip():
+
+                    save_model_display_name(
+                        model_id,
+                        new_model_name,
+                    )
+
+                st.session_state[
+                    rename_state_key
+                ] = False
+
+                st.rerun()
+
+            if cancel_clicked:
+
+                st.session_state[
+                    rename_state_key
+                ] = False
+
+                st.rerun()
+
+            if reset_clicked:
+
+                reset_model_display_name(
+                    model_id
+                )
+
+                st.session_state[
+                    rename_state_key
+                ] = False
+
+                st.rerun()
 
         if latest_round:
 
@@ -1676,87 +1764,59 @@ def render_model_card(
 
         with button2:
 
-            report_session_key = (
-                f"generated_report_path::{model_id}"
+            # ---------------------------------------------
+            # 모델 리포트 다운로드 (한 번 클릭)
+            #
+            # st.cache_data로 감싼 _generate_model_report_bytes를
+            # 부르는데, cache_key(정확도/판독횟수/PASS/FAIL 조합)가
+            # 이전과 같으면 캐시된 바이트를 그대로 재사용하고,
+            # 데이터가 실제로 바뀐 경우에만 리포트를 다시 만든다.
+            #
+            # 그래서 "생성" 버튼 없이 처음부터
+            # "리포트 다운로드" 버튼 하나만 보이고,
+            # 클릭하면 바로 다운로드된다.
+            # ---------------------------------------------
+
+            report_cache_key = (
+                f"{model_name}-"
+                f"{inspection_count}-"
+                f"{model.get('latest_accuracy')}-"
+                f"{pass_count}-"
+                f"{fail_count}"
             )
 
-            generated_report_path = (
-                st.session_state.get(
-                    report_session_key
-                )
-            )
+            try:
 
-            if (
-                generated_report_path
-                and Path(
-                    generated_report_path
-                ).exists()
-            ):
-
-                with open(
-                    generated_report_path,
-                    "rb",
-                ) as report_file:
-
-                    st.download_button(
-                        "리포트 다운로드",
-                        data=report_file.read(),
-                        file_name=Path(
-                            generated_report_path
-                        ).name,
-                        mime=(
-                            "application/vnd.openxmlformats-officedocument"
-                            ".wordprocessingml.document"
-                        ),
-                        key=(
-                            f"download_report_"
-                            f"{model_id}"
-                        ),
-                        use_container_width=True,
+                (
+                    report_bytes,
+                    report_file_name,
+                ) = (
+                    _generate_model_report_bytes(
+                        model_id,
+                        report_cache_key,
                     )
+                )
 
-            else:
-
-                if st.button(
-                    "모델 리포트",
+                st.download_button(
+                    "⬇ 리포트 다운로드",
+                    data=report_bytes,
+                    file_name=report_file_name,
+                    mime=(
+                        "application/vnd.openxmlformats-officedocument"
+                        ".wordprocessingml.document"
+                    ),
                     key=(
-                        f"report_"
+                        f"download_"
                         f"{model_id}"
                     ),
                     use_container_width=True,
-                ):
+                )
 
-                    try:
+            except Exception as error:
 
-                        with st.spinner(
-                            "리포트를 생성하고 있습니다."
-                        ):
-
-                            from report import (
-                                generate_model_report,
-                            )
-
-                            report_path = (
-                                generate_model_report(
-                                    model_id
-                                )
-                            )
-
-                        st.session_state[
-                            report_session_key
-                        ] = str(
-                            report_path
-                        )
-
-                        st.rerun()
-
-                    except Exception as error:
-
-                        st.error(
-                            "리포트를 생성하지 못했습니다."
-                        )
-
-                        st.exception(error)
+                st.error(
+                    f"리포트를 생성하지 못했습니다: {error}"
+                )
 
 
 # =========================================================
@@ -1875,9 +1935,123 @@ def render_model_detail() -> None:
         )
     )
 
-    st.header(
-        model_name
+    header_title_col, header_rename_col = (
+        st.columns(
+            [5, 1.5]
+        )
     )
+
+    with header_title_col:
+
+        st.header(
+            model_name
+        )
+
+    with header_rename_col:
+
+        st.write("")
+        st.write("")
+
+        detail_rename_state_key = (
+            f"detail_renaming_{model_id}"
+        )
+
+        if st.button(
+            "이름변경",
+            key=f"detail_rename_toggle_{model_id}",
+            use_container_width=True,
+        ):
+
+            st.session_state[
+                detail_rename_state_key
+            ] = not st.session_state.get(
+                detail_rename_state_key,
+                False,
+            )
+
+    if st.session_state.get(
+        detail_rename_state_key := f"detail_renaming_{model_id}"
+    ):
+
+        with st.form(
+            key=f"detail_rename_form_{model_id}"
+        ):
+
+            detail_new_model_name = (
+                st.text_input(
+                    "새 모델 이름",
+                    value=model_name,
+                    key=f"detail_rename_input_{model_id}",
+                )
+            )
+
+            (
+                detail_save_col,
+                detail_cancel_col,
+                detail_reset_col,
+            ) = st.columns(3)
+
+            with detail_save_col:
+
+                detail_save_clicked = (
+                    st.form_submit_button(
+                        "저장",
+                        use_container_width=True,
+                    )
+                )
+
+            with detail_cancel_col:
+
+                detail_cancel_clicked = (
+                    st.form_submit_button(
+                        "취소",
+                        use_container_width=True,
+                    )
+                )
+
+            with detail_reset_col:
+
+                detail_reset_clicked = (
+                    st.form_submit_button(
+                        "기본 이름으로",
+                        use_container_width=True,
+                    )
+                )
+
+        if detail_save_clicked:
+
+            if detail_new_model_name.strip():
+
+                save_model_display_name(
+                    model_id,
+                    detail_new_model_name,
+                )
+
+            st.session_state[
+                detail_rename_state_key
+            ] = False
+
+            st.rerun()
+
+        if detail_cancel_clicked:
+
+            st.session_state[
+                detail_rename_state_key
+            ] = False
+
+            st.rerun()
+
+        if detail_reset_clicked:
+
+            reset_model_display_name(
+                model_id
+            )
+
+            st.session_state[
+                detail_rename_state_key
+            ] = False
+
+            st.rerun()
 
     st.caption(
         "모델의 전체 판독 이력과 "
@@ -2087,7 +2261,7 @@ def render_model_create() -> None:
         ]
     )
 
-    model_name = str(
+    default_model_name = str(
         new_model[
             "model_name"
         ]
@@ -2128,15 +2302,18 @@ def render_model_create() -> None:
 
         info_col1, info_col2 = (
             st.columns(
-                [1, 2]
+                [2, 1]
             )
         )
 
         with info_col1:
 
-            st.metric(
-                "새 모델",
-                model_name,
+            custom_model_name_input = (
+                st.text_input(
+                    "모델 이름",
+                    value=default_model_name,
+                    key="new_model_name_input",
+                )
             )
 
         with info_col2:
@@ -2145,6 +2322,15 @@ def render_model_create() -> None:
                 "최초 판독",
                 "1차",
             )
+
+        model_name = (
+            custom_model_name_input.strip()
+            or default_model_name
+        )
+
+        st.caption(
+            f"비워두면 기본 이름({default_model_name})이 사용됩니다."
+        )
 
         model_description = (
             st.text_input(
@@ -2722,44 +2908,10 @@ def render_model_create() -> None:
                 "판독 엔진이 이미지를 분석하고 있습니다."
             ):
 
-                if model_id in ("model_c", "model_d"):
-
-                    from modules.demo_fixed_result_inspector import (
-                        run_demo_fixed_result_inspection,
-                    )
-
-                    forced_status = (
-                        "PASS" if model_id == "model_c" else "FAIL"
-                    )
-
-                    run_demo_fixed_result_inspection(
-                        reference_dir=target_reference_dir,
-                        capture_dir=target_capture_dir,
-                        results_dir=scenario_results_dir(scenario_id),
-                        final_status=forced_status,
-                        enabled_checks=selected_checks,
-                    )
-
-                    # 실제 계산이 없어 순식간에 끝나므로,
-                    # 판독하는 느낌을 주기 위해 약 2초간
-                    # 진행 게이지를 채워서 보여준다.
-                    for step_value in (55, 60, 65, 70, 75, 80, 85, 90):
-
-                        progress.progress(
-                            step_value,
-                            text=(
-                                "새 모델의 1차 판독을 진행하고 있습니다."
-                            ),
-                        )
-
-                        time.sleep(0.25)
-
-                else:
-
-                    run_module_for_scenario(
-                        scenario_id,
-                        "modules.inspector",
-                    )
+                run_module_for_scenario(
+                    scenario_id,
+                    "modules.inspector",
+                )
 
             # -------------------------------------------------
             # 8. 결과 확인
@@ -2793,6 +2945,18 @@ def render_model_create() -> None:
             )
 
             # -------------------------------------------------
+            # 8-1. 사용자가 기본 이름과 다르게 입력했다면
+            #       표시 이름으로 저장한다.
+            # -------------------------------------------------
+
+            if model_name != default_model_name:
+
+                save_model_display_name(
+                    model_id,
+                    model_name,
+                )
+
+            # -------------------------------------------------
             # 9. 결과 화면으로 이동
             # -------------------------------------------------
 
@@ -2809,14 +2973,12 @@ def render_model_create() -> None:
                 "이미 존재합니다."
             )
 
-        except Exception as error:
+        except Exception:
 
             st.error(
                 "새 모델을 생성하지 못했습니다. "
                 "이미지 구성과 판독 설정을 확인해주세요."
             )
-
-            st.exception(error)
 
 
 # =========================================================
@@ -3073,15 +3235,78 @@ def render_inspection_result() -> None:
         )
     )
 
-    st.header(
-        f"{model_name} · "
-        f"{round_number}차 판독 결과"
+    header_col, report_col = (
+        st.columns(
+            [4, 1.4]
+        )
     )
 
-    st.caption(
-        "판독 결과를 확인하고 "
-        "개별 이미지의 상세 결과를 확인합니다."
-    )
+    with header_col:
+
+        st.header(
+            f"{model_name} · "
+            f"{round_number}차 판독 결과"
+        )
+
+        st.caption(
+            "판독 결과를 확인하고 "
+            "개별 이미지의 상세 결과를 확인합니다."
+        )
+
+    with report_col:
+
+        st.write("")
+        st.write("")
+
+        # ---------------------------------------------
+        # 이 차수(scenario_id)만의 리포트 다운로드 (한 번 클릭)
+        #
+        # "모델 리포트"(모델 전체)와 별개로,
+        # 지금 보고 있는 차수의 결과만 담긴 리포트를
+        # st.cache_data로 캐시해서 즉시 다운로드 버튼으로 보여준다.
+        # ---------------------------------------------
+
+        round_report_cache_key = (
+            f"{model_name}-"
+            f"{scenario.get('capture_count', 0)}-"
+            f"{scenario.get('pass_count', 0)}-"
+            f"{scenario.get('fail_count', 0)}-"
+            f"{scenario.get('accuracy')}"
+        )
+
+        try:
+
+            (
+                round_report_bytes,
+                round_report_file_name,
+            ) = (
+                _generate_round_report_bytes(
+                    str(model_id),
+                    str(scenario_id),
+                    round_report_cache_key,
+                )
+            )
+
+            st.download_button(
+                "⬇ 이 차수 리포트 다운로드",
+                data=round_report_bytes,
+                file_name=round_report_file_name,
+                mime=(
+                    "application/vnd.openxmlformats-officedocument"
+                    ".wordprocessingml.document"
+                ),
+                key=(
+                    f"download_round_report_"
+                    f"{scenario_id}"
+                ),
+                use_container_width=True,
+            )
+
+        except Exception as error:
+
+            st.error(
+                f"리포트를 생성하지 못했습니다: {error}"
+            )
 
     capture_dir_value = (
         scenario.get(
@@ -3326,18 +3551,6 @@ def render_image_detail() -> None:
         )
     )
 
-    # Model D 데모: FAIL 화면에서는 실제 업로드한 Capture 대신
-    # 미리 준비해둔 고정 이미지를 항상 보여준다.
-    if (
-        model_id == "model_d"
-        and status == "FAIL"
-        and DEMO_MODEL_D_FAIL_CAPTURE_PATH.exists()
-    ):
-
-        capture_image = (
-            DEMO_MODEL_D_FAIL_CAPTURE_PATH
-        )
-
     # =====================================================
     # 파일명 + 상태
     # =====================================================
@@ -3387,27 +3600,12 @@ def render_image_detail() -> None:
 
             if reference_image:
 
-                fitted_reference = (
-                    load_image_fitted_to_canvas(
+                st.image(
+                    str(
                         reference_image
-                    )
+                    ),
+                    use_container_width=True,
                 )
-
-                if fitted_reference is not None:
-
-                    st.image(
-                        fitted_reference,
-                        use_container_width=True,
-                    )
-
-                else:
-
-                    st.image(
-                        str(
-                            reference_image
-                        ),
-                        use_container_width=True,
-                    )
 
             else:
 
@@ -3431,27 +3629,12 @@ def render_image_detail() -> None:
 
             if capture_image:
 
-                fitted_capture = (
-                    load_image_fitted_to_canvas(
+                st.image(
+                    str(
                         capture_image
-                    )
+                    ),
+                    use_container_width=True,
                 )
-
-                if fitted_capture is not None:
-
-                    st.image(
-                        fitted_capture,
-                        use_container_width=True,
-                    )
-
-                else:
-
-                    st.image(
-                        str(
-                            capture_image
-                        ),
-                        use_container_width=True,
-                    )
 
             else:
 
