@@ -57,6 +57,8 @@ from scenario_model_service import (
     load_models_from_scenarios,
     load_model_from_scenarios,
     load_scenario_by_id,
+    save_model_display_name,
+    reset_model_display_name,
 )
 
 
@@ -1883,6 +1885,47 @@ def render_model_detail() -> None:
         "모델의 전체 판독 이력과 "
         "차수별 결과를 확인합니다."
     )
+
+    with st.expander(
+        "✏️ 모델 이름 수정"
+    ):
+
+        new_model_name = st.text_input(
+            "새 이름",
+            value=model_name,
+            key=f"rename_input_{model_id}",
+        )
+
+        rename_col1, rename_col2 = st.columns(2)
+
+        with rename_col1:
+
+            if st.button(
+                "저장",
+                key=f"rename_save_{model_id}",
+                use_container_width=True,
+            ):
+
+                save_model_display_name(
+                    str(model_id),
+                    new_model_name,
+                )
+
+                st.rerun()
+
+        with rename_col2:
+
+            if st.button(
+                "기본 이름으로 되돌리기",
+                key=f"rename_reset_{model_id}",
+                use_container_width=True,
+            ):
+
+                reset_model_display_name(
+                    str(model_id)
+                )
+
+                st.rerun()
 
     with st.container(
         border=True

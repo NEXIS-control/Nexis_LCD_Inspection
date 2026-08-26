@@ -13,6 +13,110 @@ from typing import Any
 WEBSITE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = WEBSITE_DIR.parent
 
+# =========================================================
+# 0-1. 모델 표시 이름(커스텀 이름) 관리
+# =========================================================
+
+WEB_DATA_DIR = (
+    PROJECT_ROOT
+    / "web_data"
+)
+
+# 사용자가 직접 지정한 모델 표시 이름을 저장하는 파일.
+# model_id(예: "model_a") -> 커스텀 표시 이름(예: "세탁기 LCD") 매핑.
+# 이 파일이 있으면 폴더명에서 자동으로 만든 "Model A" 대신
+# 여기 저장된 이름이 화면과 리포트 어디서나 우선 사용된다.
+MODEL_DISPLAY_NAMES_PATH = (
+    WEB_DATA_DIR
+    / "model_display_names.json"
+)
+
+
+def load_model_display_name_overrides() -> dict[str, str]:
+    """
+    사용자가 지정한 모델 표시 이름 전체를 읽는다.
+
+    예: {"model_a": "세탁기 LCD 검사", "model_b": "건조기 LCD 검사"}
+    """
+
+    raw_data = load_json(
+        MODEL_DISPLAY_NAMES_PATH
+    )
+
+    overrides: dict[str, str] = {}
+
+    for model_key, display_name in raw_data.items():
+
+        if not isinstance(
+            display_name,
+            str,
+        ):
+            continue
+
+        cleaned_name = display_name.strip()
+
+        if cleaned_name:
+            overrides[str(model_key)] = cleaned_name
+
+    return overrides
+
+
+def save_model_display_name(
+    model_id: str,
+    display_name: str,
+) -> None:
+    """
+    특정 모델(model_id)의 표시 이름을 저장한다.
+
+    display_name이 빈 문자열이면 커스텀 이름을 지우고
+    원래(폴더명 기반) 자동 이름으로 되돌린다.
+    """
+
+    WEB_DATA_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    overrides = load_model_display_name_overrides()
+
+    cleaned_name = str(display_name).strip()
+
+    if cleaned_name:
+        overrides[str(model_id)] = cleaned_name
+    else:
+        overrides.pop(str(model_id), None)
+
+    temporary_path = MODEL_DISPLAY_NAMES_PATH.with_suffix(
+        MODEL_DISPLAY_NAMES_PATH.suffix + ".tmp"
+    )
+
+    with temporary_path.open(
+        "w",
+        encoding="utf-8",
+    ) as file:
+        json.dump(
+            overrides,
+            file,
+            ensure_ascii=False,
+            indent=2,
+        )
+
+    temporary_path.replace(
+        MODEL_DISPLAY_NAMES_PATH
+    )
+
+
+def reset_model_display_name(
+    model_id: str,
+) -> None:
+    """모델 이름을 원래(자동 생성) 이름으로 되돌린다."""
+
+    save_model_display_name(
+        model_id,
+        "",
+    )
+
+
 DATA_SCENARIOS_DIR = (
     PROJECT_ROOT
     / "data"
@@ -671,6 +775,10 @@ def load_models_from_scenarios() -> list[
         load_all_scenarios()
     )
 
+    display_name_overrides = (
+        load_model_display_name_overrides()
+    )
+
     grouped_models: dict[
         str,
         dict[str, Any],
@@ -700,6 +808,13 @@ def load_models_from_scenarios() -> list[
             grouped_models
         ):
 
+            display_name = (
+                display_name_overrides.get(
+                    model_key,
+                    model_name,
+                )
+            )
+
             grouped_models[
                 model_key
             ] = {
@@ -707,7 +822,7 @@ def load_models_from_scenarios() -> list[
                     model_key,
 
                 "model_name":
-                    model_name,
+                    display_name,
 
                 "rounds": [],
             }
