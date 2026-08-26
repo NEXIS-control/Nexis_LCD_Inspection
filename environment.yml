@@ -7,7 +7,7 @@ dependencies:
   - pip
   - pip:
       - streamlit==1.60.0
-      - opencv-python==5.0.0.93
+      - opencv-python-headless==5.0.0.93
       - matplotlib==3.11.1
       - python-docx==1.2.0
       - pillow==12.3.0

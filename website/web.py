@@ -2189,6 +2189,23 @@ def render_model_create() -> None:
                 "1차",
             )
 
+        custom_model_name = (
+            st.text_input(
+                "모델 이름 (선택 사항)",
+                value="",
+                placeholder=(
+                    f"비워두면 자동으로 "
+                    f"'{model_name}'으로 지정됩니다."
+                ),
+                key="new_model_custom_name",
+            )
+        )
+
+        display_model_name = (
+            custom_model_name.strip()
+            or model_name
+        )
+
         model_description = (
             st.text_input(
                 "모델 설명",
@@ -2624,7 +2641,7 @@ def render_model_create() -> None:
             create_scenario(
                 scenario_id,
                 (
-                    f"{model_name} "
+                    f"{display_model_name} "
                     f"1차 판독"
                 ),
             )
@@ -2642,7 +2659,7 @@ def render_model_create() -> None:
 
             save_scenario_inspection_settings(
                 scenario_id,
-                model_name=model_name,
+                model_name=display_model_name,
                 model_description=(
                     model_description
                 ),
@@ -2834,6 +2851,17 @@ def render_model_create() -> None:
                     "새 모델 생성이 완료되었습니다."
                 ),
             )
+
+            # -------------------------------------------------
+            # 8-1. 사용자 지정 모델 이름 저장
+            # -------------------------------------------------
+
+            if custom_model_name.strip():
+
+                save_model_display_name(
+                    model_id,
+                    custom_model_name,
+                )
 
             # -------------------------------------------------
             # 9. 결과 화면으로 이동
