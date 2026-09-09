@@ -57,8 +57,6 @@ from scenario_model_service import (
     load_models_from_scenarios,
     load_model_from_scenarios,
     load_scenario_by_id,
-    save_model_display_name,
-    reset_model_display_name,
 )
 
 
@@ -168,32 +166,133 @@ initialize_session_state()
 # 5-1. Model C / Model D 데모 초기화
 # =========================================================
 
+def delete_generated_model(model_id: str) -> None:
+    """
+    Model A / B를 제외한 사용자가 새로 생성한 모델을 삭제한다.
+    모델의 모든 판독 차수에 대한 Scenario 데이터와 결과 데이터를
+    함께 제거한다.
+    """
+    normalized_id = str(model_id or "").strip().lower()
+
+    match = re.fullmatch(
+        r"model_([c-z])",
+        normalized_id,
+    )
+
+    if not match:
+        return
+
+    model = load_model_from_scenarios(normalized_id)
+
+    scenario_ids = set()
+
+    if model:
+        for round_data in model.get("rounds", []):
+            scenario_id = str(
+                round_data.get("scenario_id", "")
+            ).strip()
+            if scenario_id:
+                scenario_ids.add(scenario_id)
+
+    # 현재 모델의 등록된 모든 판독 차수 삭제
+    for scenario_id in scenario_ids:
+        shutil.rmtree(
+            scenario_data_dir(scenario_id),
+            ignore_errors=True,
+        )
+        shutil.rmtree(
+            scenario_results_dir(scenario_id),
+            ignore_errors=True,
+        )
+
+    # 불완전한 Scenario가 모델 목록에 잡히지 않는 경우까지 정리
+    scenario_patterns = [
+        f"{normalized_id}_round_*",
+        normalized_id,
+    ]
+
+    for pattern in scenario_patterns:
+        data_root = scenario_data_dir(
+            f"{normalized_id}_round_1"
+        ).parent
+        results_root = scenario_results_dir(
+            f"{normalized_id}_round_1"
+        ).parent
+
+        for path in data_root.glob(pattern):
+            if path.is_dir():
+                shutil.rmtree(
+                    path,
+                    ignore_errors=True,
+                )
+
+        for path in results_root.glob(pattern):
+            if path.is_dir():
+                shutil.rmtree(
+                    path,
+                    ignore_errors=True,
+                )
+
+
 def reset_demo_models_once() -> None:
     """
     브라우저를 새로고침해서 새 세션이 시작될 때마다
-    Model C / Model D 데모 모델을 깨끗하게 지운다.
-    같은 세션 안에서 버튼을 눌러 재실행되는 경우에는
-    지우지 않는다 (그러면 방금 만든 모델이 바로 사라져버림).
+    Model C ~ Model Z까지 사용자가 생성한 임시 모델을 모두 지운다.
+
+    같은 세션 안에서 st.rerun()이 발생하는 경우에는
+    session_state를 이용해 다시 삭제하지 않는다.
+    따라서 새 모델 생성 직후에는 결과가 유지된다.
     """
 
-    if st.session_state.get("demo_cd_reset_done"):
+    if st.session_state.get("generated_models_reset_done"):
         return
 
-    st.session_state["demo_cd_reset_done"] = True
+    st.session_state["generated_models_reset_done"] = True
 
-    for demo_model_id in ("model_c", "model_d"):
+    models = load_models_from_scenarios()
 
-        demo_scenario_id = f"{demo_model_id}_round_1"
+    for model in models:
+        model_id = str(
+            model.get("model_id", "")
+        ).strip().lower()
 
-        shutil.rmtree(
-            scenario_data_dir(demo_scenario_id),
-            ignore_errors=True,
-        )
+        if re.fullmatch(
+            r"model_[c-z]",
+            model_id,
+        ):
+            delete_generated_model(model_id)
 
-        shutil.rmtree(
-            scenario_results_dir(demo_scenario_id),
-            ignore_errors=True,
-        )
+    # 모델 목록에 나타나지 않는 잔여 Scenario 폴더도 정리한다.
+    for letter_code in range(
+        ord("c"),
+        ord("z") + 1,
+    ):
+        model_id = f"model_{chr(letter_code)}"
+
+        data_root = scenario_data_dir(
+            f"{model_id}_round_1"
+        ).parent
+        results_root = scenario_results_dir(
+            f"{model_id}_round_1"
+        ).parent
+
+        for pattern in (
+            f"{model_id}_round_*",
+            model_id,
+        ):
+            for path in data_root.glob(pattern):
+                if path.is_dir():
+                    shutil.rmtree(
+                        path,
+                        ignore_errors=True,
+                    )
+
+            for path in results_root.glob(pattern):
+                if path.is_dir():
+                    shutil.rmtree(
+                        path,
+                        ignore_errors=True,
+                    )
 
 
 reset_demo_models_once()
@@ -1654,9 +1753,9 @@ def render_model_card(
             fail_count,
         )
 
-        button1, button2, spacer = (
+        button1, button2, button3, spacer = (
             st.columns(
-                [1.3, 1.3, 3]
+                [1.3, 1.3, 1.3, 1.7]
             )
         )
 
@@ -1759,6 +1858,30 @@ def render_model_card(
                         )
 
                         st.exception(error)
+
+        if re.fullmatch(
+            r"model_[c-z]",
+            model_id.strip().lower(),
+        ):
+            with button3:
+                if st.button(
+                    "모델 삭제",
+                    key=f"delete_model_{model_id}",
+                    use_container_width=True,
+                ):
+                    delete_generated_model(model_id)
+
+                    if (
+                        st.session_state.get(
+                            "selected_model_id"
+                        )
+                        == model_id
+                    ):
+                        st.session_state.selected_model_id = None
+                        st.session_state.selected_inspection_id = None
+
+                    st.rerun()
+
 
 
 # =========================================================
@@ -1885,47 +2008,6 @@ def render_model_detail() -> None:
         "모델의 전체 판독 이력과 "
         "차수별 결과를 확인합니다."
     )
-
-    with st.expander(
-        "✏️ 모델 이름 수정"
-    ):
-
-        new_model_name = st.text_input(
-            "새 이름",
-            value=model_name,
-            key=f"rename_input_{model_id}",
-        )
-
-        rename_col1, rename_col2 = st.columns(2)
-
-        with rename_col1:
-
-            if st.button(
-                "저장",
-                key=f"rename_save_{model_id}",
-                use_container_width=True,
-            ):
-
-                save_model_display_name(
-                    str(model_id),
-                    new_model_name,
-                )
-
-                st.rerun()
-
-        with rename_col2:
-
-            if st.button(
-                "기본 이름으로 되돌리기",
-                key=f"rename_reset_{model_id}",
-                use_container_width=True,
-            ):
-
-                reset_model_display_name(
-                    str(model_id)
-                )
-
-                st.rerun()
 
     with st.container(
         border=True
@@ -2177,34 +2259,23 @@ def render_model_create() -> None:
 
         with info_col1:
 
-            st.metric(
-                "새 모델",
-                model_name,
+            st.caption("모델 ID")
+            st.write(
+                f"**{model_id.replace('model_', 'Model ').upper()}**"
             )
 
         with info_col2:
 
-            st.metric(
-                "최초 판독",
-                "1차",
+            st.caption("모델 이름")
+            model_name = st.text_input(
+                "모델 이름",
+                value=model_name,
+                key=f"new_model_name_{model_id}",
+                placeholder="사용자 지정 모델 이름",
+                label_visibility="collapsed",
             )
 
-        custom_model_name = (
-            st.text_input(
-                "모델 이름 (선택 사항)",
-                value="",
-                placeholder=(
-                    f"비워두면 자동으로 "
-                    f"'{model_name}'으로 지정됩니다."
-                ),
-                key="new_model_custom_name",
-            )
-        )
-
-        display_model_name = (
-            custom_model_name.strip()
-            or model_name
-        )
+        st.caption("최초 판독 · 1차")
 
         model_description = (
             st.text_input(
@@ -2598,6 +2669,7 @@ def render_model_create() -> None:
                 use_container_width=True,
                 disabled=(
                     not ready_to_create
+                    or not model_name.strip()
                 ),
             )
         )
@@ -2641,7 +2713,7 @@ def render_model_create() -> None:
             create_scenario(
                 scenario_id,
                 (
-                    f"{display_model_name} "
+                    f"{model_name} "
                     f"1차 판독"
                 ),
             )
@@ -2659,7 +2731,7 @@ def render_model_create() -> None:
 
             save_scenario_inspection_settings(
                 scenario_id,
-                model_name=display_model_name,
+                model_name=model_name,
                 model_description=(
                     model_description
                 ),
@@ -2851,17 +2923,6 @@ def render_model_create() -> None:
                     "새 모델 생성이 완료되었습니다."
                 ),
             )
-
-            # -------------------------------------------------
-            # 8-1. 사용자 지정 모델 이름 저장
-            # -------------------------------------------------
-
-            if custom_model_name.strip():
-
-                save_model_display_name(
-                    model_id,
-                    custom_model_name,
-                )
 
             # -------------------------------------------------
             # 9. 결과 화면으로 이동
